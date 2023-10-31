@@ -1,0 +1,9 @@
+#MacOS Generated Files
+.DS_Store
+
+#Output Files
+bin/**
+
+#Libraries
+lib/hpp/**
+lib/inc/**
