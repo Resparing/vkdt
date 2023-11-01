@@ -13,25 +13,25 @@
 /* Main Method */
 int main(int argc, const char* argv[])
 {
-    //Clear Terminal Window
-    Debug::clear();
+	//Clear Terminal Window
+	Debug::clear();
 
-    //Check if Debugging
-    bool debug = Debug::isDebug(static_cast<size_t>(argc), argv);
+	//Check if Debugging
+	bool debug = Debug::isDebug(static_cast<size_t>(argc), argv);
 
-    //Try Runnning Test Engine
-    try
-    {
-        TestEngine::TestEngine* engine = new TestEngine::TestEngine(debug, debug);
+	//Try Runnning Test Engine
+	try
+	{
+		TestEngine::TestEngine* engine = new TestEngine::TestEngine(debug, debug);
 
-        delete engine;
-    }
-    catch(const std::exception& exception)
-    {
-        std::cerr << "[ERROR] " << exception.what() << '\n';
+		delete engine;
+	}
+	catch(const std::exception& exception)
+	{
+		std::cerr << "[ERROR] " << exception.what() << '\n';
 
-        std::abort();
-    }
+		std::abort();
+	}
 
-    return Debug::EXIT_CODE(debug, static_cast<size_t>(argc), argv);
+	return Debug::EXIT_CODE(debug, static_cast<size_t>(argc), argv);
 }

@@ -25,7 +25,7 @@ INC_LIB :=		"-L/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/lib/inc"
 				"-L/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/lib"
 INC_DYLIB :=	-Wl,-rpath, "/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/lib/inc"	\
 				-Wl,-rpath, "/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/lib"
-INC_FLAGS := -lvulkan -lglfw.3
+INC_FLAGS := -lglfw.3 -lvulkan
 
 #Massive Include
 INC := $(INC_DIR) $(INC_LIB) $(INC_DYLIB) $(INC_FLAGS)
@@ -57,4 +57,4 @@ open:
 
 #Clear Terminal Command
 clear:
-	rm -f $(APP_PATH)
+	rm -rf $(APP_PATH)

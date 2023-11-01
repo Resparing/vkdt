@@ -7,3 +7,6 @@ bin/**
 #Libraries
 lib/hpp/**
 lib/inc/**
+
+#Visual Studio Code Files
+.vscode/

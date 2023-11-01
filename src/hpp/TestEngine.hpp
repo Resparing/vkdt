@@ -7,33 +7,33 @@
 
 namespace TestEngine
 {
-    class TestEngine
-    {
-    public:
+	class TestEngine
+	{
+	public:
 
-        TestEngine(const bool debug, const bool verbose);
-        ~TestEngine();
+		TestEngine(const bool debug, const bool verbose);
+		~TestEngine();
 
-    private:
+	private:
 
-        /* VKDT Parameters */
-        vkdt::instance::instance* vkdtInstance;
-        vkdt::window::window* vkdtWindow;
+		/* VKDT Parameters */
+		vkdt::instance::instance* vkdtInstance;
+		vkdt::window::window* vkdtWindow;
 
-        //Debugging and Verbose Variables
-        bool isDebug{};
-        bool isVerbose{};
+		//Debugging and Verbose Variables
+		bool isDebug{};
+		bool isVerbose{};
 
-    protected:
+	protected:
 
-        //Create Window
-        void createWindow(void);
+		//Create Window
+		void createWindow(void);
 
-        //Initialize VKDT
-        void vkdtInit(void);
+		//Initialize VKDT
+		void vkdtInit(void);
 
-        //Main Loop Function
-        void mainLoop(void);
+		//Main Loop Function
+		void mainLoop(void);
 
-    };
+	};
 }
