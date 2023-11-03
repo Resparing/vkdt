@@ -112,7 +112,7 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 		//If Debugging with Verbose Options
 		if(this -> verbose)
 		{
-			std::cout								   \
+			std::cout									\
 			<< "Successfully Created VKDT Window With"  \
 			<< " Width: " << windowWidth				\
 			<< ", Height: " << windowHeight			 \

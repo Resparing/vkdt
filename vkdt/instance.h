@@ -49,7 +49,7 @@ namespace vkdt::instance
 		 *
 		 * @param appInfo The Application Information of Program
 		 * @param debug Whether to Allow Debugging in Messages and Setup Debug Callback
-		 * @param verbose Allow Verbose Debugging Methods in Messages and Setup Debug Callback
+		 * @param verbose Allow General & Verbose Debugging Methods in Messages and Setup Debug Callback
 		 * @param callbackFunc Function for Debugging Errors
 		 * @param vkdtExtensions C-String Vector of Requested Vulkan Extensions
 		 * @param vkdtLayers C-String Vector of Requested Vulkan Layers
@@ -84,7 +84,7 @@ namespace vkdt::instance
 		 *
 		 * @return Pointer to Vulkan Instance
 		 */
-		VkInstance& refVKInstance(void) noexcept;
+		const VkInstance& refVKInstance(void) noexcept;
 
 	private:
 

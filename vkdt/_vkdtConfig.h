@@ -7,6 +7,7 @@
 #include <cstdint>  //Standard Integers
 #include <cstring>  //C String Functions
 #include <iostream>  //Input / Output
+#include <optional>  //Optional Values
 #include <stdexcept>  //Create Exceptions
 #include <string>  //String Header
 #include <unordered_map>  //Provide Arguments to Functions

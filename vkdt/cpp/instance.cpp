@@ -47,7 +47,7 @@ vkdt::instance::instance::instance
 	if(verbose)
 	{
 		//Debug Application Information
-		std::cout																		   \
+		std::cout																			\
 		<< "Successfully Received Application Information With"							 \
 		<< " Name: \"" << this -> appData.name											  \
 		<< "\" Version: Patch " << this -> appData.version.patch							\
@@ -58,7 +58,7 @@ vkdt::instance::instance::instance
 
 	else if(this -> debug)
 	{
-		std::cout																		   \
+		std::cout																			\
 		<< "Successfully Received Application Information With"							 \
 		" Name: \"" << this -> appData.name												 \
 		<< "\", Version: " << this -> appData.version.patch								 \
@@ -109,7 +109,7 @@ vkdt::instance::instance::instance
 
 		if(this -> verbose)
 		{
-			std::cout																	   \
+			std::cout																		\
 			<< "Added Required Debugging Software: \"" << "VK_LAYER_KHRONOS_validation"	 \
 			<< "\" and: \"" << VK_EXT_DEBUG_UTILS_EXTENSION_NAME << "\"!\n";
 		}
@@ -178,12 +178,12 @@ void vkdt::instance::instance::createVKDTInstance(const VkAllocationCallbacks* a
 
 		//Application Information
 		.pApplicationName = this -> appData.name,
-		.applicationVersion = VK_MAKE_API_VERSION										   \
-		(																				   \
+		.applicationVersion = VK_MAKE_API_VERSION											\
+		(																					\
 			this -> appData.version.variant,												\
 			this -> appData.version.major,												  \
 			this -> appData.version.minor,												  \
-			this -> appData.version.patch												   \
+			this -> appData.version.patch													\
 		),
 	};
 
@@ -299,7 +299,7 @@ void vkdt::instance::instance::makeVKDTDebugMessenger(vkdt::debug::vkdtCallback 
 	}
 }
 
-VkInstance& vkdt::instance::instance::refVKInstance(void) noexcept
+const VkInstance& vkdt::instance::instance::refVKInstance(void) noexcept
 {
 	return this -> vkdtVKInstance;
 }
@@ -397,7 +397,7 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 
 		for(const VkLayerProperties& vkdtVKAvailableLayer : vkdtVKAvailableLayers)
 		{
-			std::cout																	   \
+			std::cout																		\
 			<< "\t\"" << vkdtVKAvailableLayer.layerName									 \
 			<< "\": " << vkdtVKAvailableLayer.description << "\n";
 		}
@@ -453,15 +453,15 @@ inline void vkdt::instance::instance::fillDebugUtilsCreateInfo(VkDebugUtilsMesse
 
 		//Message Severity to Debug
 		.messageSeverity =																  \
-		VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT |								   \
-		VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |								   \
+		VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT |									\
+		VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |									\
 		VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
 
 
 		//Message Types to Debug
 		.messageType =																	  \
-		VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT |								   \
-		VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT  |								   \
+		VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT |									\
+		VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT  |									\
 		VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT,
 
 		//Debug Callback Function

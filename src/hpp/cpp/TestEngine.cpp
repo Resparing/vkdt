@@ -15,9 +15,9 @@ void callback
 	{
 		if(messageType >= VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT)
 		{
-			std::cerr										   \
-			<< "[DEBUG " << messageData -> pMessageIdName	   \
-			<< ": " << messageData -> messageIdNumber		   \
+			std::cerr											\
+			<< "[DEBUG " << messageData -> pMessageIdName		\
+			<< ": " << messageData -> messageIdNumber			\
 			<< "] " << messageData -> pMessage << "\n\n";
 		}
 	}
@@ -63,7 +63,11 @@ void TestEngine::TestEngine::vkdtInit(void)
 	};
 	this -> vkdtInstance = new vkdt::instance::instance(appInfo, isDebug, isVerbose);
 	this -> vkdtInstance -> createVKDTInstance(nullptr);
+
 	this -> vkdtInstance -> makeVKDTDebugMessenger(callback);
+
+	this -> vkdtGPU = new vkdt::GPU::GPU(vkdtInstance, isDebug, isVerbose);
+	this -> vkdtGPU -> findVKDTGPU();
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -76,6 +80,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtGPU;  //Delete VKDT GPU
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
 }

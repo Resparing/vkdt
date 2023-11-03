@@ -2,6 +2,7 @@
 #pragma once
 
 //Include Headers
+#include <vkdt/GPU.h>
 #include <vkdt/instance.h>
 #include <vkdt/window.h>
 
@@ -19,6 +20,7 @@ namespace TestEngine
 		/* VKDT Parameters */
 		vkdt::instance::instance* vkdtInstance;
 		vkdt::window::window* vkdtWindow;
+		vkdt::GPU::GPU* vkdtGPU;
 
 		//Debugging and Verbose Variables
 		bool isDebug{};
