@@ -19,9 +19,9 @@ int main(int argc, const char* argv[])
 	//Check if Debugging
 	bool debug = Debug::isDebug(static_cast<size_t>(argc), argv);
 
-	//Try Runnning Test Engine
 	try
 	{
+		//Create & Destroy Example Test Engine
 		TestEngine::TestEngine* engine = new TestEngine::TestEngine(debug, debug);
 
 		delete engine;
