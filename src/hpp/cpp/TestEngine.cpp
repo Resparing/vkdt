@@ -107,6 +107,11 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtGPU = new vkdt::GPU::GPU(vkdtInstance, isDebug, isVerbose);
 	this -> vkdtGPU -> findVKDTGPU(nullptr);
+
+	this -> vkdtGraphicsQueue = new vkdt::queue::queue(isDebug, isVerbose);
+
+	this -> vkdtDevice = new vkdt::device::device(vkdtGPU, {}, {}, isDebug, isVerbose);
+	this -> vkdtDevice -> createVKDTDevice(this -> vkdtGraphicsQueue, nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -119,6 +124,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtDevice;  //Delete VKDT Device
 	delete this -> vkdtGPU;  //Delete VKDT GPU
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
