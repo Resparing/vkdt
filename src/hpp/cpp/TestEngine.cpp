@@ -103,7 +103,7 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtInstance = new vkdt::instance::instance(appInfo, {}, {}, isDebug, isVerbose);
 	this -> vkdtInstance -> createVKDTInstance(callback, nullptr);
 
-	this -> vkdtInstance -> makeVKDTDebugMessenger(callback);
+	this -> vkdtInstance -> makeVKDTDebugMessenger();
 
 	this -> vkdtGPU = new vkdt::GPU::GPU(vkdtInstance, isDebug, isVerbose);
 	this -> vkdtGPU -> findVKDTGPU();
