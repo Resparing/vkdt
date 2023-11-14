@@ -91,7 +91,7 @@ void TestEngine::TestEngine::createWindow(void)
 
 void TestEngine::TestEngine::vkdtInit(void)
 {
-	vkdt::instance::applicationInfo appInfo =
+	vkdt::instance::applicationData appInfo =
 	{
 		.name = "Test Engine",
 
@@ -100,8 +100,8 @@ void TestEngine::TestEngine::vkdtInit(void)
 		.version.minor = 3,
 		.version.variant = 268,
 	};
-	this -> vkdtInstance = new vkdt::instance::instance(appInfo, isDebug, isVerbose);
-	this -> vkdtInstance -> createVKDTInstance(nullptr);
+	this -> vkdtInstance = new vkdt::instance::instance(appInfo, {}, {}, isDebug, isVerbose);
+	this -> vkdtInstance -> createVKDTInstance(callback, nullptr);
 
 	this -> vkdtInstance -> makeVKDTDebugMessenger(callback);
 
