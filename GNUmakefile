@@ -6,7 +6,7 @@ APP_DIR := bin/
 APP_PATH := $(APP_DIR)$(APP_NAME)
 
 #C++ Files
-CPP_FILES := $(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp) $(wildcard lib/inc/*.cpp) $(wildcard vkdt/cpp/*.cpp)
+CPP_FILES := $(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp) $(wildcard lib/inc/*.cpp) $(wildcard vkdt/vkdt/cpp/*.cpp)
 
 #C++ Information
 CPP_INFO := -std=c++20 -O0
@@ -18,14 +18,14 @@ CPP_COMPILER := clang++
 CPP_WARNING := -Wall -Wextra -Wpedantic -Wstrict-aliasing -Wconversion -Wshadow -Wdeprecated #-Werror
 
 #Includes
-INC_DIR := 		"-I/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/lib/hpp"			\
-				"-I/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/"					\
-				"-I/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/include"
-INC_LIB :=		"-L/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/lib/inc"			\
-				"-L/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/lib"
-INC_DYLIB :=	-Wl,-rpath, "/Users/hudsonregis/Desktop/Projects/Vulkan Projects/VKDT/lib/inc"	\
-				-Wl,-rpath, "/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/lib"
-INC_FLAGS := -lglfw.3 -lvulkan
+INC_DIR := 	 "-Ilib/hpp"										\
+			 "-Ivkdt/"											\
+			 "-I/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/include"
+INC_LIB :=	 "-Llib/inc/glfw"									\
+			 "-Llib/inc/vulkan"
+INC_DYLIB := -Wl,-rpath,"@executable_path/../lib/inc/glfw"		\
+			 -Wl,-rpath,"@executable_path/../lib/inc/vulkan"
+INC_FLAGS := -lglfw.3 -lvulkan.1
 
 #Massive Include
 INC := $(INC_DIR) $(INC_LIB) $(INC_DYLIB) $(INC_FLAGS)
@@ -35,23 +35,23 @@ FRAMEWORKS :=# -framework Cocoa -framework IOKit -framework CoreFoundation -fram
 
 .PHONY: build debug compile clear
 
-#Build Command
+#Build Project Command
 build:
-	make compile
-	make open
-	make clear
+	@make compile
+	@make open
+	@make clear
 
-#Debug Command
+#Create & Debug Project Command
 debug:
-	make compile
-	./$(APP_PATH) DEBUG
-	make clear
+	@make compile
+	@./$(APP_PATH) DEBUG
+	@make clear
 
-#Compile Command
+#Compile Project Command
 compile:
 	$(CPP_COMPILER) $(CPP_INFO) -v -o $(APP_PATH) $(CPP_FILES) $(INC) $(CPP_WARNING) $(FRAMEWORKS)
 
-#Open Command
+#Open Executable Command
 open:
 	./$(APP_PATH)
 
