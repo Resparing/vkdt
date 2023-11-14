@@ -52,7 +52,7 @@ int Debug::EXIT_CODE(const bool debug, const size_t argc, const char* argv[])
 
 	for(size_t i{}; i < argc; ++i)
 	{
-		std::cout << "\t\"" << argv[i] << "\"\n";
+		std::cout << "\t[" << i << "] \"" << argv[i] << "\"\n";
 	}
 
 	std::cout << "Press Enter to Terminate...\n";
