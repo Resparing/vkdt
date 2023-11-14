@@ -3,7 +3,7 @@
 
 //Include Headers
 #include <vkdt/_vkdtConfig.h>
-#include <vkdt/windowEnum.h>
+#include <vkdt/_windowEnum.h>
 
 namespace vkdt::window
 {
@@ -17,7 +17,9 @@ namespace vkdt::window
 		/**
 		 * @brief Setup VKDT Window With Specified Arguments
 		 *
-		 * @param windowArgs The Arguments that the Window Will Have
+		 * @param windowArgs VKDT Window Arguments Window will Posses
+		 * @param debug Whether to Allow Debugging in Messages
+		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
 		window(const windowArguments windowArgs = {}, const bool debug = false, const bool verbose = false);
 
@@ -34,9 +36,9 @@ namespace vkdt::window
 		/**
 		 * @brief Get the Window Size
 		 *
-		 * @return Struct Containing Width and Height of VKDT Window
+		 * @return Struct Containing Width & Height of VKDT Window
 		 */
-		const vkdt::window::size getSize(void) noexcept;
+		const vkdt::window::size getSize(void) const noexcept;
 
 		/**
 		 * @brief Check if Window Should Stay Open

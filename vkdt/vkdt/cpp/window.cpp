@@ -13,7 +13,7 @@ vkdt::window::window::window
 	//Try to Initialize GLFW
 	if(!glfwInit())
 	{
-		throw std::runtime_error("Failed to Initialize VKDT Window!\n");
+		throw std::runtime_error("Failed to Initialize VKDT Window Manager!\n");
 	}
 	else
 	{
@@ -81,6 +81,19 @@ vkdt::window::window::window
 		}
 	}
 
+	//Check if GLFW Supports Vulkan
+	if(glfwVulkanSupported() == GLFW_TRUE)
+	{
+		if(this -> verbose)
+		{
+			std::cout << "GLFW Supports Vulkan!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Vulkan not Supported with GLFW!\n");
+	}
+
 	if(this -> debug || this -> verbose)
 	{
 		//Debug VKDT Window Initialization Success
@@ -109,13 +122,13 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 	//Try to Create GLFW Window
 	if((this -> vkdtGLFWWindow = glfwCreateWindow(windowWidth, windowHeight, title.c_str(), nullptr, nullptr)))
 	{
-		//If Debugging with Verbose Options
+		//Debug Window Creation Success
 		if(this -> verbose)
 		{
-			std::cout									\
-			<< "Successfully Created VKDT Window With"  \
-			<< " Width: " << windowWidth				\
-			<< ", Height: " << windowHeight			 \
+			std::cout										\
+			<< "Successfully Created VKDT Window With"  	\
+			<< " Width: " << windowWidth					\
+			<< ", Height: " << windowHeight			 		\
 			<< ". Title: \"" << title << "\"!\n";
 		}
 
@@ -134,9 +147,9 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 	this -> windowCreated = true;
 }
 
-const vkdt::window::size vkdt::window::window::getSize(void) noexcept
+const vkdt::window::size vkdt::window::window::getSize(void) const noexcept
 {
-	//Temporary Variable to Store Width and Height
+	//Temporary Variables to Store Width & Height
 	int windowWidth{};
 	int windowHeight{};
 
@@ -183,7 +196,7 @@ bool vkdt::window::window::isPressed(const vkdt::window::key key) const
 	}
 
 	//No Key State was Found
-	throw std::runtime_error("Failed to Find Key State");
+	throw std::runtime_error("Failed to Find Key State!\n");
 }
 
 
