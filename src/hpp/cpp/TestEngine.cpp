@@ -80,12 +80,9 @@ TestEngine::TestEngine::TestEngine(const bool debug, const bool verbose) : isDeb
 void TestEngine::TestEngine::createWindow(void)
 {
 	//Set Arguments for Vulkan Window
-	const vkdt::window::windowArguments windowArgs =
-	{
-		{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
-	};
+	const vkdt::window::windowArguments windowArgs = {{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE}};
 
-	//Allocate VKDT Window
+	//Initialize VKDT Window
 	this -> vkdtWindow = new vkdt::window::window(windowArgs, isDebug, isVerbose);
 
 	//Create VKDT Window
