@@ -30,7 +30,7 @@ int main(int argc, const char* argv[])
 	{
 		std::cerr << "[ERROR] " << exception.what() << '\n';
 
-		std::abort();
+		std::terminate();
 	}
 
 	return Debug::EXIT_CODE(debug, static_cast<size_t>(argc), argv);
