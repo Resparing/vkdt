@@ -91,6 +91,11 @@ void TestEngine::TestEngine::createWindow(void)
 
 void TestEngine::TestEngine::vkdtInit(void)
 {
+	vkdt::instance::envVariables envData =
+	{
+		.VK_ICD_FILENAMES = "lib/inc/vulkan/icd.d/MoltenVK_icd.json",
+		.VK_LAYER_PATH = "lib/inc/vulkan/explicit_layer.d",
+	};
 	vkdt::instance::applicationData appInfo =
 	{
 		.name = "Test Engine",
@@ -100,10 +105,11 @@ void TestEngine::TestEngine::vkdtInit(void)
 		.version.minor = 3,
 		.version.variant = 268,
 	};
-	this -> vkdtInstance = new vkdt::instance::instance(appInfo, {}, {}, isDebug, isVerbose);
+	this -> vkdtInstance = new vkdt::instance::instance(envData, appInfo, isDebug, isVerbose);
+	this -> vkdtInstance -> setupVKDTInstance({}, {});
 	this -> vkdtInstance -> createVKDTInstance(callback, nullptr);
 
-	this -> vkdtInstance -> makeVKDTDebugMessenger();
+	this -> vkdtInstance -> createVKDTDebugMessenger();
 
 	this -> vkdtGPU = new vkdt::GPU::GPU(vkdtInstance, isDebug, isVerbose);
 	this -> vkdtGPU -> findVKDTGPU(nullptr);
@@ -124,8 +130,12 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtGraphicsQueue;  //Delete VKDT Graphics Queue
 	delete this -> vkdtDevice;  //Delete VKDT Device
-	delete this -> vkdtGPU;  //Delete VKDT GPU
+	this -> vkdtInstance -> destroyVKDTDebugMessenger();  //Delete VKDT Debug Messenger
+	this -> vkdtWindow -> destroyVKDTSurface();  //Delete VKDT Surface
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
+
+	delete this -> vkdtGPU;  //Free Memory
 }
