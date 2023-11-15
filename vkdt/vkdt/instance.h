@@ -16,23 +16,32 @@ namespace vkdt::instance
 		/**
 		 * @brief Initialize VKDT Vulkan Instance & Set up Requested Layers and Extensions
 		 *
+		 * @param macEnvVariables MacOS Required Environment Variables
 		 * @param applicationInfo The Application Information of Program
-		 * @param callbackFunc Function for Debugging Errors
-		 * @param vkdtExtensions C-String Vector of Requested Vulkan Extensions
-		 * @param vkdtLayers C-String Vector of Requested Vulkan Layers
 		 * @param debug Whether to Allow Debugging in Messages and Setup Debug Callback
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages and Setup Debug Callback
 		 */
 		instance
 		(
+			const struct vkdt::instance::envVariables& macEnvVariables,
 			const vkdt::instance::applicationData& applicationInfo,
-			const std::vector<const char*> vkdtRequestedExtensions = {},
-			const std::vector<const char*> vkdtRequestedLayers = {},
 			const bool debug = false,
 			const bool verbose = false
 		);
 
 		virtual ~instance() noexcept(false);
+
+		/**
+		 * @brief Set up the Creation of VKDT Instance
+		 *
+		 * @param vkdtExtensions C-String Vector of Requested Vulkan Extensions
+		 * @param vkdtLayers C-String Vector of Requested Vulkan Layers
+		 */
+		void setupVKDTInstance
+		(
+			const std::vector<const char*> vkdtRequestedExtensions = {},
+			const std::vector<const char*> vkdtRequestedLayers = {}
+		);
 
 		/**
 		 * @brief Create VKDT Instance
@@ -46,13 +55,16 @@ namespace vkdt::instance
 
 		/**
 		 * @brief Initialize VKDT Debug Messenger
-		 *
-		 * @param callbackFunc Function used When Printing
 		 */
-		void makeVKDTDebugMessenger();
+		void createVKDTDebugMessenger(void);
 
 		/**
-         * @brief Get a Reference to VKDT Vulkan Instance
+		 * @brief Destroy VKDT Debug Messenger
+		 */
+		void destroyVKDTDebugMessenger(void);
+
+		/**
+		 * @brief Get a Reference to VKDT Vulkan Instance
 		 *
 		 * @attention Use for Extending VKDT Instance Class and for Internal Use!
 		 *
@@ -70,6 +82,9 @@ namespace vkdt::instance
 		const VkDebugUtilsMessengerEXT& refVKDebugMessenger(void) const noexcept;
 
 	private:
+
+		//MacOS Environment Variable Information
+		vkdt::instance::envVariables macOSEnvVariables{};
 
 		//Application Data
 		vkdt::instance::applicationData appData{};
