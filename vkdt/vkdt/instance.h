@@ -3,28 +3,11 @@
 
 //Include Headers
 #include <vkdt/_debug.h>
+#include <vkdt/_instanceStruct.h>
 #include <vkdt/_vkdtConfig.h>
 
 namespace vkdt::instance
 {
-	/**
-	 * @brief VKDT Instance Application Data
-	 */
-	struct applicationData
-	{
-		//Name of VKDT Application
-		const char* name;
-
-		//Struct with Version Information
-		struct appVersion
-		{
-			std::uint32_t variant;
-			std::uint32_t major;
-			std::uint32_t minor;
-			std::uint32_t patch;
-		}; appVersion version;
-	};
-
 	//Instance Class
 	class instance
 	{
