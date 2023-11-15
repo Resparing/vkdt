@@ -109,6 +109,13 @@ vkdt::instance::instance::instance
 
 #endif
 }
+
+void vkdt::instance::instance::setupVKDTInstance
+(
+	const std::vector<const char*> vkdtRequestedExtensions,
+	const std::vector<const char*> vkdtRequestedLayers
+)
+{
 	//Add Required GLFW Extensions
 	std::uint32_t vkdtGLFWExtensionCount{};  //Number of Extensions
 	const char** vkdtGLFWExtensions{};  //Names of Extensions
@@ -418,6 +425,40 @@ void vkdt::instance::instance::makeVKDTDebugMessenger()
 	}
 }
 
+void vkdt::instance::instance::destroyVKDTDebugMessenger(void)
+{
+	//Destroy Debug Utils Messenger
+	if(this -> debug || this -> verbose)
+	{
+		//Locate & Load Function to Destroy Vulkan Debug Utils
+		const PFN_vkDestroyDebugUtilsMessengerEXT destroyVKDebugUtilsMessengerEXT = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>
+		(
+			vkGetInstanceProcAddr
+			(
+				this -> vkdtVKInstance,
+				"vkDestroyDebugUtilsMessengerEXT"
+			)
+		);
+
+		//Check if Function is Created Successfully
+		if(!destroyVKDebugUtilsMessengerEXT)
+		{
+			throw std::runtime_error("Failed to Locate & Load VKDT Vulkan Debug Utils Messenger Creation Function!\n");
+		}
+		else
+		{
+			//Debug Function Location Success
+			if(this -> verbose)
+			{
+				std::cout << "Successfully Located & Loaded VKDT Vulkan Destroy Debug Utils Messenger Function!\n";
+			}
+		}
+
+		//Call Function to Vulkan Destroy Debug Utils Messenger
+		destroyVKDebugUtilsMessengerEXT(this -> vkdtVKInstance, this -> vkdtVKDebugMessenger, this -> pAllocator);
+	}
+}
+
 const VkInstance& vkdt::instance::instance::refVKInstance(void) const noexcept
 {
 	return this -> vkdtVKInstance;
@@ -629,21 +670,15 @@ inline void vkdt::instance::instance::fillDebugUtilsCreateInfo(VkDebugUtilsMesse
 
 vkdt::instance::instance::~instance() noexcept(false)
 {
-	//Destroy Debug Utils Messenger
-	if(this -> debug || this -> verbose)
-	{
-		//Locate & Load Function to Destroy Vulkan Debug Utils
-		const PFN_vkDestroyDebugUtilsMessengerEXT destroyVKDebugUtilsMessengerEXT = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>
-		(
-			vkGetInstanceProcAddr
-			(
-				this -> vkdtVKInstance,
-				"vkDestroyDebugUtilsMessengerEXT"
-			)
-		);
+	//Destroy VKDT Vulkan Instance
+	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
 
-		//Check if Function is Created Successfully
-		if(!destroyVKDebugUtilsMessengerEXT)
+	if(this -> verbose)
+	{
+		//Debug Deletion Success
+		std::cout << "Successfully Destroyed VKDT Vulkan Instance!\n";
+	}
+
 #ifdef __APPLE__
 
 	//Unset MoltenVK Required Environment Variable
