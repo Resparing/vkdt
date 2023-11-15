@@ -164,6 +164,4 @@ vkdt::GPU::GPU::~GPU()
 	{
 		std::cerr << "Delete Function not Required for VKDT GPU!\n";
 	}
-
-	return;
 }
