@@ -6,6 +6,7 @@
 #include <cstdlib>  //C Standard Libary
 #include <cstdint>  //Standard Integers
 #include <cstring>  //C String Functions
+#include <fstream>  //File Support
 #include <iostream>  //Input / Output
 #include <optional>  //Optional Values
 #include <stdexcept>  //Create Exceptions
