@@ -35,6 +35,7 @@ namespace vkdt::queue
 		//Vulkan Queue
 		VkQueue vkdtVKQueue;
 
+		//Debugging Variables
 		bool debug{};
 		bool verbose{};
 
