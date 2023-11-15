@@ -336,7 +336,7 @@ void vkdt::instance::instance::createVKDTInstance(vkdt::debug::vkdtCallback call
 	}
 }
 
-void vkdt::instance::instance::makeVKDTDebugMessenger()
+void vkdt::instance::instance::createVKDTDebugMessenger(void)
 {
 	//Stop if not Debugging
 	if(this -> debug == false && this -> verbose == false)
