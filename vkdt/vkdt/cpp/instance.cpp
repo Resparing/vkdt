@@ -36,12 +36,11 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL vkdtVKDebugCallback
 
 vkdt::instance::instance::instance
 (
+	const struct vkdt::instance::envVariables& macEnvVariables,
 	const vkdt::instance::applicationData& applicationInfo,
-	const std::vector<const char*> vkdtRequestedLayers,
-	const std::vector<const char*> vkdtRequestedExtensions,
 	const bool debug,
 	const bool verbose
-) : appData(applicationInfo), vkdtExtensions(vkdtRequestedExtensions), vkdtLayers(vkdtRequestedLayers), debug(debug), verbose(verbose)
+) : macOSEnvVariables(macEnvVariables), appData(applicationInfo), debug(debug), verbose(verbose)
 {
 	//Debug VKDT Instance Information
 	if(verbose)
@@ -66,6 +65,50 @@ vkdt::instance::instance::instance
 		<< "." << this -> appData.version.variant << "!\n";
 	}
 
+#ifdef __APPLE__
+
+	//Set MoltenVK Required Environment Variable
+	if(this -> macOSEnvVariables.VK_ICD_FILENAMES && setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES, 1) == 0)
+	{
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout																				\
+			<< "Successfully Set: \"" << "VK_ICD_FILENAMES"											\
+			<< "\" Environment Variable as: \"" << this -> macOSEnvVariables.VK_ICD_FILENAMES << "\"!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Set: \"VK_ICD_FILENAMES\" Environment Variable!\n");
+	}
+
+	//Set Vulkan Layer(s) Required Environment Variables
+	if(this -> macOSEnvVariables.VK_LAYER_PATH && setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH, 1) == 0)
+	{
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout																				\
+			<< "Successfully Set: \"" << "VK_LAYER_PATH"											\
+			<< "\" Environment Variable as: \"" << this -> macOSEnvVariables.VK_LAYER_PATH << "\"!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Set: \"VK_LAYER_PATH\" Environment Variable!\n");
+	}
+
+#else
+
+	//Vulkan Environment Variables Not Needed
+	if(this -> macOSEnvVariables)
+	{
+		throw std::runtime_error("Vulkan Environment Variables not Needed, Required by MacOS Only!\n");
+	}
+
+#endif
+}
 	//Add Required GLFW Extensions
 	std::uint32_t vkdtGLFWExtensionCount{};  //Number of Extensions
 	const char** vkdtGLFWExtensions{};  //Names of Extensions
@@ -601,28 +644,35 @@ vkdt::instance::instance::~instance() noexcept(false)
 
 		//Check if Function is Created Successfully
 		if(!destroyVKDebugUtilsMessengerEXT)
-		{
-			throw std::runtime_error("Failed to Locate & Load VKDT Vulkan Debug Utils Messenger Creation Function!\n");
-		}
-		else
-		{
-			//Debug Function Location Success
-			if(this -> verbose)
-			{
-				std::cout << "Successfully Located & Loaded VKDT Vulkan Destroy Debug Utils Messenger Function!\n";
-			}
-		}
+#ifdef __APPLE__
 
-		//Call Function to Vulkan Destroy Debug Utils Messenger
-		destroyVKDebugUtilsMessengerEXT(this -> vkdtVKInstance, this -> vkdtVKDebugMessenger, this -> pAllocator);
-	}
-
-	//Destroy VKDT Vulkan Instance
-	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
-
-	if(this -> verbose)
+	//Unset MoltenVK Required Environment Variable
+	if(this -> macOSEnvVariables.VK_ICD_FILENAMES && unsetenv("VK_ICD_FILENAMES") == 0)
 	{
-		//Debug Deletion Success
-		std::cout << "Successfully Destroyed VKDT Vulkan Instance!\n";
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Unset: \"" << "VK_ICD_FILENAMES" << "\"!\n";
+		}
 	}
+	else
+	{
+		throw std::runtime_error("Failed to Unset: \"VK_ICD_FILENAMES\" Environment Variable!\n");
+	}
+
+	//Unset Vulkan Layer(s) Required Environment Variables
+	if(this -> macOSEnvVariables.VK_LAYER_PATH && unsetenv("VK_LAYER_PATH") == 0)
+	{
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Unset: \"" << "VK_LAYER_PATH" << "\"!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Unset: \"VK_LAYER_PATH\" Environment Variable!\n");
+	}
+
+#endif
 }
