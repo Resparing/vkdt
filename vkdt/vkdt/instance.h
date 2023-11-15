@@ -74,16 +74,16 @@ namespace vkdt::instance
 		 * @attention Use for Extending VKDT Instance Class and for Internal Use!
 		 *
 		 * @return Reference to Vulkan Instance
-         */
+		 */
 		const VkInstance& refVKInstance(void) const noexcept;
 
 		/**
-         * @brief Get a Reference to VKDT Vulkan Debug Messenger
+		 * @brief Get a Reference to VKDT Vulkan Debug Messenger
 		 *
 		 * @attention Use for Extending VKDT Instance Class and for Internal Use!
 		 *
 		 * @return Reference to Vulkan Debug Messenger
-         */
+		 */
 		const VkDebugUtilsMessengerEXT& refVKDebugMessenger(void) const noexcept;
 
 	private:

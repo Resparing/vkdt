@@ -40,14 +40,14 @@ namespace vkdt::device
 		 */
 		void createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueue, VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
-        /**
-         * @brief Get a Reference to VKDT Vulkan Logical Device
+		/**
+		 * @brief Get a Reference to VKDT Vulkan Logical Device
 		 *
 		 * @attention Use for Extending VKDT Device Class and for Internal Use!
 		 *
 		 * @return Reference to Vulkan Physical Device
-         */
-        const VkDevice& refVKLogicalDevice() const noexcept;
+		 */
+		const VkDevice& refVKLogicalDevice() const noexcept;
 
 	private:
 
