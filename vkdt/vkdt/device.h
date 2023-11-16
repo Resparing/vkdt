@@ -22,9 +22,8 @@ namespace vkdt::device
 		 */
 		device
 		(
-			vkdt::GPU::GPU* vkdtGPU,
-			const std::vector<const char*> vkdtVKRequestedExtensions = {},
-			const std::vector<const char*> vkdtVKRequestedLayers = {},
+			const std::vector<const char*>& vkdtVKRequestedExtensions = {},
+			const std::vector<const char*>& vkdtVKRequestedLayers = {},
 			const bool debug = false,
 			const bool verbose = false
 		) noexcept;
