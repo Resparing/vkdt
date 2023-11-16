@@ -2,17 +2,26 @@
 #include <vkdt/GPU.h>
 
 //Include Headers
+#include <vkdt/_pVKObjects.h>
 #include <vkdt/_QueueFamily.h>
 
-vkdt::GPU::GPU::GPU(vkdt::instance::instance* vkdtInstance, const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
+vkdt::GPU::GPU::GPU(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Instance Pointer
-	this -> pVKInstance = const_cast<VkInstance*>(&vkdtInstance -> refVKInstance());
+	//Set Vulkan Physical Device Pointer
+	vkdt::_pVKObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
 
 	//Debug GPU Creation Success
 	if(this -> verbose)
 	{
-		std::cout << "Successfully Initialized VKDT Instance for VKDT GPU!\n";
+		std::cout << "Successfully Initialized VKDT GPU!\n";
+	}
+}
+
+vkdt::GPU::GPU::~GPU()
+{
+	if(this -> verbose)
+	{
+		std::cerr << "Delete Function not Required for VKDT GPU!\n";
 	}
 }
 
@@ -23,7 +32,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVkPhysicalDeviceNumberResult = vkEnumeratePhysicalDevices
 	(
-		*this -> pVKInstance,
+		*vkdt::_pVKObjects::pVKInstance,
 		&vkAvailablePhysicalDeviceCount,
 		nullptr
 	);
@@ -38,7 +47,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVKPhysicalDevicesResult = vkEnumeratePhysicalDevices
 	(
-		*this -> pVKInstance,
+		*vkdt::_pVKObjects::pVKInstance,
 		&vkAvailablePhysicalDeviceCount,
 		vkAvailablePhysicalDevices.data()
 	);
@@ -123,7 +132,6 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 				std::cout << "Chose: \"" << vkdtVKDeviceInformation.deviceName << "\" as VKDT Vulkan Physical Device!\n";
 			}
 
-
 			//Set Vulkan Physical Device to Selected GPU
 			this -> vkdtVKPhysicalDevice = vkAvailablePhysicalDevice;
 
@@ -138,12 +146,6 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 	}
 }
 
-const VkPhysicalDevice& vkdt::GPU::GPU::refVKPhysicalDevice(void) const noexcept
-{
-	//Return VKDT Vulkan Physical Device
-	return this -> vkdtVKPhysicalDevice;
-}
-
 bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const noexcept
 {
 	//Get Index of Queue Family
@@ -156,12 +158,4 @@ bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhy
 
 	//Return if Vulkan has Value
 	return indexes.isComplete();
-}
-
-vkdt::GPU::GPU::~GPU()
-{
-	if(this -> verbose)
-	{
-		std::cerr << "Delete Function not Required for VKDT GPU!\n";
-	}
 }
