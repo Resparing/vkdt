@@ -24,8 +24,9 @@ namespace vkdt::GPU
 		/**
 		 * @brief Create a VKDT GPU
 		 *
-		 * @param vkdtGPUName Name of GPU to Force Request
+		 * @param vkdtGPUName C-String Name of GPU to Force Request
 		 */
+		void findVKDTGPU(const char* vkdtGPUName = "");
 
 	private:
 
