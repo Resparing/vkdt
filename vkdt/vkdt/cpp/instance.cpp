@@ -13,6 +13,9 @@ vkdt::instance::instance::instance
 	const bool verbose
 ) : macOSEnvVariables(macEnvVariables), appData(applicationInfo), debug(debug), verbose(verbose)
 {
+	//Set Vulkan Instance Pointer
+	vkdt::_pVKObjects::pVKInstance = &this -> vkdtVKInstance;
+
 	//Debug VKDT Instance Information
 	if(verbose)
 	{
