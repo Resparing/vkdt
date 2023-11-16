@@ -2,13 +2,11 @@
 #pragma once
 
 //Include Headers
-#include <vkdt/_debug.h>
 #include <vkdt/_instanceStruct.h>
 #include <vkdt/_vkdtConfig.h>
 
 namespace vkdt::instance
 {
-	//Instance Class
 	class instance
 	{
 	public:
@@ -39,47 +37,16 @@ namespace vkdt::instance
 		 */
 		void setupVKDTInstance
 		(
-			const std::vector<const char*> vkdtRequestedExtensions = {},
-			const std::vector<const char*> vkdtRequestedLayers = {}
+			const std::vector<const char*>& vkdtRequestedExtensions = {},
+			const std::vector<const char*>& vkdtRequestedLayers = {}
 		);
 
 		/**
 		 * @brief Create VKDT Instance
 		 *
-		 * @attention When Debugging,
-		 *
-		 * @param callbackFunc Function used by VKDT Debug Messenger Debugger
 		 * @param allocator Vulkan Memory Allocator
 		 */
-		void createVKDTInstance(vkdt::debug::vkdtCallback callbackFunc = VK_NULL_HANDLE, VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
-
-		/**
-		 * @brief Initialize VKDT Debug Messenger
-		 */
-		void createVKDTDebugMessenger(void);
-
-		/**
-		 * @brief Destroy VKDT Debug Messenger
-		 */
-		void destroyVKDTDebugMessenger(void);
-
-		/**
-		 * @brief Get a Reference to VKDT Vulkan Instance
-		 *
-		 * @attention Use for Extending VKDT Instance Class and for Internal Use!
-		 *
-		 * @return Reference to Vulkan Instance
-		 */
-		const VkInstance& refVKInstance(void) const noexcept;
-
-		/**
-		 * @brief Get a Reference to VKDT Vulkan Debug Messenger
-		 *
-		 * @attention Use for Extending VKDT Instance Class and for Internal Use!
-		 *
-		 * @return Reference to Vulkan Debug Messenger
-		 */
-		const VkDebugUtilsMessengerEXT& refVKDebugMessenger(void) const noexcept;
+		void createVKDTInstance(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
 
@@ -113,21 +80,13 @@ namespace vkdt::instance
 		 */
 		bool requestedLayersSupported(void) const;
 
-		/**
-		 * @brief Fill VKDT Create Info Struct
-		 *
-		 * @param debugMessengerCreateInfo Reference to Debug Utils Creation Information Struct
-		 */
-		inline void fillDebugUtilsCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& debugMessengerCreateInfo) const noexcept;
-
 	protected:
 
 		//Options for Debugging
 		bool debug{};
 		bool verbose{};
 
-		/* Vulkan Parameters */
+		//Vulkan Instance
 		VkInstance vkdtVKInstance;  //Vulkan Instance
-		VkDebugUtilsMessengerEXT vkdtVKDebugMessenger;  //Vulkan Debug Utils Messenger
 	};
 }
