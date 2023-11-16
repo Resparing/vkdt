@@ -142,8 +142,8 @@ vkdt::instance::instance::~instance() noexcept(false)
 
 void vkdt::instance::instance::setupVKDTInstance
 (
-	const std::vector<const char*> vkdtRequestedExtensions,
-	const std::vector<const char*> vkdtRequestedLayers
+	const std::vector<const char*>& vkdtRequestedExtensions,
+	const std::vector<const char*>& vkdtRequestedLayers
 )
 {
 	//Add Required GLFW Extensions
