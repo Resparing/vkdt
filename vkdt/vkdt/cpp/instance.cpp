@@ -162,7 +162,7 @@ void vkdt::instance::instance::setupVKDTInstance
 	{
 		std::cout << "Added Required GLFW Extensions (" << vkdtGLFWExtensionCount << "):\n";
 
-		for(std::size_t i{}; i < static_cast<size_t>(vkdtGLFWExtensionCount); ++i)
+		for(size_t i{}; i < static_cast<size_t>(vkdtGLFWExtensionCount); ++i)
 		{
 			std::cout << "\t[" << i << "] \"" << vkdtGLFWExtensions[i] << "\"\n";
 		}
@@ -174,7 +174,7 @@ void vkdt::instance::instance::setupVKDTInstance
 	}
 
 	//Add GLFW Extensions to VKDT Extensions
-	for(std::size_t i{}; i < static_cast<size_t>(vkdtGLFWExtensionCount); ++i)
+	for(size_t i{}; i < static_cast<size_t>(vkdtGLFWExtensionCount); ++i)
 	{
 		vkdtExtensions.push_back(vkdtGLFWExtensions[i]);
 	}
