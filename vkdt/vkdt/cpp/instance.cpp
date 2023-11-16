@@ -3,7 +3,7 @@
 
 //Include Headers
 #include <vkdt/debug.h>
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 
 vkdt::instance::instance::instance
 (
@@ -14,7 +14,7 @@ vkdt::instance::instance::instance
 ) : macOSEnvVariables(macEnvVariables), appData(applicationInfo), debug(debug), verbose(verbose)
 {
 	//Set Vulkan Instance Pointer
-	vkdt::_pVKObjects::pVKInstance = &this -> vkdtVKInstance;
+	vkdt::_pObjects::pVKInstance = &this -> vkdtVKInstance;
 
 	//Debug VKDT Instance Information
 	if(verbose)

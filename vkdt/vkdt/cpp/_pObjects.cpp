@@ -1,7 +1,7 @@
 //Include Header File
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 
-namespace vkdt::_pVKObjects
+namespace vkdt::_pObjects
 {
 	//GLFW Objects
 	GLFWwindow** pGLFWWindow{};

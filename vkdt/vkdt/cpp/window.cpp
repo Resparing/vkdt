@@ -2,7 +2,7 @@
 #include <vkdt/window.h>
 
 //Include Headers
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 
 vkdt::window::window::window
 (
@@ -12,7 +12,7 @@ vkdt::window::window::window
 ) : debug(debug), verbose(verbose)
 {
 	//Set GLFW Window Pointer
-	vkdt::_pVKObjects::pGLFWWindow = &this -> vkdtGLFWWindow;
+	vkdt::_pObjects::pGLFWWindow = &this -> vkdtGLFWWindow;
 
 	//Try to Initialize GLFW
 	if(!glfwInit())

@@ -2,7 +2,7 @@
 #include <vkdt/device.h>
 
 //Include Headers
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 #include <vkdt/_QueueFamily.h>
 
 vkdt::device::device::device
@@ -14,7 +14,7 @@ vkdt::device::device::device
 ) noexcept : vkdtVKLayers(vkdtVKRequestedLayers), vkdtVKExtensions(vkdtVKRequestedExtensions), debug(debug), verbose(verbose)
 {
 	//Set Vulkan Logical Device Pointer
-	vkdt::_pVKObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
+	vkdt::_pObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
 
 	//Set Vulkan Extensions & Vulkan Layers
 	if(this -> debug || this -> verbose)
@@ -56,7 +56,7 @@ vkdt::device::device::device
 
 		//Get GPU Name
 		VkPhysicalDeviceProperties vkdtVKPhysicalDeviceProperties;
-		vkGetPhysicalDeviceProperties(*vkdt::_pVKObjects::pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
+		vkGetPhysicalDeviceProperties(*vkdt::_pObjects::pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
 
 		std::cout																							\
 		<< "Successfully Initialized VKDT Device with"														\
@@ -87,7 +87,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 	this -> pAllocator = allocator;
 
 	//Find Queue Family Indexes
-	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*vkdt::_pVKObjects::pVKPhysicalDevice);
+	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*vkdt::_pObjects::pVKPhysicalDevice);
 
 	//Queue Priority - Between 0.0f & 1.0f
 	float vkdtVKQueuePriority = 1.0f;
@@ -132,7 +132,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 	//Create VKDT Vulkan Logical Device
 	const VkResult vkdtVKCreateDeviceResult = vkCreateDevice
 	(
-		*vkdt::_pVKObjects::pVKPhysicalDevice,
+		*vkdt::_pObjects::pVKPhysicalDevice,
 		&logicalDeviceCreateInfo,
 		this -> pAllocator,
 		&this -> vkdtVKLogicalDevice
@@ -145,7 +145,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 		{
 			//Get VKDT GPU Information
 			VkPhysicalDeviceProperties vkdtVKDeviceInformation;
-			vkGetPhysicalDeviceProperties(*vkdt::_pVKObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
+			vkGetPhysicalDeviceProperties(*vkdt::_pObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
 
 			std::cout																						\
 			<< "Successfully Created VKDT Vulkan Device from: \"" << vkdtVKDeviceInformation.deviceName		\

@@ -2,7 +2,7 @@
 #include <vkdt/debug.h>
 
 //Include Headers
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 
 /**
  * @brief Vulkan Needed Implementation of VKDT Callback
@@ -49,7 +49,7 @@ vkdt::debug::messenger::messenger
 	}
 
 	//Set Vulkan Debug Messenger Pointer
-	vkdt::_pVKObjects::pVKDebugMessenger = &this -> vkdtVKDebugMessenger;
+	vkdt::_pObjects::pVKDebugMessenger = &this -> vkdtVKDebugMessenger;
 
 	//Set Callback Function
 	vkdt::debug::vkdtCallbackFunc = callbackFunction;
@@ -73,7 +73,7 @@ vkdt::debug::messenger::~messenger() noexcept(false)
 		(
 			vkGetInstanceProcAddr
 			(
-				*vkdt::_pVKObjects::pVKInstance,
+				*vkdt::_pObjects::pVKInstance,
 				"vkDestroyDebugUtilsMessengerEXT"
 			)
 		);
@@ -93,7 +93,7 @@ vkdt::debug::messenger::~messenger() noexcept(false)
 		}
 
 		//Call Function to Vulkan Destroy Debug Utils Messenger
-		destroyVKDebugUtilsMessengerEXT(*vkdt::_pVKObjects::pVKInstance, this -> vkdtVKDebugMessenger, this -> pAllocator);
+		destroyVKDebugUtilsMessengerEXT(*vkdt::_pObjects::pVKInstance, this -> vkdtVKDebugMessenger, this -> pAllocator);
 	}
 }
 
@@ -112,7 +112,7 @@ void vkdt::debug::messenger::createVKDTDebugMessenger(VkAllocationCallbacks* all
 	(
 		vkGetInstanceProcAddr
 		(
-			*vkdt::_pVKObjects::pVKInstance,
+			*vkdt::_pObjects::pVKInstance,
 			"vkCreateDebugUtilsMessengerEXT"
 		)
 	);
@@ -134,7 +134,7 @@ void vkdt::debug::messenger::createVKDTDebugMessenger(VkAllocationCallbacks* all
 	//Create Debug Utils Messenger
 	const VkResult vkdtVKCreateDebugUtilsMessengerResult = createVKDebugUtilsMessengerEXT
 	(
-		*vkdt::_pVKObjects::pVKInstance,
+		*vkdt::_pObjects::pVKInstance,
 		&debugMessengerCreateInfo,
 		this -> pAllocator,
 		&this -> vkdtVKDebugMessenger

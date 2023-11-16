@@ -2,13 +2,13 @@
 #include <vkdt/GPU.h>
 
 //Include Headers
-#include <vkdt/_pVKObjects.h>
+#include <vkdt/_pObjects.h>
 #include <vkdt/_QueueFamily.h>
 
 vkdt::GPU::GPU::GPU(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Physical Device Pointer
-	vkdt::_pVKObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
+	vkdt::_pObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
 
 	//Debug GPU Creation Success
 	if(this -> verbose)
@@ -32,7 +32,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVkPhysicalDeviceNumberResult = vkEnumeratePhysicalDevices
 	(
-		*vkdt::_pVKObjects::pVKInstance,
+		*vkdt::_pObjects::pVKInstance,
 		&vkAvailablePhysicalDeviceCount,
 		nullptr
 	);
@@ -47,7 +47,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVKPhysicalDevicesResult = vkEnumeratePhysicalDevices
 	(
-		*vkdt::_pVKObjects::pVKInstance,
+		*vkdt::_pObjects::pVKInstance,
 		&vkAvailablePhysicalDeviceCount,
 		vkAvailablePhysicalDevices.data()
 	);
