@@ -7,7 +7,7 @@
 namespace vkdt::window
 {
 	//Window Options
-	enum class argument : std::int32_t
+	enum class argument : int32_t
 	{
 		CENTER_CURSOR						= GLFW_CENTER_CURSOR,
 		DECORATED							= GLFW_DECORATED,
@@ -19,12 +19,12 @@ namespace vkdt::window
 		INIT_WITH_VISIBILITY				= GLFW_VISIBLE,
 		MAXIMIZED							= GLFW_MAXIMIZED,
 		RESIZABLE							= GLFW_RESIZABLE,
-		SCALE_WITH_MONITOR		  			= GLFW_SCALE_TO_MONITOR,
+		SCALE_WITH_MONITOR					= GLFW_SCALE_TO_MONITOR,
 		TRANSPARENT_FRAME_BUFFER			= GLFW_TRANSPARENT_FRAMEBUFFER,
 	};
 
 	//Window Result
-	enum class result : std::int32_t
+	enum class result : int32_t
 	{
 		TRUE = GLFW_TRUE,
 		FALSE = GLFW_FALSE,
@@ -33,18 +33,18 @@ namespace vkdt::window
 	//Window Size
 	struct size
 	{
-		const std::size_t width;
-		const std::size_t height;
+		const size_t width;
+		const size_t height;
 	};
 
 	//Key Options
-	enum class key : std::int32_t
+	enum class key : int32_t
 	{
 		KEY_SPACE							= GLFW_KEY_SPACE,
-		KEY_APOSTROPHE	  					= GLFW_KEY_APOSTROPHE,
+		KEY_APOSTROPHE						= GLFW_KEY_APOSTROPHE,
 		KEY_COMMA							= GLFW_KEY_COMMA,
 		KEY_MINUS							= GLFW_KEY_MINUS,
-		KEY_PERIOD		  					= GLFW_KEY_PERIOD,
+		KEY_PERIOD							= GLFW_KEY_PERIOD,
 		KEY_SLASH							= GLFW_KEY_SLASH,
 		KEY_0								= GLFW_KEY_0,
 		KEY_1								= GLFW_KEY_1,
@@ -90,12 +90,12 @@ namespace vkdt::window
 		KEY_GRAVE_ACCENT					= GLFW_KEY_GRAVE_ACCENT,
 		KEY_WORLD_1		 					= GLFW_KEY_WORLD_1,
 		KEY_WORLD_2			 				= GLFW_KEY_WORLD_2,
-		KEY_ESCAPE		  					= GLFW_KEY_ESCAPE,
+		KEY_ESCAPE							= GLFW_KEY_ESCAPE,
 		KEY_ENTER							= GLFW_KEY_ENTER,
 		KEY_TAB			 					= GLFW_KEY_TAB,
 		KEY_BACKSPACE						= GLFW_KEY_BACKSPACE,
-		KEY_INSERT		  					= GLFW_KEY_INSERT,
-		KEY_DELETE		  					= GLFW_KEY_DELETE,
+		KEY_INSERT							= GLFW_KEY_INSERT,
+		KEY_DELETE							= GLFW_KEY_DELETE,
 		KEY_RIGHT							= GLFW_KEY_RIGHT,
 		KEY_LEFT							= GLFW_KEY_LEFT,
 		KEY_DOWN							= GLFW_KEY_DOWN,
@@ -109,15 +109,15 @@ namespace vkdt::window
 		KEY_NUM_LOCK						= GLFW_KEY_NUM_LOCK,
 		KEY_PRINT_SCREEN					= GLFW_KEY_PRINT_SCREEN,
 		KEY_PAUSE							= GLFW_KEY_PAUSE,
-		KEY_F1			  					= GLFW_KEY_F1,
-		KEY_F2			  					= GLFW_KEY_F2,
-		KEY_F3			  					= GLFW_KEY_F3,
-		KEY_F4			  					= GLFW_KEY_F4,
-		KEY_F5			  					= GLFW_KEY_F5,
-		KEY_F6			  					= GLFW_KEY_F6,
-		KEY_F7			  					= GLFW_KEY_F7,
-		KEY_F8			  					= GLFW_KEY_F8,
-		KEY_F9			  					= GLFW_KEY_F9,
+		KEY_F1								= GLFW_KEY_F1,
+		KEY_F2								= GLFW_KEY_F2,
+		KEY_F3								= GLFW_KEY_F3,
+		KEY_F4								= GLFW_KEY_F4,
+		KEY_F5								= GLFW_KEY_F5,
+		KEY_F6								= GLFW_KEY_F6,
+		KEY_F7								= GLFW_KEY_F7,
+		KEY_F8								= GLFW_KEY_F8,
+		KEY_F9								= GLFW_KEY_F9,
 		KEY_F10			 					= GLFW_KEY_F10,
 		KEY_F11			 					= GLFW_KEY_F11,
 		KEY_F12			 					= GLFW_KEY_F12,
@@ -144,17 +144,17 @@ namespace vkdt::window
 		KEY_KP_7							= GLFW_KEY_KP_7,
 		KEY_KP_8							= GLFW_KEY_KP_8,
 		KEY_KP_9							= GLFW_KEY_KP_9,
-		KEY_KP_DECIMAL			  			= GLFW_KEY_KP_DECIMAL,
+		KEY_KP_DECIMAL						= GLFW_KEY_KP_DECIMAL,
 		KEY_KP_DIVIDE						= GLFW_KEY_KP_DIVIDE,
 		KEY_KP_MULTIPLY						= GLFW_KEY_KP_MULTIPLY,
 		KEY_KP_SUBTRACT						= GLFW_KEY_KP_SUBTRACT,
-		KEY_KP_ADD		  					= GLFW_KEY_KP_ADD,
+		KEY_KP_ADD							= GLFW_KEY_KP_ADD,
 		KEY_KP_ENTER						= GLFW_KEY_KP_ENTER,
 		KEY_KP_EQUAL						= GLFW_KEY_KP_EQUAL,
-		KEY_LEFT_SHIFT	  					= GLFW_KEY_LEFT_SHIFT,
+		KEY_LEFT_SHIFT						= GLFW_KEY_LEFT_SHIFT,
 		KEY_LEFT_CONTROL					= GLFW_KEY_LEFT_CONTROL,
 		KEY_LEFT_ALT						= GLFW_KEY_LEFT_ALT,
-		KEY_LEFT_SUPER	  					= GLFW_KEY_LEFT_SUPER,
+		KEY_LEFT_SUPER						= GLFW_KEY_LEFT_SUPER,
 		KEY_RIGHT_SHIFT	 					= GLFW_KEY_RIGHT_SHIFT,
 		KEY_RIGHT_CONTROL					= GLFW_KEY_RIGHT_CONTROL,
 		KEY_RIGHT_ALT						= GLFW_KEY_RIGHT_ALT,
