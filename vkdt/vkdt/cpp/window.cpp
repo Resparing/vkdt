@@ -148,7 +148,7 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 		if(this -> verbose)
 		{
 			std::cout										\
-			<< "Successfully Created VKDT Window With"  	\
+			<< "Successfully Created VKDT Window With"		\
 			<< " Width: " << windowWidth					\
 			<< ", Height: " << windowHeight			 		\
 			<< ". Title: \"" << title << "\"!\n";
