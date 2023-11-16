@@ -2,19 +2,19 @@
 #include <vkdt/device.h>
 
 //Include Headers
+#include <vkdt/_pVKObjects.h>
 #include <vkdt/_QueueFamily.h>
 
 vkdt::device::device::device
 (
-	vkdt::GPU::GPU* vkdtGPU,
-	const std::vector<const char*> vkdtVKRequestedExtensions,
-	const std::vector<const char*> vkdtVKRequestedLayers,
+	const std::vector<const char*>& vkdtVKRequestedExtensions,
+	const std::vector<const char*>& vkdtVKRequestedLayers,
 	const bool debug,
 	const bool verbose
 ) noexcept : vkdtVKLayers(vkdtVKRequestedLayers), vkdtVKExtensions(vkdtVKRequestedExtensions), debug(debug), verbose(verbose)
 {
-	//Set Vulkan Physical Device
-	this -> pVKPhysicalDevice = const_cast<VkPhysicalDevice*>(&vkdtGPU -> refVKPhysicalDevice());
+	//Set Vulkan Logical Device Pointer
+	vkdt::_pVKObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
 
 	//Set Vulkan Extensions & Vulkan Layers
 	if(this -> debug || this -> verbose)
@@ -56,7 +56,7 @@ vkdt::device::device::device
 
 		//Get GPU Name
 		VkPhysicalDeviceProperties vkdtVKPhysicalDeviceProperties;
-		vkGetPhysicalDeviceProperties(*pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
+		vkGetPhysicalDeviceProperties(*vkdt::_pVKObjects::pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
 
 		std::cout																							\
 		<< "Successfully Initialized VKDT Device with"														\
@@ -69,13 +69,25 @@ vkdt::device::device::device
 	}
 }
 
+vkdt::device::device::~device()
+{
+	//Destroy Vulkan Logical Device
+	vkDestroyDevice(this -> vkdtVKLogicalDevice, this -> pAllocator);
+
+	//Debug Destruction Success
+	if(this -> verbose)
+	{
+		std::cout << "Successfully Destroyed VKDT Device!\n";
+	}
+}
+
 void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueue, VkAllocationCallbacks* allocator)
 {
 	//Set Allocation Callback
 	this -> pAllocator = allocator;
 
 	//Find Queue Family Indexes
-	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*this -> pVKPhysicalDevice);
+	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*vkdt::_pVKObjects::pVKPhysicalDevice);
 
 	//Queue Priority - Between 0.0f & 1.0f
 	float vkdtVKQueuePriority = 1.0f;
@@ -120,7 +132,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 	//Create VKDT Vulkan Logical Device
 	const VkResult vkdtVKCreateDeviceResult = vkCreateDevice
 	(
-		*this -> pVKPhysicalDevice,
+		*vkdt::_pVKObjects::pVKPhysicalDevice,
 		&logicalDeviceCreateInfo,
 		this -> pAllocator,
 		&this -> vkdtVKLogicalDevice
@@ -133,7 +145,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 		{
 			//Get VKDT GPU Information
 			VkPhysicalDeviceProperties vkdtVKDeviceInformation;
-			vkGetPhysicalDeviceProperties(*this -> pVKPhysicalDevice, &vkdtVKDeviceInformation);
+			vkGetPhysicalDeviceProperties(*vkdt::_pVKObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
 
 			std::cout																						\
 			<< "Successfully Created VKDT Vulkan Device from: \"" << vkdtVKDeviceInformation.deviceName		\
@@ -159,22 +171,4 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 		0,
 		const_cast<VkQueue*>(&vkdtGraphicsQueue -> refVKQueue())
 	);
-}
-
-const VkDevice& vkdt::device::device::refVKLogicalDevice(void) const noexcept
-{
-	//Return Logical Device
-	return this -> vkdtVKLogicalDevice;
-}
-
-vkdt::device::device::~device()
-{
-	//Destroy Vulkan Logical Device
-	vkDestroyDevice(this -> vkdtVKLogicalDevice, this -> pAllocator);
-
-	//Debug Destruction Success
-	if(this -> verbose)
-	{
-		std::cout << "Successfully Destroyed VKDT Device!\n";
-	}
 }
