@@ -28,7 +28,7 @@ static void callback
 		//Debug Queue Labels
 		std::cerr << "Message Labels (" << messageData -> queueLabelCount << "):\n";
 
-		for(std::size_t i{}; i < messageData -> queueLabelCount; ++i)
+		for(size_t i{}; i < messageData -> queueLabelCount; ++i)
 		{
 			std::cerr << "\t[" << i << "][QUEUE MESSAGE] \"" << messageData -> pQueueLabels[i].pLabelName << "\"\n";
 		}
@@ -55,7 +55,7 @@ static void callback
 		//Debug Command Buffer Labels
 		std::cerr << "Command Buffer Labels (" << messageData -> cmdBufLabelCount << "):\n";
 
-		for(std::size_t i{}; i < messageData -> cmdBufLabelCount; ++i)
+		for(size_t i{}; i < messageData -> cmdBufLabelCount; ++i)
 		{
 			std::cerr << "\t[" << i << "][COMMAND BUFFER] \"" << messageData -> pCmdBufLabels[i].pLabelName << "\"\n";
 		}
@@ -91,6 +91,8 @@ void TestEngine::TestEngine::createWindow(void)
 
 void TestEngine::TestEngine::vkdtInit(void)
 {
+	this -> vkdtDebugMessenger = new vkdt::debug::messenger(callback, isDebug, isVerbose);
+
 	vkdt::instance::envVariables envData =
 	{
 		.VK_ICD_FILENAMES = "lib/inc/vulkan/icd.d/MoltenVK_icd.json",
@@ -107,16 +109,16 @@ void TestEngine::TestEngine::vkdtInit(void)
 	};
 	this -> vkdtInstance = new vkdt::instance::instance(envData, appInfo, isDebug, isVerbose);
 	this -> vkdtInstance -> setupVKDTInstance({}, {});
-	this -> vkdtInstance -> createVKDTInstance(callback, nullptr);
+	this -> vkdtInstance -> createVKDTInstance(nullptr);
 
-	this -> vkdtInstance -> createVKDTDebugMessenger();
+	this -> vkdtDebugMessenger -> createVKDTDebugMessenger(nullptr);
 
-	this -> vkdtGPU = new vkdt::GPU::GPU(vkdtInstance, isDebug, isVerbose);
+	this -> vkdtGPU = new vkdt::GPU::GPU(isDebug, isVerbose);
 	this -> vkdtGPU -> findVKDTGPU(nullptr);
 
 	this -> vkdtGraphicsQueue = new vkdt::queue::queue(isDebug, isVerbose);
 
-	this -> vkdtDevice = new vkdt::device::device(vkdtGPU, {}, {}, isDebug, isVerbose);
+	this -> vkdtDevice = new vkdt::device::device({}, {}, isDebug, isVerbose);
 	this -> vkdtDevice -> createVKDTDevice(this -> vkdtGraphicsQueue, nullptr);
 }
 
@@ -132,8 +134,7 @@ TestEngine::TestEngine::~TestEngine()
 {
 	delete this -> vkdtGraphicsQueue;  //Delete VKDT Graphics Queue
 	delete this -> vkdtDevice;  //Delete VKDT Device
-	this -> vkdtInstance -> destroyVKDTDebugMessenger();  //Delete VKDT Debug Messenger
-	this -> vkdtWindow -> destroyVKDTSurface();  //Delete VKDT Surface
+	delete this -> vkdtDebugMessenger;  //Delete VKDT Debug Messenger
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
 
