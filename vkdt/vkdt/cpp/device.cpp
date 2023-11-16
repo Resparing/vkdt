@@ -47,7 +47,7 @@ vkdt::device::device::device
 			std::cout << "\t\"" << vkdtVKExtension << "\"\n";
 		}
 
-		std::cout << "Added Vulkan Vulkan Layers (" << this -> vkdtVKLayers.size() << "):\n";
+		std::cout << "Added VKDT Vulkan Layers (" << this -> vkdtVKLayers.size() << "):\n";
 
 		for(const char* vkdtVKLayer : this -> vkdtVKLayers)
 		{
@@ -129,7 +129,7 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 		.ppEnabledLayerNames = this -> vkdtVKLayers.data(),
 	};
 
-	//Create VKDT Vulkan Logical Device
+	//Create Vulkan Logical Device
 	const VkResult vkdtVKCreateDeviceResult = vkCreateDevice
 	(
 		*vkdt::_pObjects::pVKPhysicalDevice,
@@ -148,19 +148,19 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 			vkGetPhysicalDeviceProperties(*vkdt::_pObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
 
 			std::cout																						\
-			<< "Successfully Created VKDT Vulkan Device from: \"" << vkdtVKDeviceInformation.deviceName		\
+			<< "Successfully Created VKDT Device from: \"" << vkdtVKDeviceInformation.deviceName			\
 			<< "\" With: " << this -> vkdtVKExtensions.size() << " Extensions "								\
 			<< "and: " << this -> vkdtVKLayers.size() << " Layers!\n";
 		}
 
 		else if(this -> debug)
 		{
-			std::cout << "Successfully Create VKDT Vulkan Device!\n";
+			std::cout << "Successfully Created VKDT Device!\n";
 		}
 	}
 	else
 	{
-		throw std::runtime_error("Failed to Create VKDT Vulkan Logical Device! Error: " + std::to_string(vkdtVKCreateDeviceResult) + "!\n");
+		throw std::runtime_error("Failed to Create VKDT Logical Device! Error: " + std::to_string(vkdtVKCreateDeviceResult) + "!\n");
 	}
 
 	//Get VKDT Queue's

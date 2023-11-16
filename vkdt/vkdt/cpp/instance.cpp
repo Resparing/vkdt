@@ -92,13 +92,13 @@ vkdt::instance::instance::instance
 
 vkdt::instance::instance::~instance() noexcept(false)
 {
-	//Destroy VKDT Vulkan Instance
+	//Destroy Vulkan Instance
 	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
 
 	if(this -> verbose)
 	{
 		//Debug Deletion Success
-		std::cout << "Successfully Destroyed VKDT Vulkan Instance!\n";
+		std::cout << "Successfully Destroyed VKDT Instance!\n";
 	}
 
 #ifdef __APPLE__
@@ -339,7 +339,7 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 		//Debug Addition of Debug Utils Messenger Creation Information Struct
 		if(this -> verbose)
 		{
-			std::cout << "Successfully Added Debugging Information to Vulkan Instance Creation Information!\n";
+			std::cout << "Successfully Added Debugging Information to Vulkan Instance Creation Information Struct!\n";
 		}
 	}
 
@@ -349,17 +349,17 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 	{
 		if(this -> verbose)
 		{
-			std::cout << "Successfully Created VKDT Vulkan Instance Called: \"" << this -> appData.name << "\"!\n";
+			std::cout << "Successfully Created VKDT Instance Called: \"" << this -> appData.name << "\"!\n";
 		}
 
 		else if(this -> debug)
 		{
-			std::cout << "Successfully Created VKDT Vulkan Instance!\n";
+			std::cout << "Successfully Created VKDT Instance!\n";
 		}
 	}
 	else
 	{
-		throw std::runtime_error("Failed to Create VKDT Vulkan Instance! Error: " + std::to_string(vkdtVkInstanceCreationResult) + "!\n");
+		throw std::runtime_error("Failed to Create VKDT Instance! Error: " + std::to_string(vkdtVkInstanceCreationResult) + "!\n");
 	}
 }
 
@@ -379,7 +379,7 @@ bool vkdt::instance::instance::requestedExtensionsSupported(void) const
 	{
 		throw std::runtime_error
 		(
-			"Failed to Find Number of VKDT Vulkan Instance Extension Properties! Error: " +
+			"Failed to Find Number of VKDT Vulkan Instance Extensions! Error: " +
 			std::to_string(vkdtVkInstanceExtensionCountResult) + "!\n"
 		);
 	}
@@ -397,7 +397,7 @@ bool vkdt::instance::instance::requestedExtensionsSupported(void) const
 	{
 		throw std::runtime_error
 		(
-			"Failed to Find VKDT Vulkan Instance Extension Properties! Error: " +
+			"Failed to Find VKDT Vulkan Instance Extensions! Error: " +
 			std::to_string(vkdtVkInstanceExtensionsResult) + "!\n"
 		);
 	}
@@ -478,7 +478,7 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 	{
 		throw std::runtime_error
 		(
-			"Failed to Find VKDT Vulkan Instance Layer Properties! Error: " +
+			"Failed to Find VKDT Vulkan Instance Layers! Error: " +
 			std::to_string(vkdtVkInstanceLayersResult) + "!\n"
 		);
 	}

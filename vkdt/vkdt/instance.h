@@ -12,7 +12,7 @@ namespace vkdt::instance
 	public:
 
 		/**
-		 * @brief Initialize VKDT Vulkan Instance & Set up Requested Layers and Extensions
+		 * @brief Initialize VKDT Instance & Set up Requested Layers and Extensions
 		 *
 		 * @param macEnvVariables MacOS Required Environment Variables
 		 * @param applicationInfo The Application Information of Program

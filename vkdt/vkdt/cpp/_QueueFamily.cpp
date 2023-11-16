@@ -19,7 +19,7 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 	struct _QueueFamily::Indices indices;
 
 	//Get Vulkan Queue Family Indexes
-	uint32_t vkQueueFamilyCount{};  //Number of VKDT Vulkan Queue Family Indexes
+	uint32_t vkQueueFamilyCount{};  //Number of Vulkan Queue Family Indexes
 	vkGetPhysicalDeviceQueueFamilyProperties(vkdtVKPhysicalDevice, &vkQueueFamilyCount, nullptr);  //Get Number of Queue Family Indexes
 	std::vector<VkQueueFamilyProperties> vkQueueFamilies(vkQueueFamilyCount);  //Vector of Vulkan Queue Family Properties
 	vkGetPhysicalDeviceQueueFamilyProperties(vkdtVKPhysicalDevice, &vkQueueFamilyCount, vkQueueFamilies.data());  //Query Properties Again

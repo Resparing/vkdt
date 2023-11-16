@@ -27,28 +27,28 @@ vkdt::GPU::GPU::~GPU()
 
 void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 {
-	//Get Vector of Available VKDT Vulkan Physical Devices
-	uint32_t vkAvailablePhysicalDeviceCount{};  //Number of VKDT Vulkan Physical Devices
+	//Get Vector of Available Vulkan Physical Devices
+	uint32_t vkdtVKAvailablePhysicalDeviceCount{};  //Number of Vulkan Physical Devices
 
-	const VkResult vkdtVkPhysicalDeviceNumberResult = vkEnumeratePhysicalDevices
+	const VkResult vkdtVKPhysicalDeviceNumberResult = vkEnumeratePhysicalDevices
 	(
 		*vkdt::_pObjects::pVKInstance,
-		&vkAvailablePhysicalDeviceCount,
+		&vkdtVKAvailablePhysicalDeviceCount,
 		nullptr
 	);
 
-	if(vkdtVkPhysicalDeviceNumberResult != VK_SUCCESS)
+	if(vkdtVKPhysicalDeviceNumberResult != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to Find Number of VKDT GPU's! Error: " + std::to_string(vkdtVkPhysicalDeviceNumberResult) + "!\n");
+		throw std::runtime_error("Failed to Find Number of VKDT GPU's! Error: " + std::to_string(vkdtVKAvailablePhysicalDeviceCount) + "!\n");
 	}
 
 	//Vector of Available Physical Devices
-	std::vector<VkPhysicalDevice> vkAvailablePhysicalDevices(vkAvailablePhysicalDeviceCount);
+	std::vector<VkPhysicalDevice> vkAvailablePhysicalDevices(vkdtVKAvailablePhysicalDeviceCount);
 
 	const VkResult vkdtVKPhysicalDevicesResult = vkEnumeratePhysicalDevices
 	(
 		*vkdt::_pObjects::pVKInstance,
-		&vkAvailablePhysicalDeviceCount,
+		&vkdtVKAvailablePhysicalDeviceCount,
 		vkAvailablePhysicalDevices.data()
 	);
 
@@ -57,8 +57,8 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 		throw std::runtime_error("Failed to Find VKDT GPU's! Error: " + std::to_string(vkdtVKPhysicalDevicesResult) + "!\n");
 	}
 
-	//Check if VKDT Vulkan Physical Devices Available
-	if(vkAvailablePhysicalDeviceCount == 0)
+	//Check if Vulkan Physical Devices Available
+	if(vkdtVKAvailablePhysicalDeviceCount == 0)
 	{
 		if(this -> verbose)
 		{
@@ -71,7 +71,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 	//Debug Vulkan Physical Devices
 	if(this -> verbose)
 	{
-		std::cout << "Available VKDT GPU's (" << vkAvailablePhysicalDeviceCount << "):\n";
+		std::cout << "Available VKDT GPU's (" << vkdtVKAvailablePhysicalDeviceCount << "):\n";
 
 		for(const VkPhysicalDevice& vkAvailablePhysicalDevice : vkAvailablePhysicalDevices)
 		{
@@ -86,7 +86,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	else if(this -> debug)
 	{
-		std::cout << "Found: " << vkAvailablePhysicalDeviceCount << " GPU's!\n";
+		std::cout << "Found: " << vkdtVKAvailablePhysicalDeviceCount << " GPU's!\n";
 	}
 
 	//Check if VKDT GPU Force Requested
@@ -129,7 +129,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 				VkPhysicalDeviceProperties vkdtVKDeviceInformation;
 				vkGetPhysicalDeviceProperties(vkAvailablePhysicalDevice, &vkdtVKDeviceInformation);
 
-				std::cout << "Chose: \"" << vkdtVKDeviceInformation.deviceName << "\" as VKDT Vulkan Physical Device!\n";
+				std::cout << "Chose: \"" << vkdtVKDeviceInformation.deviceName << "\" as VKDT Physical Device!\n";
 			}
 
 			//Set Vulkan Physical Device to Selected GPU

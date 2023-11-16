@@ -21,7 +21,7 @@ namespace vkdt::queue
 		virtual ~queue();
 
 		/**
-		 * @brief Get a Reference to VKDT Vulkan Queue
+		 * @brief Get a Reference to Vulkan Queue
 		 *
 		 * @attention Use for Extending VKDT Queue Class and for Internal Use!
 		 *

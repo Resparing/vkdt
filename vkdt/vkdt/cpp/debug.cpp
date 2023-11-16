@@ -25,7 +25,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL vkdtVKDebugCallback
 	//Check if User Data Contains Anything
 	if(pUserData)
 	{
-		throw std::runtime_error("VKDT Vulkan Debug Callback Function Contains Invalid Information!\n");
+		throw std::runtime_error("Vulkan Debug Callback Function Contains Invalid Information!\n");
 	}
 
 	//Call VKDT Debug Function
@@ -81,14 +81,14 @@ vkdt::debug::messenger::~messenger() noexcept(false)
 		//Check if Function is Created Successfully
 		if(!destroyVKDebugUtilsMessengerEXT)
 		{
-			throw std::runtime_error("Failed to Locate & Load VKDT Vulkan Debug Utils Messenger Creation Function!\n");
+			throw std::runtime_error("Failed to Locate & Load Vulkan Debug Utils Messenger Creation Function!\n");
 		}
 		else
 		{
 			//Debug Function Location Success
 			if(this -> verbose)
 			{
-				std::cout << "Successfully Located & Loaded VKDT Vulkan Destroy Debug Utils Messenger Function!\n";
+				std::cout << "Successfully Located & Loaded Vulkan Destroy Debug Utils Messenger Function!\n";
 			}
 		}
 
@@ -120,14 +120,14 @@ void vkdt::debug::messenger::createVKDTDebugMessenger(VkAllocationCallbacks* all
 	//Check if Function Created Successfully
 	if(!createVKDebugUtilsMessengerEXT)
 	{
-		throw std::runtime_error("Failed to Locate & Load VKDT Vulkan Debug Utils Messenger Creation Function!\n");
+		throw std::runtime_error("Failed to Locate & Load Vulkan Debug Utils Messenger Creation Function!\n");
 	}
 	else
 	{
 		//Debug Function Location Success
 		if(this -> verbose)
 		{
-			std::cout << "Successfully Located & Loaded VKDT Vulkan Create Debug Utils Messenger Function!\n";
+			std::cout << "Successfully Located & Loaded Vulkan Create Debug Utils Messenger Function!\n";
 		}
 	}
 
@@ -178,7 +178,7 @@ void vkdt::debug::messenger::createVKDTDebugMessenger(VkAllocationCallbacks* all
 	{
 		throw std::runtime_error
 		(
-			"Failed to Create VKDT Vulkan Debug Utils Messenger! Error: " +
+			"Failed to Create VKDT Debug Utils Messenger! Error: " +
 			std::to_string(vkdtVKCreateDebugUtilsMessengerResult) + "!\n"
 		);
 	}
