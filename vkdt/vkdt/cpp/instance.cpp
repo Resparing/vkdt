@@ -244,7 +244,7 @@ void vkdt::instance::instance::setupVKDTInstance
 	}
 }
 
-void vkdt::instance::instance::createVKDTInstance(vkdt::debug::vkdtCallback callbackFunc, VkAllocationCallbacks* allocator)
+void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocator)
 {
 	//Set Allocator
 	this -> pAllocator = allocator;
@@ -331,10 +331,7 @@ void vkdt::instance::instance::createVKDTInstance(vkdt::debug::vkdtCallback call
 	if(this -> verbose)
 	{
 		//Fil Vulkan Debug Utils Creation Information Struct
-		this -> fillDebugUtilsCreateInfo(debugCreateInfo);
-
-		//Set Callback Function
-		vkdt::debug::vkdtCallbackFunc = callbackFunc;
+		vkdt::debug::messenger::fillDebugUtilsCreateInfo(debugCreateInfo);
 
 		//Add Struct to Instance Creation Information Struct
 		instanceCreateInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*)&debugCreateInfo;
