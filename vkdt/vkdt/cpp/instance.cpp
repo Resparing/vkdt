@@ -18,7 +18,7 @@ vkdt::instance::instance::instance
 	{
 		std::cout																					\
 		<< "Successfully Received Application Information With"							 			\
-		<< " Name: \"" << this -> appData.name											  			\
+		<< " Name: \"" << this -> appData.name														\
 		<< "\" Version: Patch " << this -> appData.version.patch									\
 		<< ", Major " << this -> appData.version.major												\
 		<< ", Minor " << this -> appData.version.minor												\
@@ -288,8 +288,8 @@ void vkdt::instance::instance::createVKDTInstance(vkdt::debug::vkdtCallback call
 		.applicationVersion = VK_MAKE_API_VERSION													\
 		(																							\
 			this -> appData.version.variant,														\
-			this -> appData.version.major,												  			\
-			this -> appData.version.minor,												  			\
+			this -> appData.version.major,															\
+			this -> appData.version.minor,															\
 			this -> appData.version.patch															\
 		),
 	};
@@ -312,7 +312,7 @@ void vkdt::instance::instance::createVKDTInstance(vkdt::debug::vkdtCallback call
 		.ppEnabledLayerNames = this -> vkdtLayers.data(),
 
 		//Vulkan Flags
-		.flags  = vkdtVKInstanceCreateInfoFlags,
+		.flags = vkdtVKInstanceCreateInfoFlags,
 	};
 
 	//Vulkan Debug Utils Messenger Creation Information Struct
