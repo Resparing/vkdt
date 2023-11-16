@@ -15,7 +15,6 @@ namespace vkdt::device
 		/**
 		 * @brief Initialize VKDT Device
 		 *
-		 * @param vkdtGPU Pointer to VKDT GPU
 		 * @param vkdtVKRequestedExtensions C-String Vector of Requested VKDT Vulkan Extensions
 		 * @param vkdtVKRequestedLayers C-String Vector of Requested VKDT Vulkan Extensions
 		 * @param debug Whether to Allow Debugging in Messages
@@ -40,15 +39,6 @@ namespace vkdt::device
 		 */
 		void createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueue, VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
-		/**
-		 * @brief Get a Reference to VKDT Vulkan Logical Device
-		 *
-		 * @attention Use for Extending VKDT Device Class and for Internal Use!
-		 *
-		 * @return Reference to Vulkan Physical Device
-		 */
-		const VkDevice& refVKLogicalDevice() const noexcept;
-
 	private:
 
 		//Vulkan Layers & Extensions
@@ -61,7 +51,6 @@ namespace vkdt::device
 	protected:
 
 		/* Vulkan Parameters */
-		VkPhysicalDevice* pVKPhysicalDevice;  //Pointer to Vulkan Physical Device
 		VkDevice vkdtVKLogicalDevice;  //Vulkan Logical Device
 
 		//Debugging Variables
