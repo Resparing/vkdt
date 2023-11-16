@@ -14,11 +14,10 @@ namespace vkdt::GPU
 		/**
 		 * @brief Create VKDT GPU
 		 *
-		 * @param vkdtInstance Pointer to VKDT Instance
 		 * @param debug Whether to Allow Debugging in Messages
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
-		GPU(vkdt::instance::instance* vkdtInstance, const bool debug = false, const bool verbose = false) noexcept;
+		GPU(const bool debug = false, const bool verbose = false) noexcept;
 
 		virtual ~GPU();
 
@@ -27,16 +26,6 @@ namespace vkdt::GPU
 		 *
 		 * @param vkdtGPUName Name of GPU to Force Request
 		 */
-		void findVKDTGPU(const char* vkdtGPUName = NULL);
-
-		/**
-		 * @brief Get a Reference to VKDT Vulkan Physical Device
-		 *
-		 * @attention Use for Extending VKDT GPU Class & for Internal Use!
-		 *
-		 * @return Reference to Vulkan Physical Device
-		 */
-		const VkPhysicalDevice& refVKPhysicalDevice(void) const noexcept;
 
 	private:
 
@@ -47,9 +36,8 @@ namespace vkdt::GPU
 
 	protected:
 
-		/* Vulkan Parameters */
-		VkInstance* pVKInstance;  //Pointer to Vulkan Instance
-		VkPhysicalDevice vkdtVKPhysicalDevice = VK_NULL_HANDLE;  //Vulkan Physical Device
+		//Vulkan Physical Device
+		VkPhysicalDevice vkdtVKPhysicalDevice = VK_NULL_HANDLE;
 
 		//Debug Variables
 		bool debug{};
