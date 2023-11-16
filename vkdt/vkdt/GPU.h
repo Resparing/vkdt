@@ -31,6 +31,8 @@ namespace vkdt::GPU
 
 		/**
 		 * @brief Check if Vulkan Device is Suitable for VKDT
+		 *
+		 * @param vkdtVKSelectedPhysicalDevice Vulkan Physical Device to Check
 		 */
 		bool isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const noexcept;
 
