@@ -81,6 +81,56 @@ vkdt::instance::instance::instance
 #endif
 }
 
+vkdt::instance::instance::~instance() noexcept(false)
+{
+	//Destroy VKDT Vulkan Instance
+	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
+
+	if(this -> verbose)
+	{
+		//Debug Deletion Success
+		std::cout << "Successfully Destroyed VKDT Vulkan Instance!\n";
+	}
+
+#ifdef __APPLE__
+
+	//Check if MacOS Environment Variables Struct is Initialized
+	if(this -> macOSEnvVariables.VK_ICD_FILENAMES.empty() || this -> macOSEnvVariables.VK_LAYER_PATH.empty())
+	{
+		return;
+	}
+
+	//Unset MoltenVK Required Environment Variable
+	if(unsetenv("VK_ICD_FILENAMES") == 0)
+	{
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Unset: \"" << "VK_ICD_FILENAMES" << "\"!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Unset: \"VK_ICD_FILENAMES\" Environment Variable!\n");
+	}
+
+	//Unset Vulkan Layer(s) Required Environment Variables
+	if(unsetenv("VK_LAYER_PATH") == 0)
+	{
+		//Debug Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Unset: \"" << "VK_LAYER_PATH" << "\"!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Unset: \"VK_LAYER_PATH\" Environment Variable!\n");
+	}
+
+#endif
+}
+
 void vkdt::instance::instance::setupVKDTInstance
 (
 	const std::vector<const char*> vkdtRequestedExtensions,
@@ -479,47 +529,4 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 
 	//All Tests Have Passed
 	return true;
-
-vkdt::instance::instance::~instance() noexcept(false)
-{
-	//Destroy VKDT Vulkan Instance
-	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
-
-	if(this -> verbose)
-	{
-		//Debug Deletion Success
-		std::cout << "Successfully Destroyed VKDT Vulkan Instance!\n";
-	}
-
-#ifdef __APPLE__
-
-	//Unset MoltenVK Required Environment Variable
-	if(this -> macOSEnvVariables.VK_ICD_FILENAMES && unsetenv("VK_ICD_FILENAMES") == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout << "Successfully Unset: \"" << "VK_ICD_FILENAMES" << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Unset: \"VK_ICD_FILENAMES\" Environment Variable!\n");
-	}
-
-	//Unset Vulkan Layer(s) Required Environment Variables
-	if(this -> macOSEnvVariables.VK_LAYER_PATH && unsetenv("VK_LAYER_PATH") == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout << "Successfully Unset: \"" << "VK_LAYER_PATH" << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Unset: \"VK_LAYER_PATH\" Environment Variable!\n");
-	}
-
-#endif
 }
