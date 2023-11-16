@@ -14,7 +14,9 @@ namespace vkdt::instance
 		//Name of VKDT Application
 		const char* name;
 
-		//Struct with Version Information
+		/**
+		 * @brief Struct with Version Information
+		 */
 		struct appVersion
 		{
 			std::uint32_t variant;
@@ -24,13 +26,15 @@ namespace vkdt::instance
 		}; appVersion version;
 	};
 
-	//Vulkan Enviornment Variables
+	/**
+	 * @brief Vulkan Enviornment Variables
+	 */
 	struct envVariables
 	{
 		//MoltenVK JSON Information Path
-		const char* VK_ICD_FILENAMES;
+		const std::string VK_ICD_FILENAMES;
 
 		//Vulkan Layer JSON Information Directory
-		const char* VK_LAYER_PATH;
+		const std::string VK_LAYER_PATH;
 	};
 }
