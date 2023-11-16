@@ -38,8 +38,14 @@ vkdt::instance::instance::instance
 
 #ifdef __APPLE__
 
+	//Check if MacOS Environment Variables Struct is Initialized
+	if(this -> macOSEnvVariables.VK_ICD_FILENAMES.empty() || this -> macOSEnvVariables.VK_LAYER_PATH.empty())
+	{
+		return;
+	}
+
 	//Set MoltenVK Required Environment Variable
-	if(this -> macOSEnvVariables.VK_ICD_FILENAMES && setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES, 1) == 0)
+	if(setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES.c_str(), 1) == 0)
 	{
 		//Debug Success
 		if(this -> verbose)
@@ -55,7 +61,7 @@ vkdt::instance::instance::instance
 	}
 
 	//Set Vulkan Layer(s) Required Environment Variables
-	if(this -> macOSEnvVariables.VK_LAYER_PATH && setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH, 1) == 0)
+	if(setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH.c_str(), 1) == 0)
 	{
 		//Debug Success
 		if(this -> verbose)
