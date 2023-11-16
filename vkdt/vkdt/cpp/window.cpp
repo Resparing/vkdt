@@ -105,6 +105,24 @@ vkdt::window::window::window
 	}
 }
 
+vkdt::window::window::~window()
+{
+	//Destroy GLFW Window
+	glfwDestroyWindow(this -> vkdtGLFWWindow);
+
+	//Terminate GLFW
+	glfwTerminate();
+
+	if(this -> verbose)
+	{
+		std::cout << "Successfully Destroyed VKDT Window and Deallocated all Related Resources!\n";
+	}
+	else if(this -> debug)
+	{
+		std::cout << "Successfully Destroyed VKDT Window!\n";
+	}
+}
+
 void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, const std::string& title)
 {
 	//Window was Already Created
@@ -201,23 +219,4 @@ bool vkdt::window::window::isPressed(const vkdt::window::key key) const
 
 	//No Key State was Found
 	throw std::runtime_error("Failed to Find Key State!\n");
-}
-
-
-vkdt::window::window::~window()
-{
-	//Destroy GLFW Window
-	glfwDestroyWindow(this -> vkdtGLFWWindow);
-
-	//Terminate GLFW
-	glfwTerminate();
-
-	if(this -> verbose)
-	{
-		std::cout << "Successfully Destroyed VKDT Window and Deallocated all Related Resources!\n";
-	}
-	else if(this -> debug)
-	{
-		std::cout << "Successfully Destroyed VKDT Window!\n";
-	}
 }
