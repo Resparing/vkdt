@@ -3,12 +3,15 @@
 
 namespace vkdt::_pObjects
 {
-	//GLFW Objects
+	//Pointers to GLFW Objects
 	GLFWwindow** pGLFWWindow{};
 
-	//Vulkan Objects
+	//Pointers to Vulkan Objects
 	VkDebugUtilsMessengerEXT* pVKDebugMessenger{};
-	VkInstance* pVKInstance{};
 	VkDevice* pVKLogicalDevice{};
+	VkInstance* pVKInstance{};
 	VkPhysicalDevice* pVKPhysicalDevice{};
+	VkQueue* pVKGraphicsQueue{};
+	VkQueue* pVKPresentQueue{};
+	VkSurfaceKHR* pVKSurface{};
 }

@@ -7,6 +7,7 @@
 #include <vkdt/GPU.h>
 #include <vkdt/instance.h>
 #include <vkdt/queue.h>
+#include <vkdt/surface.h>
 #include <vkdt/window.h>
 
 namespace TestEngine
@@ -26,6 +27,7 @@ namespace TestEngine
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
 		vkdt::queue::queue* vkdtGraphicsQueue;
+		vkdt::surface::surface* vkdtSurface;
 		vkdt::window::window* vkdtWindow;
 
 		//Debugging Variables

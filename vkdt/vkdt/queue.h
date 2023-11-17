@@ -20,20 +20,12 @@ namespace vkdt::queue
 
 		virtual ~queue();
 
-		/**
-		 * @brief Get a Reference to Vulkan Queue
-		 *
-		 * @attention Use for Extending VKDT Queue Class and for Internal Use!
-		 *
-		 * @return Reference to Vulkan Queue
-		 */
-		const VkQueue& refVKQueue(void) const noexcept;
-
 	private:
 	protected:
 
-		//Vulkan Queue
-		VkQueue vkdtVKQueue;
+		//Vulkan Queues
+		VkQueue vkdtVKGraphicsQueue;
+		VkQueue vkdtVKPresentQueue;
 
 		//Debugging Variables
 		bool debug{};

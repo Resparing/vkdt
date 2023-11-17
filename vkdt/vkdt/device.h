@@ -33,10 +33,9 @@ namespace vkdt::device
 		/**
 		 * @brief Create VKDT Device
 		 *
-		 * @param vkdtGraphicsQueue Vulkan Graphics Queue
 		 * @param allocator Vulkan Memory Allocator
 		 */
-		void createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueue, VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
+		void createVKDTDevice(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
 

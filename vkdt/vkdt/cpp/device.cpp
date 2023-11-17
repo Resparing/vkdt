@@ -81,7 +81,7 @@ vkdt::device::device::~device()
 	}
 }
 
-void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueue, VkAllocationCallbacks* allocator)
+void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 {
 	//Set Allocation Callback
 	this -> pAllocator = allocator;
@@ -164,11 +164,5 @@ void vkdt::device::device::createVKDTDevice(vkdt::queue::queue* vkdtGraphicsQueu
 	}
 
 	//Get VKDT Queue's
-	vkGetDeviceQueue
-	(
-		this -> vkdtVKLogicalDevice,
-		vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(),
-		0,
-		const_cast<VkQueue*>(&vkdtGraphicsQueue -> refVKQueue())
-	);
+	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(), 0, vkdt::_pObjects::pVKGraphicsQueue);
 }

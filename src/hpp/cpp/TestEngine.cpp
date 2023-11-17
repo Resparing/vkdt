@@ -113,13 +113,16 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtDebugMessenger -> createVKDTDebugMessenger(nullptr);
 
-	this -> vkdtGPU = new vkdt::GPU::GPU(isDebug, isVerbose);
-	this -> vkdtGPU -> findVKDTGPU(nullptr);
+	this -> vkdtSurface = new vkdt::surface::surface(isDebug, isVerbose);
+	this -> vkdtSurface -> createVKDTSurface(nullptr);
 
 	this -> vkdtGraphicsQueue = new vkdt::queue::queue(isDebug, isVerbose);
 
+	this -> vkdtGPU = new vkdt::GPU::GPU(isDebug, isVerbose);
+	this -> vkdtGPU -> findVKDTGPU(nullptr);
+
 	this -> vkdtDevice = new vkdt::device::device({}, {}, isDebug, isVerbose);
-	this -> vkdtDevice -> createVKDTDevice(this -> vkdtGraphicsQueue, nullptr);
+	this -> vkdtDevice -> createVKDTDevice(nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -132,11 +135,12 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
-	delete this -> vkdtGraphicsQueue;  //Delete VKDT Graphics Queue
 	delete this -> vkdtDevice;  //Delete VKDT Device
 	delete this -> vkdtDebugMessenger;  //Delete VKDT Debug Messenger
+	delete this -> vkdtSurface;  //Delete VKDT Surface
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
 
+	delete this -> vkdtGraphicsQueue;  //Delete VKDT Graphics Queue
 	delete this -> vkdtGPU;  //Free Memory
 }

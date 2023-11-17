@@ -154,7 +154,7 @@ void vkdt::instance::instance::setupVKDTInstance
 	//Check if Vulkan Extensions are Requested
 	if(vkdtGLFWExtensions == NULL)
 	{
-		throw std::runtime_error("Required GLFW Vulkan Extensions not Found!\n");
+		throw std::runtime_error("Required GLFW Vulkan Extensions not Found! (Vulkan Might not be Setup Correctly)\n");
 	}
 
 	//Debug Required GLFW Extensions

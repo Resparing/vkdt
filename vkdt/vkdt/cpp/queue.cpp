@@ -2,18 +2,26 @@
 #include <vkdt/queue.h>
 
 //Include Headers
+#include <vkdt/_pObjects.h>
 
 vkdt::queue::queue::queue(const bool debug, const bool verbose) : debug(debug), verbose(verbose)
 {
+	//Set Vulkan Graphics & Present Queue Pointers
+	vkdt::_pObjects::pVKGraphicsQueue = &this -> vkdtVKGraphicsQueue;
+	vkdt::_pObjects::pVKPresentQueue = &this -> vkdtVKPresentQueue;
 
+	//Debug Initialization Success
+	if(this -> verbose)
+	{
+		std::cout << "Successfully Initialized & Setup VKDT Instance!\n";
+	}
 }
 
 vkdt::queue::queue::~queue()
 {
-
-}
-
-const VkQueue& vkdt::queue::queue::refVKQueue(void) const noexcept
-{
-	return this -> vkdtVKQueue;
+	//Debug Destruction Success
+	if(this -> verbose)
+	{
+		std::cerr << "Deletion Function not Required VKDT Queue!\n";
+	}
 }
