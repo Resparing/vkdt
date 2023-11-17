@@ -2,10 +2,11 @@
 #include <vkdt/_QueueFamily.h>
 
 //Include Headers
+#include <vkdt/_pObjects.h>
 
 bool vkdt::_QueueFamily::Indices::isComplete(void) const noexcept
 {
-	return this -> vkdtVKGraphicsFamily.has_value();
+	return this -> vkdtVKGraphicsFamily.has_value() && this -> vkdtVKPresentFamily.has_value();
 }
 
 struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
@@ -13,7 +14,7 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 	const VkPhysicalDevice& vkdtVKPhysicalDevice,
 	const bool debug,
 	const bool verbose
-) noexcept
+)
 {
 	//Struct of Vulkan Queue Family Indexes
 	struct _QueueFamily::Indices indices;
@@ -31,7 +32,7 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 	}
 
 	//Iterate Over Vulkan Queue Families
-	for(size_t i = 0; i < vkQueueFamilies.size(); ++i)
+	for(uint32_t i = 0; i < vkQueueFamilies.size(); ++i)
 	{
 		//Check if Selected Queue Family Supports Graphics Queue
 		if(vkQueueFamilies[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
@@ -39,12 +40,45 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 			if(verbose)
 			{
 				//Debug Queue Family Found Success
-				std::cout << "Successfully Found Available Queue Family at Index: " << i << "!\n";
+				std::cout << "Successfully Found Available Graphics Queue Family at Index: " << i << "!\n";
 
 			}
 
 			//Set Graphics Family Index
 			indices.vkdtVKGraphicsFamily = i;
+		}
+
+		//Check Present Support of Selected Queue Family
+		VkBool32 vkdtVKPresentSupport{};
+
+		const VkResult vkdtVKGetPhysicalDeviceSupportResult = vkGetPhysicalDeviceSurfaceSupportKHR
+		(
+			vkdtVKPhysicalDevice,
+			i,
+			*vkdt::_pObjects::pVKSurface,
+			&vkdtVKPresentSupport
+		);
+
+		if(vkdtVKGetPhysicalDeviceSupportResult != VK_SUCCESS)
+		{
+			throw std::runtime_error
+			(
+				"Failed to Find Vulkan Queue Family Present Support! Error: " +
+				std::to_string(vkdtVKGetPhysicalDeviceSupportResult) + "!\n"
+			);
+		}
+
+		if(vkdtVKPresentSupport)
+		{
+			if(verbose)
+			{
+				//Debug Queue Family Found Success
+				std::cout << "Successfully Found Available Present Queue Family at Index: " << i << "!\n";
+
+			}
+
+			//Set Graphics Family Index
+			indices.vkdtVKPresentFamily = i;
 		}
 
 		if(indices.isComplete())

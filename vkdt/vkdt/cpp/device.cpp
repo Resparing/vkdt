@@ -89,20 +89,37 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 	//Find Queue Family Indexes
 	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*vkdt::_pObjects::pVKPhysicalDevice);
 
+	//Vector of Vulkan Queue Creation Information Structs
+	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+
+	//Set of Unique Queue Families to Create
+	std::set<uint32_t> vkdtVKUniqueQueueFamilyIndexes =
+	{
+		vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(),
+		vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value()
+	};
+
 	//Queue Priority - Between 0.0f & 1.0f
 	float vkdtVKQueuePriority = 1.0f;
 
-	//Vulkan Queue Family Creation Information Struct
-	VkDeviceQueueCreateInfo queueCreateInfo =
+	//Iterate Over Vulkan Unique Queue Family Indexes to Fill Creation Information Struct
+	for(uint32_t vkdtVKUniqueQueueFamilyIndex : vkdtVKUniqueQueueFamilyIndexes)
 	{
-		//Struct Type
-		.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+		//Vulkan Queue Family Creation Information Struct
+		VkDeviceQueueCreateInfo queueCreateInfo =
+		{
+			//Struct Type
+			.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 
-		//Vulkan Queue Family Index, Priority & Count
-		.queueFamilyIndex = vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(),
-		.queueCount = 1,
-		.pQueuePriorities = &vkdtVKQueuePriority,
-	};
+			//Vulkan Queue Family Index, Priority & Count
+			.queueFamilyIndex = vkdtVKUniqueQueueFamilyIndex,
+			.queueCount = 1,
+			.pQueuePriorities = &vkdtVKQueuePriority,
+		};
+
+		queueCreateInfos.push_back(queueCreateInfo);
+	}
+
 
 	//Vulkan Physical Device Features Creation Information Struct
 	VkPhysicalDeviceFeatures deviceFeatures = {};
@@ -114,8 +131,8 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 
 		//Pointer & Number of Vulkan Device Creation Information Struct
-		.pQueueCreateInfos = &queueCreateInfo,
-		.queueCreateInfoCount = 1,
+		.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size()),
+		.pQueueCreateInfos = queueCreateInfos.data(),
 
 		//Pointer to Vulkan Device Feature Struct
 		.pEnabledFeatures = &deviceFeatures,
@@ -165,4 +182,5 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 
 	//Get VKDT Queue's
 	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(), 0, vkdt::_pObjects::pVKGraphicsQueue);
+	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value(), 0, vkdt::_pObjects::pVKPresentQueue);
 }

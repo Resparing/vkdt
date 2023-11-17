@@ -9,6 +9,7 @@
 #include <fstream>  //File Support
 #include <iostream>  //Input / Output
 #include <optional>  //Optional Values
+#include <set>  //Arrays with Unique Values
 #include <stdexcept>  //Create Exceptions
 #include <string>  //String Header
 #include <unordered_map>  //Provide Arguments to Functions

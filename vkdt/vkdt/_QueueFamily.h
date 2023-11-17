@@ -9,6 +9,7 @@ namespace vkdt::_QueueFamily
 	struct Indices
 	{
 		std::optional<uint32_t> vkdtVKGraphicsFamily{};
+		std::optional<uint32_t> vkdtVKPresentFamily{};
 
 		/**
 		 * @brief Check if VKDT Struct Contains a Value
@@ -32,5 +33,5 @@ namespace vkdt::_QueueFamily
 		const VkPhysicalDevice& vkdtVKPhysicalDevice,
 		const bool debug = false,
 		const bool verbose = false
-	) noexcept;
+	);
 }
