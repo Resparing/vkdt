@@ -14,14 +14,12 @@ namespace vkdt::instance
 		/**
 		 * @brief Initialize VKDT Instance & Set up Requested Layers and Extensions
 		 *
-		 * @param macEnvVariables MacOS Required Environment Variables
 		 * @param applicationInfo The Application Information of Program
 		 * @param debug Whether to Allow Debugging in Messages and Setup Debug Callback
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages and Setup Debug Callback
 		 */
 		instance
 		(
-			const struct vkdt::instance::envVariables& macEnvVariables,
 			const vkdt::instance::applicationData& applicationInfo,
 			const bool debug = false,
 			const bool verbose = false
@@ -49,9 +47,6 @@ namespace vkdt::instance
 		void createVKDTInstance(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
-
-		//MacOS Environment Variable Information
-		vkdt::instance::envVariables macOSEnvVariables{};
 
 		//Application Data
 		vkdt::instance::applicationData appData{};

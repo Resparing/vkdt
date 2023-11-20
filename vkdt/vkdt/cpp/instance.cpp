@@ -7,11 +7,10 @@
 
 vkdt::instance::instance::instance
 (
-	const struct vkdt::instance::envVariables& macEnvVariables,
 	const vkdt::instance::applicationData& applicationInfo,
 	const bool debug,
 	const bool verbose
-) : macOSEnvVariables(macEnvVariables), appData(applicationInfo), debug(debug), verbose(verbose)
+) : appData(applicationInfo), debug(debug), verbose(verbose)
 {
 	//Set Vulkan Instance Pointer
 	vkdt::_pObjects::pVKInstance = &this -> vkdtVKInstance;
@@ -38,56 +37,6 @@ vkdt::instance::instance::instance
 		<< "." << this -> appData.version.minor											 			\
 		<< "." << this -> appData.version.variant << "!\n";
 	}
-
-#ifdef __APPLE__
-
-	//Check if MacOS Environment Variables Struct is Initialized
-	if(this -> macOSEnvVariables.VK_ICD_FILENAMES.empty() || this -> macOSEnvVariables.VK_LAYER_PATH.empty())
-	{
-		return;
-	}
-
-	//Set MoltenVK Required Environment Variable
-	if(setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES.c_str(), 0) == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout																				\
-			<< "Successfully Set: \"" << "VK_ICD_FILENAMES"											\
-			<< "\" Environment Variable as: \"" << this -> macOSEnvVariables.VK_ICD_FILENAMES << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Set: \"VK_ICD_FILENAMES\" Environment Variable!\n");
-	}
-
-	//Set Vulkan Layer(s) Required Environment Variables
-	if(setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH.c_str(), 0) == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout																				\
-			<< "Successfully Set: \"" << "VK_LAYER_PATH"											\
-			<< "\" Environment Variable as: \"" << this -> macOSEnvVariables.VK_LAYER_PATH << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Set: \"VK_LAYER_PATH\" Environment Variable!\n");
-	}
-
-#else
-
-	//Vulkan Environment Variables Not Needed
-	if(this -> macOSEnvVariables)
-	{
-		throw std::runtime_error("Vulkan Environment Variables not Needed, Required by MacOS Only!\n");
-	}
-
-#endif
 }
 
 vkdt::instance::instance::~instance()

@@ -91,11 +91,6 @@ void TestEngine::TestEngine::vkdtInit(void)
 {
 	this -> vkdtDebugMessenger = new vkdt::debug::messenger(callback, isDebug, isVerbose);
 
-	vkdt::instance::envVariables envData =
-	{
-		.VK_ICD_FILENAMES = "/Users/hudsonregis/Documents/Projects/Vulkan Projects/VKDT/lib/inc/vulkan/icd.d/MoltenVK_icd.json",
-		.VK_LAYER_PATH = "/Users/hudsonregis/Documents/Projects/Vulkan Projects/VKDT/lib/inc/vulkan/explicit_layer.d",
-	};
 	vkdt::instance::applicationData appInfo =
 	{
 		.name = "Test Engine",
@@ -108,7 +103,7 @@ void TestEngine::TestEngine::vkdtInit(void)
 			.variant = 268,
 		},
 	};
-	this -> vkdtInstance = new vkdt::instance::instance(envData, appInfo, isDebug, isVerbose);
+	this -> vkdtInstance = new vkdt::instance::instance(appInfo, isDebug, isVerbose);
 	this -> vkdtInstance -> setupVKDTInstance({}, {});
 	this -> vkdtInstance -> createVKDTInstance(nullptr);
 

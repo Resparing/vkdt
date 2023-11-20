@@ -25,16 +25,4 @@ namespace vkdt::instance
 			std::uint32_t patch;
 		}; appVersion version;
 	};
-
-	/**
-	 * @brief Vulkan Enviornment Variables
-	 */
-	struct envVariables
-	{
-		//MoltenVK JSON Information Path
-		const std::string VK_ICD_FILENAMES;
-
-		//Vulkan Layer JSON Information Directory
-		const std::string VK_LAYER_PATH;
-	};
 }
