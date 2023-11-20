@@ -2,62 +2,60 @@
 #include "../TestEngine.hpp"
 
 //Include Headers
+#include <vkdt/_pObjects.h>
 
 //Callback Function
 static void callback
 (
-	const VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
-	const VkDebugUtilsMessageTypeFlagsEXT messageType,
-	const VkDebugUtilsMessengerCallbackDataEXT* messageData
+	const vkdt::debug::messageSeverity messageSeverity,
+	const vkdt::debug::messageType messageType,
+	const vkdt::debug::messageData messageData
 )
 {
-	if(messageSeverity < VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT || messageType < VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT)
+	if(messageSeverity < vkdt::debug::messageSeverity::VERBOSE || messageType < vkdt::debug::messageType::VERBOSE)
 	{
 		return;
 	}
 
 	//Debug Message Information
-	std::cerr																			\
-	<< "[DEBUG " << messageData -> pMessageIdName										\
-	<< ": " << messageData -> messageIdNumber											\
-	<< "] " << messageData -> pMessage << "\n";
+	std::cerr << "\n[DEBUG " << messageData.messageIDName << ": " << messageData.messageID << "] " << messageData.message << "\n";
 
 	//Check if Queue Labels Exist
-	if(messageData -> queueLabelCount > 0 && messageData -> pQueueLabels)
+	if(!messageData.queueLabels.empty())
 	{
 		//Debug Queue Labels
-		std::cerr << "Message Labels (" << messageData -> queueLabelCount << "):\n";
+		std::cerr << "Message Labels (" << messageData.queueLabels.size() << "):\n";
 
-		for(size_t i{}; i < messageData -> queueLabelCount; ++i)
+		for(vkdt::debug::label queueLabel : messageData.queueLabels)
 		{
-			std::cerr << "\t[" << i << "][QUEUE MESSAGE] \"" << messageData -> pQueueLabels[i].pLabelName << "\"\n";
+			std::cerr << "\t[QUEUE LABEL] Name: \"" << queueLabel.labelName << "\"\n";
 		}
 	}
 
-//	//Check if Objects Exist
-//	if(messageData -> objectCount > 0 && messageData -> pObjects)
-//	{
-//		//Debug Message Labels
-//		std::cerr << "Objects (" << messageData -> objectCount << "):\n";
-//
-//		for(std::size_t i{}; i < messageData -> objectCount; ++i)
-//		{
-//			std::cerr																	\
-//			<< "\t[" << i << "][OBJECT: " << messageData -> pObjects[i].objectType		\
-//			<< "] Name: \"" << messageData -> pObjects[i].pObjectName << "\""			\
-//			<< " Location: " << (void*)(messageData -> pObjects[i].objectHandle) << "\n";
-//		}
-//	}
+	//Check if Objects Exist
+	if(!messageData.objects.empty())
+	{
+		//Debug Message Labels
+		std::cerr << "Objects (" << messageData.objects.size() << "):\n";
+
+		for(vkdt::debug::object object : messageData.objects)
+		{
+			std::cerr
+			<< "\t[OBJECT] ID: " << object.objectType
+			<< " Name: \"" << object.objectName
+			<< "\" Handle: " << (void*)object.objectHandle << "!\n";
+		}
+	}
 
 	//Check if Command Buffers Exist
-	if(messageData -> cmdBufLabelCount > 0 && messageData -> pCmdBufLabels)
+	if(!messageData.commandBuffers.empty())
 	{
 		//Debug Command Buffer Labels
-		std::cerr << "Command Buffer Labels (" << messageData -> cmdBufLabelCount << "):\n";
+		std::cerr << "Command Buffer Labels (" << messageData.commandBuffers.size() << "):\n";
 
-		for(size_t i{}; i < messageData -> cmdBufLabelCount; ++i)
+		for(vkdt::debug::label commandBuffer : messageData.commandBuffers)
 		{
-			std::cerr << "\t[" << i << "][COMMAND BUFFER] \"" << messageData -> pCmdBufLabels[i].pLabelName << "\"\n";
+			std::cerr << "\t[COMMAND BUFFER] \"" << commandBuffer.labelName << "\"!\n";
 		}
 	}
 
@@ -95,17 +93,20 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	vkdt::instance::envVariables envData =
 	{
-		.VK_ICD_FILENAMES = "lib/inc/vulkan/icd.d/MoltenVK_icd.json",
-		.VK_LAYER_PATH = "lib/inc/vulkan/explicit_layer.d",
+		.VK_ICD_FILENAMES = "/Users/hudsonregis/Documents/Projects/Vulkan Projects/VKDT/lib/inc/vulkan/icd.d/MoltenVK_icd.json",
+		.VK_LAYER_PATH = "/Users/hudsonregis/Documents/Projects/Vulkan Projects/VKDT/lib/inc/vulkan/explicit_layer.d",
 	};
 	vkdt::instance::applicationData appInfo =
 	{
 		.name = "Test Engine",
 
-		.version.patch = 1,
-		.version.major = 1,
-		.version.minor = 3,
-		.version.variant = 268,
+		.version =
+		{
+			.patch = 1,
+			.major = 1,
+			.minor = 3,
+			.variant = 268,
+		},
 	};
 	this -> vkdtInstance = new vkdt::instance::instance(envData, appInfo, isDebug, isVerbose);
 	this -> vkdtInstance -> setupVKDTInstance({}, {});

@@ -12,7 +12,7 @@ namespace vkdt::instance
 	struct applicationData
 	{
 		//Name of VKDT Application
-		const char* name;
+		std::string name;
 
 		/**
 		 * @brief Struct with Version Information

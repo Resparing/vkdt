@@ -2,6 +2,7 @@
 #pragma once
 
 /* Headers */
+#include <array>  //C++ Standard Arrays
 #include <cstddef>  //C Standard Definitions
 #include <cstdlib>  //C Standard Libary
 #include <cstdint>  //Standard Integers

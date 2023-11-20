@@ -28,8 +28,98 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL vkdtVKDebugCallback
 		throw std::runtime_error("Vulkan Debug Callback Function Contains Invalid Information!\n");
 	}
 
+	//Convert Vulkan Message Severity & Type into VKDT Message Severity & Type
+	const vkdt::debug::messageSeverity vkdtMessageSeverity = static_cast<vkdt::debug::messageSeverity>(messageSeverity);
+	vkdt::debug::messageType vkdtMessageType = static_cast<vkdt::debug::messageType>(messageType);
+
+	//Change VKDT Message Type to Verbose if Set to Max Enum
+	if(messageType == VK_DEBUG_UTILS_MESSAGE_TYPE_FLAG_BITS_MAX_ENUM_EXT)
+	{
+		vkdtMessageType = vkdt::debug::messageType::VERBOSE;
+	}
+
+	//Vector of Queue Labels, Command Buffers & Objects
+	std::vector<vkdt::debug::label> queueLabels;
+	std::vector<vkdt::debug::label> commandBuffers;
+	std::vector<vkdt::debug::object> objects;
+
+	//Set Queue Labels
+	for(size_t i{}; i < pCallbackData -> queueLabelCount; ++i)
+	{
+		struct vkdt::debug::label queueLabel =
+		{
+			//Set Label Name
+			.labelName = pCallbackData -> pQueueLabels[i].pLabelName,
+
+			//Set Colors
+			.color =																				\
+			{																						\
+				pCallbackData -> pQueueLabels[i].color[0],											\
+				pCallbackData -> pQueueLabels[i].color[1],											\
+				pCallbackData -> pQueueLabels[i].color[2],											\
+				pCallbackData -> pQueueLabels[i].color[3],											\
+			},
+		};
+
+		//Add to Queue Labels Vector
+		queueLabels.push_back(queueLabel);
+	}
+
+	//Set Command Buffers
+	for(size_t i{}; i < pCallbackData -> cmdBufLabelCount; ++i)
+	{
+		struct vkdt::debug::label commandBuffer =
+		{
+			//Set Label Name
+			.labelName = pCallbackData -> pCmdBufLabels[i].pLabelName,
+
+			//Set Colors
+			.color =																				\
+			{																						\
+				pCallbackData -> pCmdBufLabels[i].color[0],											\
+				pCallbackData -> pCmdBufLabels[i].color[1],											\
+				pCallbackData -> pCmdBufLabels[i].color[2],											\
+				pCallbackData -> pCmdBufLabels[i].color[3],											\
+			},
+		};
+
+		//Add to Command Buffers Vector
+		commandBuffers.push_back(commandBuffer);
+	}
+
+	//Set Objects
+	for(size_t i{}; i < pCallbackData -> objectCount; ++i)
+	{
+		struct vkdt::debug::object object =
+		{
+			//Set Object Name
+//			.objectName = pCallbackData -> pObjects[i].pObjectName,
+
+			//Set Object Type & Handle
+			.objectType = pCallbackData -> pObjects[i].objectType,
+			.objectHandle = pCallbackData -> pObjects[i].objectHandle,
+		};
+
+		//Add to Objects Vector
+		objects.push_back(object);
+	}
+
+	//Set VKDT Message Data
+	struct vkdt::debug::messageData messageData =
+	{
+		//Set Message Information
+		.messageIDName = pCallbackData -> pMessageIdName,
+		.messageID = pCallbackData -> messageIdNumber,
+		.message = pCallbackData -> pMessage,
+
+		//Set Additional Vector Data
+		.queueLabels = queueLabels,
+		.commandBuffers = commandBuffers,
+		.objects = objects,
+	};
+
 	//Call VKDT Debug Function
-	vkdt::debug::vkdtCallbackFunc(messageSeverity, messageType, pCallbackData);
+	vkdt::debug::vkdtCallbackFunc(vkdtMessageSeverity, vkdtMessageType, messageData);
 
 	//Mandatory Return Statement
 	return VK_FALSE;

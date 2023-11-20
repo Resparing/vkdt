@@ -27,7 +27,7 @@ namespace vkdt::instance
 			const bool verbose = false
 		);
 
-		virtual ~instance() noexcept(false);
+		virtual ~instance();
 
 		/**
 		 * @brief Set up the Creation of VKDT Instance

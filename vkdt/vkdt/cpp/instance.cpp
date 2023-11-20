@@ -48,7 +48,7 @@ vkdt::instance::instance::instance
 	}
 
 	//Set MoltenVK Required Environment Variable
-	if(setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES.c_str(), 1) == 0)
+	if(setenv("VK_ICD_FILENAMES", this -> macOSEnvVariables.VK_ICD_FILENAMES.c_str(), 0) == 0)
 	{
 		//Debug Success
 		if(this -> verbose)
@@ -64,7 +64,7 @@ vkdt::instance::instance::instance
 	}
 
 	//Set Vulkan Layer(s) Required Environment Variables
-	if(setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH.c_str(), 1) == 0)
+	if(setenv("VK_LAYER_PATH", this -> macOSEnvVariables.VK_LAYER_PATH.c_str(), 0) == 0)
 	{
 		//Debug Success
 		if(this -> verbose)
@@ -90,7 +90,7 @@ vkdt::instance::instance::instance
 #endif
 }
 
-vkdt::instance::instance::~instance() noexcept(false)
+vkdt::instance::instance::~instance()
 {
 	//Destroy Vulkan Instance
 	vkDestroyInstance(this -> vkdtVKInstance, this -> pAllocator);
@@ -100,44 +100,6 @@ vkdt::instance::instance::~instance() noexcept(false)
 		//Debug Deletion Success
 		std::cout << "Successfully Destroyed VKDT Instance!\n";
 	}
-
-#ifdef __APPLE__
-
-	//Check if MacOS Environment Variables Struct is Initialized
-	if(this -> macOSEnvVariables.VK_ICD_FILENAMES.empty() || this -> macOSEnvVariables.VK_LAYER_PATH.empty())
-	{
-		return;
-	}
-
-	//Unset MoltenVK Required Environment Variable
-	if(unsetenv("VK_ICD_FILENAMES") == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout << "Successfully Unset: \"" << "VK_ICD_FILENAMES" << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Unset: \"VK_ICD_FILENAMES\" Environment Variable!\n");
-	}
-
-	//Unset Vulkan Layer(s) Required Environment Variables
-	if(unsetenv("VK_LAYER_PATH") == 0)
-	{
-		//Debug Success
-		if(this -> verbose)
-		{
-			std::cout << "Successfully Unset: \"" << "VK_LAYER_PATH" << "\"!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error("Failed to Unset: \"VK_LAYER_PATH\" Environment Variable!\n");
-	}
-
-#endif
 }
 
 void vkdt::instance::instance::setupVKDTInstance
@@ -154,7 +116,7 @@ void vkdt::instance::instance::setupVKDTInstance
 	//Check if Vulkan Extensions are Requested
 	if(vkdtGLFWExtensions == NULL)
 	{
-		throw std::runtime_error("Required GLFW Vulkan Extensions not Found! (Vulkan Might not be Setup Correctly)\n");
+		throw std::runtime_error("Required GLFW Vulkan Extensions not Found! (Did you Setup Vulkan Correctly?)\n");
 	}
 
 	//Debug Required GLFW Extensions
@@ -293,7 +255,7 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 		.engineVersion = vkdtVkInstanceVersion,
 
 		//Application Information
-		.pApplicationName = this -> appData.name,
+		.pApplicationName = this -> appData.name.c_str(),
 		.applicationVersion = VK_MAKE_API_VERSION													\
 		(																							\
 			this -> appData.version.variant,														\
@@ -323,6 +285,7 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 		//Vulkan Flags
 		.flags = vkdtVKInstanceCreateInfoFlags,
 	};
+
 
 	//Vulkan Debug Utils Messenger Creation Information Struct
 	VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo = {};
