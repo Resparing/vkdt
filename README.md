@@ -31,3 +31,6 @@ Each class will have two booleans called `debug` and `verbose`. These are for ma
 There will be a Vulkan Object to edit in the class as well. If needed, you can access other Vulkan Objects using the `vkdt/_pObjects.h` header. These will contain pointers to all Vulkan Objects for you edit.
 
 ### TODO
+
+- Debug function can lead to crashes when trying to debug `vkdt::debug::messageData.objectName`
+- Trying to get MacOS Specific Environment Variables to cooperate with Vulkan
