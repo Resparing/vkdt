@@ -28,7 +28,7 @@ Use the following include statement to include the instance file, as well as the
 	vkdt::instance::instance* pVKDTInstance
 	```
 2. Create & Setup an instance of an VKDT Instance Application Data Struct
-	1. Initialize the instance
+	1. Initialize application data struct
 		```cpp
 		vkdt::instance::applicationData appData{};
 		```
