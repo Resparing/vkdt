@@ -12,7 +12,7 @@ namespace vkdt::instance
 	public:
 
 		/**
-		 * @brief Initialize VKDT Instance & Set up Requested Layers and Extensions
+		 * @brief Initialize VKDT Instance & Parse Application Information
 		 *
 		 * @param applicationInfo The Application Information of Program
 		 * @param debug Whether to Allow Debugging in Messages and Setup Debug Callback
@@ -23,7 +23,7 @@ namespace vkdt::instance
 			const vkdt::instance::applicationData& applicationInfo,
 			const bool debug = false,
 			const bool verbose = false
-		);
+		) noexcept;
 
 		virtual ~instance();
 
