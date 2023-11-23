@@ -254,6 +254,15 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 		}
 	}
 
+	//Check if Debug Messenger Function Exists, Possible Segmentation Fault if not
+	if(!vkdt::debug::vkdtCallbackFunc)
+	{
+		throw std::runtime_error
+		(
+			"VKDT Callback Function isn't Initialized yet! (Did you setup your VKDT Debug Messenger Before Creating this Instance?)\n"
+		);
+	}
+
 	//Create Vulkan Instance
 	const VkResult vkdtVkInstanceCreationResult = vkCreateInstance(&instanceCreateInfo, this -> pAllocator, &this -> vkdtVKInstance);
 	if(vkdtVkInstanceCreationResult == VK_SUCCESS)
