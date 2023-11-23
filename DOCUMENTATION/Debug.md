@@ -16,9 +16,9 @@ Some functions of the VKDT Debug Messenger require a valid VKDT Instance to be s
 
 <br>
 
-### Adding VKDT Instance Header
+### Adding VKDT Debug Messenger Header
 
-Use the following include statement to include the instance file, as well as the necessary `vkdt/debugFunction.h` header file
+Use the following include statement to include the Debug Messenger file, as well as the necessary `vkdt/debugFunction.h` header file
 ```cpp
 #include <vkdt/debug.h>
 ```
@@ -92,7 +92,7 @@ Use the following include statement to include the instance file, as well as the
 		- You can have more information than this, such as debugging the objects, but this is enough for most people.
 
 3. Configure `debug` and `verbose` variables
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan instance creation process VKDT is currently at. The `verbose` variable can be used to check what stage the VKDT Debug Messenger is at
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Debug Messenger creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Debug Messenger is at
 
 4. Initialize VKDT Debug Messenger
 	```cpp
@@ -133,7 +133,7 @@ The following function will delete the VKDT Debug Messenger, and destroy all res
 
 <br>
 
-### Finished VKDT Instance Code
+### Finished VKDT Debug Messenger Code
 
 ```cpp
 static void CALLBACK_FUNCTION
