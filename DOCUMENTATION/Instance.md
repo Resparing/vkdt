@@ -81,7 +81,7 @@ Use the following include statement to include the instance file, as well as the
 		```
 
 3. Configure `debug` and `verbose` variables
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan instance creation process VKDT is currently at. The `verbose` variable can be used to help check if VKDT has setup the Vulkan instance properly. These variables **do not** affect the error handling that VKDT will do.
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan instance creation process it is currently at. The `verbose` variable can be used to help check if VKDT has setup the Vulkan instance properly. These variables **do not** affect the error handling that VKDT will do.
 
 4. Call the Instance Creation Function
 	```cpp
