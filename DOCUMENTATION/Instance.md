@@ -11,6 +11,11 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 <br>
 
+### Requirements
+The VKDT Instance does not need any Options to be setup
+
+<br>
+
 ### Adding VKDT Instance Header
 
 Use the following include statement to include the instance file, as well as the necessary `vkdt/_instanceStruct.h` header file
