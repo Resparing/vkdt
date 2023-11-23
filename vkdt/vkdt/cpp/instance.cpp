@@ -235,7 +235,6 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 		.flags = vkdtVKInstanceCreateInfoFlags,
 	};
 
-
 	//Vulkan Debug Utils Messenger Creation Information Struct
 	VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo = {};
 

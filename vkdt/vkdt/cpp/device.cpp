@@ -120,7 +120,6 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		queueCreateInfos.push_back(queueCreateInfo);
 	}
 
-
 	//Vulkan Physical Device Features Creation Information Struct
 	VkPhysicalDeviceFeatures deviceFeatures = {};
 

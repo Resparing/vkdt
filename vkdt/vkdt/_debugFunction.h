@@ -51,12 +51,12 @@ namespace vkdt::debug
 	//Message Data Struct
 	struct messageData
 	{
-		//Message & Message ID Name
-		std::string messageIDName;
+		//Message
 		std::string message;
 
-		//Message ID
+		//Message ID & Message ID Name
 		int32_t messageID;
+		std::string messageIDName;
 
 		//Vector of Labels, Command Buffers & Objects
 		std::vector<vkdt::debug::label> queueLabels;
