@@ -255,7 +255,7 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 	}
 
 	//Check if Debug Messenger Function Exists, Possible Segmentation Fault if not
-	if(!vkdt::debug::vkdtCallbackFunc)
+	if(vkdt::debug::vkdtCallbackFunc)
 	{
 		throw std::runtime_error
 		(
