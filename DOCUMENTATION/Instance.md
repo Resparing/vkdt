@@ -11,7 +11,6 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 <br>
 
-
 ### Adding VKDT Instance Header
 
 Use the following include statement to include the instance file, as well as the necessary `vkdt/_instanceStruct.h` header file
@@ -25,13 +24,15 @@ Use the following include statement to include the instance file, as well as the
 
 1. Create VKDT Instance pointer
 	```cpp
-	vkdt::instance::instance* pVKDTInstance
+	vkdt::instance::instance* pVKDTInstance;
 	```
+
 2. Create & Setup an instance of an VKDT Instance Application Data Struct
 	1. Initialize application data struct
 		```cpp
 		vkdt::instance::applicationData appData{};
 		```
+
 	2. Set the name of your application
 		```cpp
 		vkdt::instance::applicationData appData
@@ -39,6 +40,7 @@ Use the following include statement to include the instance file, as well as the
 			.name = "SAMPLE NAME",
 		};
 		```
+
 	3. Initialize the version portion of your application struct. Note that this does not affect the selected Vulkan Instance Version
 		```cpp
 		vkdt::instance::applicationData appData
@@ -51,6 +53,7 @@ Use the following include statement to include the instance file, as well as the
 			},
 		};
 		```
+
 	4. Set the version portion of your application struct. Note that this does not affect the selected Vulkan Instance Version
 		- The `patch` is the ID of the different type of application
 		- The `major` is your current version
@@ -71,6 +74,7 @@ Use the following include statement to include the instance file, as well as the
 			},
 		};
 		```
+
 3. Configure `debug` and `verbose` variables
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan instance creation process VKDT is currently at. The `verbose` variable can be used to help check if VKDT has setup the Vulkan instance properly. These variables **do not** affect the error handling that VKDT will do.
 
@@ -93,6 +97,7 @@ Use the following include statement to include the instance file, as well as the
 
 5. Get a vector of your requested Vulkan Extensions & Layers
 	- The vector must be type `std::vector<const char*>`
+
 	- When you want to request an extension / layer, add the extension / layer name to the vector
 		```cpp
 		std::vector<const char*> requestedExtensions =
@@ -100,6 +105,7 @@ Use the following include statement to include the instance file, as well as the
 			"VK_EXTENSION_NAME"
 		};
 		```
+
 	- If you do not request any extensions / layers, use a `{}` in the function parameters
 
 6. Setup VKDT Instance
