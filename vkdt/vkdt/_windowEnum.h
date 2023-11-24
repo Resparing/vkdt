@@ -23,6 +23,7 @@ namespace vkdt::window
 		TRANSPARENT_FRAME_BUFFER			= GLFW_TRANSPARENT_FRAMEBUFFER,
 	};
 
+	//VKDT Window Result
 	enum class result : int32_t
 	{
 		TRUE = GLFW_TRUE,
