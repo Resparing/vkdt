@@ -4,7 +4,7 @@
 //Include Headers
 #include <_vkdt/vkdtConfig.h>
 
-namespace vkdt::_QueueFamily
+namespace _vkdt::queueFamily
 {
 	struct Indices
 	{
@@ -28,7 +28,7 @@ namespace vkdt::_QueueFamily
 	 *
 	 * @return Struct of Indexes that Contain Information of Vulkan Queue Family Indexes
 	 */
-	struct vkdt::_QueueFamily::Indices findQueueFamilyIndices
+	struct _vkdt::queueFamily::Indices findQueueFamilyIndices
 	(
 		const VkPhysicalDevice& vkdtVKPhysicalDevice,
 		const bool debug = false,

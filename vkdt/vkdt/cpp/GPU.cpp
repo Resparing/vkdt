@@ -8,7 +8,7 @@
 vkdt::GPU::GPU::GPU(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Physical Device Pointer
-	vkdt::_pObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
+	_vkdt::pObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
 
 	//Debug GPU Creation Success
 	if(this -> verbose)
@@ -32,7 +32,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVKPhysicalDeviceNumberResult = vkEnumeratePhysicalDevices
 	(
-		*vkdt::_pObjects::pVKInstance,
+		*_vkdt::pObjects::pVKInstance,
 		&vkdtVKAvailablePhysicalDeviceCount,
 		nullptr
 	);
@@ -47,7 +47,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	const VkResult vkdtVKPhysicalDevicesResult = vkEnumeratePhysicalDevices
 	(
-		*vkdt::_pObjects::pVKInstance,
+		*_vkdt::pObjects::pVKInstance,
 		&vkdtVKAvailablePhysicalDeviceCount,
 		vkAvailablePhysicalDevices.data()
 	);
@@ -149,7 +149,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const noexcept
 {
 	//Get Index of Queue Family
-	struct vkdt::_QueueFamily::Indices indexes = vkdt::_QueueFamily::findQueueFamilyIndices
+	struct _vkdt::queueFamily::Indices indexes = _vkdt::queueFamily::findQueueFamilyIndices
 	(
 		vkdtVKSelectedPhysicalDevice,
 		this -> debug,

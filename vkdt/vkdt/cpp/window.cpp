@@ -12,7 +12,7 @@ vkdt::window::window::window
 ) : debug(debug), verbose(verbose)
 {
 	//Set GLFW Window Pointer
-	vkdt::_pObjects::pGLFWWindow = &this -> vkdtGLFWWindow;
+	_vkdt::pObjects::pGLFWWindow = &this -> vkdtGLFWWindow;
 
 	//Try to Initialize GLFW
 	if(!glfwInit())

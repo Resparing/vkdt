@@ -14,7 +14,7 @@ vkdt::device::device::device
 ) noexcept : vkdtVKLayers(vkdtVKRequestedLayers), vkdtVKExtensions(vkdtVKRequestedExtensions), debug(debug), verbose(verbose)
 {
 	//Set Vulkan Logical Device Pointer
-	vkdt::_pObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
+	_vkdt::pObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
 
 	//Set Vulkan Extensions & Vulkan Layers
 	if(this -> debug || this -> verbose)
@@ -56,7 +56,7 @@ vkdt::device::device::device
 
 		//Get GPU Name
 		VkPhysicalDeviceProperties vkdtVKPhysicalDeviceProperties;
-		vkGetPhysicalDeviceProperties(*vkdt::_pObjects::pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
+		vkGetPhysicalDeviceProperties(*_vkdt::pObjects::pVKPhysicalDevice, &vkdtVKPhysicalDeviceProperties);
 
 		std::cout																							\
 		<< "Successfully Initialized VKDT Device with"														\
@@ -87,7 +87,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 	this -> pAllocator = allocator;
 
 	//Find Queue Family Indexes
-	vkdt::_QueueFamily::Indices vkdtQueueFamilyIndexes = vkdt::_QueueFamily::findQueueFamilyIndices(*vkdt::_pObjects::pVKPhysicalDevice);
+	_vkdt::queueFamily::Indices vkdtQueueFamilyIndexes = _vkdt::queueFamily::findQueueFamilyIndices(*_vkdt::pObjects::pVKPhysicalDevice);
 
 	//Vector of Vulkan Queue Creation Information Structs
 	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
@@ -148,7 +148,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 	//Create Vulkan Logical Device
 	const VkResult vkdtVKCreateDeviceResult = vkCreateDevice
 	(
-		*vkdt::_pObjects::pVKPhysicalDevice,
+		*_vkdt::pObjects::pVKPhysicalDevice,
 		&logicalDeviceCreateInfo,
 		this -> pAllocator,
 		&this -> vkdtVKLogicalDevice
@@ -161,7 +161,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		{
 			//Get VKDT GPU Information
 			VkPhysicalDeviceProperties vkdtVKDeviceInformation;
-			vkGetPhysicalDeviceProperties(*vkdt::_pObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
+			vkGetPhysicalDeviceProperties(*_vkdt::pObjects::pVKPhysicalDevice, &vkdtVKDeviceInformation);
 
 			std::cout																						\
 			<< "Successfully Created VKDT Device from: \"" << vkdtVKDeviceInformation.deviceName			\
@@ -180,6 +180,6 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 	}
 
 	//Get VKDT Queue's
-	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(), 0, vkdt::_pObjects::pVKGraphicsQueue);
-	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value(), 0, vkdt::_pObjects::pVKPresentQueue);
+	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(), 0, _vkdt::pObjects::pVKGraphicsQueue);
+	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value(), 0, _vkdt::pObjects::pVKPresentQueue);
 }

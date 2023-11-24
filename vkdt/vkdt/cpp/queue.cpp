@@ -7,8 +7,8 @@
 vkdt::queue::queue::queue(const bool debug, const bool verbose) : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Graphics & Present Queue Pointers
-	vkdt::_pObjects::pVKGraphicsQueue = &this -> vkdtVKGraphicsQueue;
-	vkdt::_pObjects::pVKPresentQueue = &this -> vkdtVKPresentQueue;
+	_vkdt::pObjects::pVKGraphicsQueue = &this -> vkdtVKGraphicsQueue;
+	_vkdt::pObjects::pVKPresentQueue = &this -> vkdtVKPresentQueue;
 
 	//Debug Initialization Success
 	if(this -> verbose)

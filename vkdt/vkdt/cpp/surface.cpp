@@ -7,7 +7,7 @@
 vkdt::surface::surface::surface(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Surface Pointer
-	vkdt::_pObjects::pVKSurface = &this -> vkdtVKSurface;
+	_vkdt::pObjects::pVKSurface = &this -> vkdtVKSurface;
 
 	//Debug Initialization Success
 	if(this -> verbose)
@@ -19,7 +19,7 @@ vkdt::surface::surface::surface(const bool debug, const bool verbose) noexcept :
 vkdt::surface::surface::~surface()
 {
 	//Destroy Vulkan Surface
-	vkDestroySurfaceKHR(*vkdt::_pObjects::pVKInstance, this -> vkdtVKSurface, this -> pAllocator);
+	vkDestroySurfaceKHR(*_vkdt::pObjects::pVKInstance, this -> vkdtVKSurface, this -> pAllocator);
 
 	//Debug Destruction Success
 	if(this -> verbose)
@@ -33,8 +33,8 @@ void vkdt::surface::surface::createVKDTSurface(VkAllocationCallbacks* allocator)
 	//Create Vulkan Window Surface
 	const VkResult createVulkanWindowSurfaceResult = glfwCreateWindowSurface
 	(
-		*vkdt::_pObjects::pVKInstance,
-		*vkdt::_pObjects::pGLFWWindow,
+		*_vkdt::pObjects::pVKInstance,
+		*_vkdt::pObjects::pGLFWWindow,
 		allocator,
 		&this -> vkdtVKSurface
 	);

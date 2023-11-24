@@ -4,12 +4,12 @@
 //Include Headers
 #include <_vkdt/pObjects.h>
 
-bool vkdt::_QueueFamily::Indices::isComplete(void) const noexcept
+bool _vkdt::queueFamily::Indices::isComplete(void) const noexcept
 {
 	return this -> vkdtVKGraphicsFamily.has_value() && this -> vkdtVKPresentFamily.has_value();
 }
 
-struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
+struct _vkdt::queueFamily::Indices _vkdt::queueFamily::findQueueFamilyIndices
 (
 	const VkPhysicalDevice& vkdtVKPhysicalDevice,
 	const bool debug,
@@ -17,7 +17,7 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 )
 {
 	//Struct of Vulkan Queue Family Indexes
-	struct _QueueFamily::Indices indices;
+	struct _vkdt::queueFamily::Indices indices;
 
 	//Get Vulkan Queue Family Indexes
 	uint32_t vkQueueFamilyCount{};  //Number of Vulkan Queue Family Indexes
@@ -55,7 +55,7 @@ struct vkdt::_QueueFamily::Indices vkdt::_QueueFamily::findQueueFamilyIndices
 		(
 			vkdtVKPhysicalDevice,
 			i,
-			*vkdt::_pObjects::pVKSurface,
+			*_vkdt::pObjects::pVKSurface,
 			&vkdtVKPresentSupport
 		);
 

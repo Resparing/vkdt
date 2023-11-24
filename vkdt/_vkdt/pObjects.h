@@ -4,7 +4,7 @@
 //Include Headers
 #include <_vkdt/vkdtConfig.h>
 
-namespace vkdt::_pObjects
+namespace _vkdt::pObjects
 {
 	//Pointers to GLFW Objects
 	extern GLFWwindow** pGLFWWindow;  //Pointer to GLFW Window

@@ -13,7 +13,7 @@ vkdt::instance::instance::instance
 ) noexcept : appData(applicationInfo), debug(debug), verbose(verbose)
 {
 	//Set Vulkan Instance Pointer
-	vkdt::_pObjects::pVKInstance = &this -> vkdtVKInstance;
+	_vkdt::pObjects::pVKInstance = &this -> vkdtVKInstance;
 
 	//Debug VKDT Instance Information
 	if(verbose)
