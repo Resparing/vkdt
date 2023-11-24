@@ -26,10 +26,14 @@ VKDT is a small & extensible C++ library to help speed up the development proces
 
 Documentation can be found in the [DOCUMENTATION](https://github.com/Resparing/vkdt/tree/main/DOCUMENTATION) folder
 
+<br>
+
 ### Extending VKDT
 
 Each class will have two booleans called `debug` and `verbose`. These are for making sure that your code will be able to debug important information and conform with what the validation layers expect you to setup.
 There will be a Vulkan Object to edit in the class as well. If needed, you can access other Vulkan Objects using the `vkdt/_pObjects.h` header. These will contain pointers to all Vulkan Objects for you edit.
+
+<br>
 
 ### TODO
 
