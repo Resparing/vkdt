@@ -6,7 +6,7 @@
 
 namespace vkdt::window
 {
-	//Window Options
+	//VKDT Window Options
 	enum class argument : int32_t
 	{
 		CENTER_CURSOR						= GLFW_CENTER_CURSOR,
@@ -23,21 +23,20 @@ namespace vkdt::window
 		TRANSPARENT_FRAME_BUFFER			= GLFW_TRANSPARENT_FRAMEBUFFER,
 	};
 
-	//Window Result
 	enum class result : int32_t
 	{
 		TRUE = GLFW_TRUE,
 		FALSE = GLFW_FALSE,
 	};
 
-	//Window Size
+	//VKDT Window Size
 	struct size
 	{
 		const size_t width;
 		const size_t height;
 	};
 
-	//Key Options
+	//VKDT Key Options
 	enum class key : int32_t
 	{
 		KEY_SPACE							= GLFW_KEY_SPACE,
