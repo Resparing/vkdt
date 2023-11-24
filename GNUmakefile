@@ -6,7 +6,9 @@ APP_DIR := bin/
 APP_PATH := $(APP_DIR)$(APP_NAME)
 
 #C++ Files
-CPP_FILES := $(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp) $(wildcard lib/inc/*.cpp) $(wildcard vkdt/vkdt/cpp/*.cpp)
+CPP_FILES := 	$(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp)		\
+				$(wildcard lib/inc/*.cpp) $(wildcard vkdt/vkdt/cpp/*.cpp)	\
+				$(wildcard vkdt/_vkdt/cpp/*.cpp)
 
 #C++ Information
 CPP_INFO := -std=c++20 -O0
@@ -18,12 +20,12 @@ CPP_COMPILER := clang++
 CPP_WARNING := -Wall -Wextra -Wpedantic -Wstrict-aliasing -Wconversion -Wshadow -Wdeprecated #-Werror
 
 #Includes
-INC_DIR := 	 "-Ilib/hpp"										\
-			 "-Ivkdt/"											\
+INC_DIR := 	 "-Ilib/hpp"													\
+			 "-Ivkdt/"														\
 			 "-I/Users/hudsonregis/VulkanSDK/1.3.268.1/macOS/include"
-INC_LIB :=	 "-Llib/inc/glfw"									\
+INC_LIB :=	 "-Llib/inc/glfw"												\
 			 "-Llib/inc/vulkan"
-INC_DYLIB := -Wl,-rpath,"@executable_path/../lib/inc/glfw"		\
+INC_DYLIB := -Wl,-rpath,"@executable_path/../lib/inc/glfw"					\
 			 -Wl,-rpath,"@executable_path/../lib/inc/vulkan"
 INC_FLAGS := -lglfw.3 -lvulkan.1
 
