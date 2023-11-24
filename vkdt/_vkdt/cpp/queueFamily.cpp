@@ -1,8 +1,8 @@
 //Include Header File
-#include <vkdt/_QueueFamily.h>
+#include <_vkdt/queueFamily.h>
 
 //Include Headers
-#include <vkdt/_pObjects.h>
+#include <_vkdt/pObjects.h>
 
 bool vkdt::_QueueFamily::Indices::isComplete(void) const noexcept
 {

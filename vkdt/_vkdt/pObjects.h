@@ -2,7 +2,7 @@
 #pragma once
 
 //Include Headers
-#include <vkdt/_vkdtConfig.h>
+#include <_vkdt/vkdtConfig.h>
 
 namespace vkdt::_pObjects
 {
