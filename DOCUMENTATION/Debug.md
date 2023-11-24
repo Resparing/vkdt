@@ -19,7 +19,7 @@ Some functions of the VKDT Debug Messenger require a valid VKDT Instance to be s
 
 ### Adding VKDT Debug Messenger Header
 
-Use the following include statement to include the Debug Messenger file, as well as the necessary `vkdt/debugFunction.h` header file
+Use the following include statement to include the Debug Messenger file, as well as the necessary `vkdt/_debugFunction.h` header file
 ```cpp
 #include <vkdt/debug.h>
 ```
