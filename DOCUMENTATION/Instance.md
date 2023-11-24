@@ -94,10 +94,10 @@ Use the following include statement to include the instance file, as well as the
 	) noexcept;
 	```
 
-	- The VKDT Instance will receive the application information, parse it and debug some information based
+	- The VKDT Instance will receive the application information, parse it and debug some information based on what you give in the `applicationInfo` struct
 
 	- There are 3 parameters:
-		1. `applicationInfo` A const reference to your application data, defined in step 3
+		1. `applicationInfo` A const reference to your application data, defined in step 3.
 		2. `debug` A const boolean to allow debugging.
 		3. `verbose` A const boolean to allow information on what is happening in the VKDT Instance. Note that this option will also add debugging to the Vulkan instance creation and destruction functions.
 

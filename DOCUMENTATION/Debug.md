@@ -93,7 +93,7 @@ Use the following include statement to include the Debug Messenger file, as well
 		- You can have more information than this, such as debugging the objects, but this is enough for most people.
 
 3. Configure `debug` and `verbose` variables
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Debug Messenger creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Debug Messenger is at
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Debug Messenger creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Debug Messenger is at and also simulate a callback function.
 
 4. Initialize VKDT Debug Messenger
 	```cpp
@@ -105,7 +105,7 @@ Use the following include statement to include the Debug Messenger file, as well
 		2. `debug` Whether to Allow Debugging in Messages
 		3. `verbose` Allow General & Verbose Debugging Methods in Messages
 
-	- **ATTENTION** Make sure to call this function *before* creating your VKDT Instance if you are creating your instance with the `verbose` boolean on. If this did not happen, and you try creating your instance, an error will be thrown that you cannot create the instance without initializing your VKDT Debug Messenger
+	- **ATTENTION** Make sure to call this function *before* creating your VKDT Instance if you are creating your instance with the `verbose` boolean on. If this did not happen, and you try creating your instance, an error will be thrown that you cannot create the instance without initializing your VKDT Debug Messenger.
 
 5. Create your VKDT Instance
 	- This is the point where you are able to create your VKDT Instance without any errors popping up.
