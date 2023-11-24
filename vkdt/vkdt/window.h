@@ -2,8 +2,8 @@
 #pragma once
 
 //Include Headers
-#include <vkdt/_vkdtConfig.h>
-#include <vkdt/_windowEnum.h>
+#include <_vkdt/vkdtConfig.h>
+#include <_vkdt/windowEnum.h>
 
 namespace vkdt::window
 {

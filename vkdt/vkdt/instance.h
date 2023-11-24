@@ -2,8 +2,8 @@
 #pragma once
 
 //Include Headers
-#include <vkdt/_instanceStruct.h>
-#include <vkdt/_vkdtConfig.h>
+#include <_vkdt/instanceStruct.h>
+#include <_vkdt/vkdtConfig.h>
 
 namespace vkdt::instance
 {

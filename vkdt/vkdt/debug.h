@@ -2,8 +2,8 @@
 #pragma once
 
 //Include Headers
-#include <vkdt/_vkdtConfig.h>
-#include <vkdt/_debugFunction.h>
+#include <_vkdt/vkdtConfig.h>
+#include <_vkdt/debugFunction.h>
 
 namespace vkdt::debug
 {

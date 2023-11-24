@@ -2,8 +2,8 @@
 #include <vkdt/device.h>
 
 //Include Headers
-#include <vkdt/_pObjects.h>
-#include <vkdt/_QueueFamily.h>
+#include <_vkdt/pObjects.h>
+#include <_vkdt/queueFamily.h>
 
 vkdt::device::device::device
 (
