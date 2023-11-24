@@ -31,7 +31,7 @@ namespace vkdt::window
 		 * @param size The size of the Window
 		 * @param TITLE The Title of the Window
 		 */
-		void createWindow(const vkdt::window::size& size, const std::string& title);
+		void createWindow(const vkdt::window::size& windowSize = {800, 600}, const std::string& title = "");
 
 		/**
 		 * @brief Get the Window Size
