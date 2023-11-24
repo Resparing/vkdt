@@ -34,16 +34,16 @@ Use the following include statement to include the window file, as well as the n
 	```
 
 1. Setup VKDT Window Arguments:
-    - VKDT Window Arguments is the VKDT way of setting up multiple arguments in VKDT. These are usually an unordered map of VKDT window arguments and VKDT window results.
-    - You can create an instance of these using the following `const vkdt::window::windowArguments windowArgs = {};`.
-    - You can then set arguments with the following code (Example disables resizing and maximizes the window).
-    ```cpp
-    const vkdt::window::windowArguments windowArgs =
-    {
-        {vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
-        {vkdt::window::argument::MAXIMIZED, vkdt::window::result::TRUE}
-    };
-    ```
+	- VKDT Window Arguments is the VKDT way of setting up multiple arguments in VKDT. These are usually an unordered map of VKDT window arguments and VKDT window results.
+	- You can create an instance of these using the following `const vkdt::window::windowArguments windowArgs = {};`.
+	- You can then set arguments with the following code (Example disables resizing and maximizes the window).
+	```cpp
+	const vkdt::window::windowArguments windowArgs =
+	{
+		{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
+		{vkdt::window::argument::MAXIMIZED, vkdt::window::result::TRUE}
+	};
+	```
 
 3. Configure `debug` and `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Window creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Window is at and what the arguments are selected.
@@ -99,8 +99,8 @@ while(pVKDTWindow -> isOpen())
 ```cpp
 const vkdt::window::windowArguments windowArgs =
 {
-    {vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
-    {vkdt::window::argument::MAXIMIZED, vkdt::window::result::TRUE}
+	{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
+	{vkdt::window::argument::MAXIMIZED, vkdt::window::result::TRUE}
 };
 
 vkdt::window::window* pVKDTWindow;
