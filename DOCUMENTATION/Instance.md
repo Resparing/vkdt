@@ -12,7 +12,8 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 <br>
 
 ### Requirements
-The VKDT Instance does not need any Options to be setup
+
+The VKDT Instance does not need any Objects to be setup
 
 <br>
 
