@@ -6,7 +6,7 @@ APP_DIR := bin/
 APP_PATH := $(APP_DIR)$(APP_NAME)
 
 #C++ Files
-CPP_FILES := 	$(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp)	$(wildcard vkdt/vkdt/cpp/*.cpp)	$(wildcard vkdt/_vkdt/cpp/*.cpp)
+CPP_FILES := $(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp) $(wildcard vkdt/vkdt/cpp/*.cpp) $(wildcard vkdt/_vkdt/cpp/*.cpp)
 
 #C++ Information
 CPP_INFO := -std=c++20 -O0
