@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Instance is a abstraction over the Vulkan Instance, it is found in the `vkdt/instance.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`.
 
 <br>
 
@@ -19,7 +19,7 @@ The VKDT Instance does not need any Objects to be setup.
 
 ### Adding VKDT Instance Header
 
-Use the following include statement to include the instance file, as well as the necessary `vkdt/_instanceStruct.h` header file:
+Use the following include statement to include the Instance file, as well as the necessary `vkdt/_instanceStruct.h` header file:
 ```cpp
 #include <vkdt/instance.h>
 ```

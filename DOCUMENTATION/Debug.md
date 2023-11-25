@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Debug is a abstraction over the Vulkan Debug Utils Messenger EXT, it is found in the `vkdt/debug.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`.
 
 <br>
 
