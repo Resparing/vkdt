@@ -5,10 +5,10 @@
 bin/**
 
 #Libraries
-inc/hpp/GLFW/**
-inc/hpp/glm/**
-inc/lib/GLFW/**
-inc/lib/vulkan/**
+lib/inc/GLFW/**
+lib/inc/glm/**
+lib/res/GLFW/**
+lib/res/vulkan/**
 
 #Visual Studio Code Files
 .vscode/
