@@ -138,7 +138,8 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 	}
 
 	//Set Window Sizes Using Structured Bindings
-	const auto [windowWidth, windowHeight] = windowSize;
+	const int windowWidth = static_cast<int>(windowSize.width);
+	const int windowHeight = static_cast<int>(windowSize.height);
 
 	//Try to Create GLFW Window
 	if((this -> vkdtGLFWWindow = glfwCreateWindow(windowWidth, windowHeight, title.c_str(), nullptr, nullptr)))
