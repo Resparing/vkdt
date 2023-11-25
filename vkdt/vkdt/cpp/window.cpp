@@ -149,7 +149,7 @@ void vkdt::window::window::createWindow(const vkdt::window::size& windowSize, co
 			std::cout										\
 			<< "Successfully Created VKDT Window With"		\
 			<< " Width: " << windowWidth					\
-			<< ", Height: " << windowHeight			 		\
+			<< ", Height: " << windowHeight					\
 			<< ". Title: \"" << title << "\"!\n";
 		}
 

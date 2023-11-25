@@ -19,7 +19,7 @@ vkdt::instance::instance::instance
 	if(verbose)
 	{
 		std::cout																					\
-		<< "Successfully Received Application Information With"							 			\
+		<< "Successfully Received Application Information With"										\
 		<< " Name: \"" << this -> appData.name														\
 		<< "\" Version: Patch " << this -> appData.version.patch									\
 		<< ", Major " << this -> appData.version.major												\
@@ -30,11 +30,11 @@ vkdt::instance::instance::instance
 	else if(this -> debug)
 	{
 		std::cout																					\
-		<< "Successfully Received Application Information With"							 			\
-		" Name: \"" << this -> appData.name												 			\
-		<< "\", Version: " << this -> appData.version.patch								 			\
-		<< "." << this -> appData.version.major											 			\
-		<< "." << this -> appData.version.minor											 			\
+		<< "Successfully Received Application Information With"										\
+		" Name: \"" << this -> appData.name															\
+		<< "\", Version: " << this -> appData.version.patch											\
+		<< "." << this -> appData.version.major														\
+		<< "." << this -> appData.version.minor														\
 		<< "." << this -> appData.version.variant << "!\n";
 	}
 }
@@ -101,7 +101,7 @@ void vkdt::instance::instance::setupVKDTInstance
 		if(this -> verbose)
 		{
 			std::cout																				\
-			<< "Added Required Debugging Software: \"" << "VK_LAYER_KHRONOS_validation"	 			\
+			<< "Added Required Debugging Software: \"" << "VK_LAYER_KHRONOS_validation"				\
 			<< "\" and: \"" << VK_EXT_DEBUG_UTILS_EXTENSION_NAME << "\"!\n";
 		}
 	}
@@ -411,7 +411,7 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 		for(const VkLayerProperties& vkdtVKAvailableLayer : vkdtVKAvailableLayers)
 		{
 			std::cout																				\
-			<< "\t\"" << vkdtVKAvailableLayer.layerName									 			\
+			<< "\t\"" << vkdtVKAvailableLayer.layerName												\
 			<< "\": " << vkdtVKAvailableLayer.description << "\n";
 		}
 	}
