@@ -14,7 +14,7 @@ namespace vkdt::surface
 		 * @brief Initialize VKDT Surface
 		 *
 		 * @param debug Whether to Allow Debugging in Messages
-	 	 * @param verbose Allow General & Verbose Debugging Methods in Messages
+		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
 
 		surface(const bool debug = false, const bool verbose = false) noexcept;

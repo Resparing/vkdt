@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Window is a abstraction over the GLFW Window Pointer, it is found in the `vkdt/window.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`.
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch and `const std::exception&`.
 
 <br>
 
@@ -26,7 +26,7 @@ Use the following include statement to include the window file, as well as the n
 
 <br>
 
-### Setup of VKDT Debug Messenger
+### Setup of VKDT Window
 
 1. Create VKDT Window Pointer:
 	```cpp
@@ -94,7 +94,7 @@ while(pVKDTWindow -> isOpen())
 
 <br>
 
-### Finished VKDT Instance Code
+### Finished VKDT Window Code
 
 ```cpp
 const vkdt::window::windowArguments windowArgs =
@@ -141,6 +141,8 @@ auto [width, height] = pVKDTWindow -> getSize();
 ```
 
 <br>
+
+#### Get Key State
 
 ```cpp
 bool isPressed(const vkdt::window::key key) const;

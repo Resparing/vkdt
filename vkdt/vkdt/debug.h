@@ -16,7 +16,7 @@ namespace vkdt::debug
 		 *
 		 * @param callbackFunc Function used by VKDT Debug Messenger Debugger
 		 * @param debug Whether to Allow Debugging in Messages
-	 	 * @param verbose Allow General & Verbose Debugging Methods in Messages
+		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
 		messenger(vkdt::debug::vkdtCallback callbackFunc = VK_NULL_HANDLE, const bool debug = false, const bool verbose = false) noexcept;
 

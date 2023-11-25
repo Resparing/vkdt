@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Debug is a abstraction over the Vulkan Debug Utils Messenger EXT, it is found in the `vkdt/debug.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch with a `const std::exception&`.
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch and `const std::exception&`.
 
 <br>
 
@@ -95,7 +95,7 @@ Use the following include statement to include the Debug Messenger file, as well
 3. Configure `debug` and `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Debug Messenger creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Debug Messenger is at and also simulate a callback function.
 
-4. Initialize VKDT Debug Messenger
+4. Initialize VKDT Debug Messenger:
 	```cpp
 	messenger(vkdt::debug::vkdtCallback callbackFunc = VK_NULL_HANDLE, const bool debug = false, const bool verbose = false) noexcept;
 	```
