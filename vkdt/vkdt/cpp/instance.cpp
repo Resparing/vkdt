@@ -183,10 +183,10 @@ void vkdt::instance::instance::createVKDTInstance(VkAllocationCallbacks* allocat
 
 	else if(this -> debug)
 	{
-		std::cout	 																				\
-		<< "Supporting Vulkan Version: " << VK_API_VERSION_PATCH(vkdtVkInstanceVersion)
-		<< "." << VK_API_VERSION_MAJOR(vkdtVkInstanceVersion)
-		<< "." << VK_API_VERSION_MINOR(vkdtVkInstanceVersion)
+		std::cout																					\
+		<< "Supporting Vulkan Version: " << VK_API_VERSION_PATCH(vkdtVkInstanceVersion)				\
+		<< "." << VK_API_VERSION_MAJOR(vkdtVkInstanceVersion)										\
+		<< "." << VK_API_VERSION_MINOR(vkdtVkInstanceVersion)										\
 		<< "." << VK_API_VERSION_VARIANT(vkdtVkInstanceVersion) << "!\n";
 	}
 
