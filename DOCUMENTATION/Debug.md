@@ -127,7 +127,7 @@ Use the following include statement to include the Debug Messenger file, as well
 Call the following function for deleting the VKDT Debug Messenger and destroying all resources.
 
 ```cpp
-virtual ~messenger() noexcept(false);
+~messenger() noexcept(false);
 ```
 
 <br>

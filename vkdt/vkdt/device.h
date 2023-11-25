@@ -28,7 +28,7 @@ namespace vkdt::device
 			const bool verbose = false
 		) noexcept;
 
-		virtual ~device();
+		~device();
 
 		/**
 		 * @brief Create VKDT Device

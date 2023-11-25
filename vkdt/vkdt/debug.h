@@ -20,7 +20,7 @@ namespace vkdt::debug
 		 */
 		messenger(vkdt::debug::vkdtCallback callbackFunc = VK_NULL_HANDLE, const bool debug = false, const bool verbose = false) noexcept;
 
-		virtual ~messenger() noexcept(false);
+		~messenger() noexcept(false);
 
 		/**
 		 * @brief Create VKDT Debug Messenger

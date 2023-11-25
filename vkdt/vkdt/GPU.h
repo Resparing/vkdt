@@ -19,7 +19,7 @@ namespace vkdt::GPU
 		 */
 		GPU(const bool debug = false, const bool verbose = false) noexcept;
 
-		virtual ~GPU();
+		~GPU();
 
 		/**
 		 * @brief Create a VKDT GPU

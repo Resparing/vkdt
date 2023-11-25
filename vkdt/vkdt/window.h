@@ -23,7 +23,7 @@ namespace vkdt::window
 		 */
 		window(const windowArguments windowArgs = {}, const bool debug = false, const bool verbose = false);
 
-		virtual ~window();
+		~window();
 
 		/**
 		 * @brief Create a Window

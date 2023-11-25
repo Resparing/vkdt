@@ -18,7 +18,7 @@ namespace vkdt::queue
 		 */
 		queue(const bool debug, const bool verbose);
 
-		virtual ~queue();
+		~queue();
 
 	private:
 	protected:

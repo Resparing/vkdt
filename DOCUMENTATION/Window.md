@@ -74,7 +74,7 @@ Use the following include statement to include the window file, as well as the n
 Call the following function for deleting the VKDT Window and destroying all resources.
 
 ```cpp
-virtual ~window();
+~window();
 ```
 
 <br>

@@ -19,7 +19,7 @@ namespace vkdt::surface
 
 		surface(const bool debug = false, const bool verbose = false) noexcept;
 
-		virtual ~surface();
+		~surface();
 
 		/**
 		 * @brief Create VKDT Surface

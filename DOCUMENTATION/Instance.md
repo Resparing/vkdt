@@ -146,7 +146,7 @@ Use the following include statement to include the Instance file, as well as the
 Call the following function for deleting the VKDT Instance and destroying all resources.
 
 ```cpp
-virtual ~instance();
+~instance();
 ```
 
 <br>
