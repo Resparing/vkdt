@@ -109,7 +109,7 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtSurface = new vkdt::surface::surface(isDebug, isVerbose);
 	this -> vkdtSurface -> createVKDTSurface(nullptr);
 
-	this -> vkdtGraphicsQueue = new vkdt::queue::queue(isDebug, isVerbose);
+	this -> vkdtQueue = new vkdt::queue::queue(isDebug, isVerbose);
 
 	this -> vkdtGPU = new vkdt::GPU::GPU(isDebug, isVerbose);
 	this -> vkdtGPU -> findVKDTGPU(nullptr);
@@ -134,6 +134,6 @@ TestEngine::TestEngine::~TestEngine()
 	delete this -> vkdtInstance;  //Delete VKDT Instance
 	delete this -> vkdtWindow;  //Delete VKDT Window
 
-	delete this -> vkdtGraphicsQueue;  //Delete VKDT Graphics Queue
+	delete this -> vkdtQueue;  //Delete VKDT Queue
 	delete this -> vkdtGPU;  //Free Memory
 }

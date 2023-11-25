@@ -26,7 +26,7 @@ namespace TestEngine
 		vkdt::debug::messenger* vkdtDebugMessenger;
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
-		vkdt::queue::queue* vkdtGraphicsQueue;
+		vkdt::queue::queue* vkdtQueue;
 		vkdt::surface::surface* vkdtSurface;
 		vkdt::window::window* vkdtWindow;
 
