@@ -70,6 +70,8 @@ Call the following function for deleting the VKDT Surface & destroying all resou
 ### Finished VKDT Surface Code
 
 ```cpp
+#include <vkdt/surface.h>
+
 vkdt::surface::surface* pVKDTSurface;
 
 this -> createWindow();

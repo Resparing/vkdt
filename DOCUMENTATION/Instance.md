@@ -154,6 +154,8 @@ Call the following function for deleting the VKDT Instance & destroying all reso
 ### Finished VKDT Instance Code
 
 ```cpp
+#include <vkdt/instance.h>
+
 //Application Information
 vkdt::instance::applicationData appInfo =
 {

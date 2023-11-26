@@ -135,6 +135,8 @@ Call the following function for deleting the VKDT Debug Messenger & destroying a
 ### Finished VKDT Debug Messenger Code
 
 ```cpp
+#include <vkdt/debug.h>
+
 static void CALLBACK_FUNCTION
 (
 	const vkdt::debug::messageSeverity messageSeverity,

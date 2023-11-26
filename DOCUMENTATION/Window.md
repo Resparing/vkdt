@@ -97,6 +97,8 @@ while(pVKDTWindow -> isOpen())
 ### Finished VKDT Window Code
 
 ```cpp
+#include <vkdt/window.h>
+
 const vkdt::window::windowArguments windowArgs =
 {
 	{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE},
