@@ -19,7 +19,7 @@ void Debug::clear(void)
 
 bool Debug::isDebug(const size_t argc, const char* argv[])
 {
-	//Check if Argument Count is Greater than 2 - Exec Path and DEBUG Argument
+	//Check if Argument Count is Greater than 2 - Exec Path & DEBUG Argument
 	bool argcGreaterThan2 = argc >= 2;
 
 	if(argcGreaterThan2 == false)

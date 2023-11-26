@@ -15,8 +15,8 @@ namespace vkdt::instance
 		 * @brief Initialize VKDT Instance & Parse Application Information
 		 *
 		 * @param applicationInfo The Application Information of Program
-		 * @param debug Whether to Allow Debugging in Messages and Setup Debug Callback
-		 * @param verbose Allow General & Verbose Debugging Methods in Messages and Setup Debug Callback
+		 * @param debug Whether to Allow Debugging in Messages & Setup Debug Callback
+		 * @param verbose Allow General & Verbose Debugging Methods in Messages & Setup Debug Callback
 		 */
 		instance
 		(

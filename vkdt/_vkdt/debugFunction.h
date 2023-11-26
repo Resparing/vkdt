@@ -77,7 +77,7 @@ namespace vkdt::debug
 	/**
 	 * @brief Callback Function for VKDT Debug Messenger
 	 *
-	 * @attention Only Intended for Vulkan API and VKDT Callbacks
+	 * @attention Only Intended for Vulkan API & VKDT Callbacks
 	 */
 	static vkdt::debug::vkdtCallback vkdtCallbackFunc{};
 }

@@ -32,7 +32,7 @@ namespace vkdt::debug
 		/**
 		 * @brief Fill VKDT Create Info Struct
 		 *
-		 * @attention Use for Extending VKDT Messenger Class and for Internal Use!
+		 * @attention Use for Extending VKDT Messenger Class & for Internal Use!
 		 *
 		 * @param debugMessengerCreateInfo Reference to Debug Utils Creation Information Struct
 		 */

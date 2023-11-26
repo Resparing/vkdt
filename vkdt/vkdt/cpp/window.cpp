@@ -115,7 +115,7 @@ vkdt::window::window::~window()
 
 	if(this -> verbose)
 	{
-		std::cout << "Successfully Destroyed VKDT Window and Deallocated all Related Resources!\n";
+		std::cout << "Successfully Destroyed VKDT Window & Deallocated all Related Resources!\n";
 	}
 	else if(this -> debug)
 	{
