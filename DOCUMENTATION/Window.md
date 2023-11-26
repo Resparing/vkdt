@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Window is a abstraction over the GLFW Window Pointer, it is found in the `vkdt/window.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch and `const std::exception&`.
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
 
@@ -34,9 +34,9 @@ Use the following include statement to include the window file, as well as the n
 	```
 
 1. Setup VKDT Window Arguments:
-	- VKDT Window Arguments is the VKDT way of setting up multiple arguments in VKDT. These are usually an unordered map of VKDT window arguments and VKDT window results.
+	- VKDT Window Arguments is the VKDT way of setting up multiple arguments in VKDT. These are usually an unordered map of VKDT window arguments & VKDT window results.
 	- You can create an instance of these using the following `const vkdt::window::windowArguments windowArgs = {};`.
-	- You can then set arguments with the following code (Example disables resizing and maximizes the window).
+	- You can then set arguments with the following code (Example disables resizing & maximizes the window).
 	```cpp
 	const vkdt::window::windowArguments windowArgs =
 	{
@@ -45,8 +45,8 @@ Use the following include statement to include the window file, as well as the n
 	};
 	```
 
-3. Configure `debug` and `verbose` variables:
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Window creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Window is at and what the arguments are selected.
+3. Configure `debug` & `verbose` variables:
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan Window creation process it is currently at. The `verbose` variable can be used to check what stage the VKDT Window is at & what the arguments are selected.
 
 4. Initialize VKDT Window:
 	```cpp
@@ -55,8 +55,8 @@ Use the following include statement to include the window file, as well as the n
 
 	- There are 3 parameters required:
 		1. `windowArgs` Arguments set by VKDT Window, use `{}` if there are no arguments.
-		2. `debug` Whether to Allow Debugging in Messages.
-		3. `verbose` Allow General & Verbose Debugging Methods in Messages.
+		2. `debug` Whether to allow debugging in messages.
+		3. `verbose` Allow general & verbose debugging methods in messages.
 
 5. Create your VKDT Window:
 	```cpp
@@ -71,7 +71,7 @@ Use the following include statement to include the window file, as well as the n
 
 ### Deletion Function
 
-Call the following function for deleting the VKDT Window and destroying all resources.
+Call the following function for deleting the VKDT Window & destroying all resources.
 
 ```cpp
 ~window();
@@ -81,7 +81,7 @@ Call the following function for deleting the VKDT Window and destroying all reso
 
 ### Main Loop Code
 
-You can check if your window should stay open with the `isOpen()` function. The function will return a boolean whether the window should stay open or not. You **must** also update the window with the `update()` function. This is used to poll all events, and is important when rendering graphics. Use the following example as a reference.
+You can check if your window should stay open with the `isOpen()` function. The function will return a boolean whether the window should stay open or not. You **must** also update the window with the `update()` function. This is used to poll all events, & is important when rendering graphics. Use the following example as a reference.
 
 ```cpp
 while(pVKDTWindow -> isOpen())
@@ -134,7 +134,7 @@ const vkdt::window::size getSize(void) const noexcept;
 ```
 
 - Get VKDT Window Size.
-- The function returns a struct that contains the width and height.
+- The function returns a struct that contains the width & height.
 - If you need the size in single variables, you can use the following code.
 ```cpp
 auto [width, height] = pVKDTWindow -> getSize();

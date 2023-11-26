@@ -7,7 +7,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 ### Introduction
 
 The VKDT Instance is a abstraction over the Vulkan Instance, it is found in the `vkdt/instance.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch and `const std::exception&`.
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
 
@@ -81,7 +81,7 @@ Use the following include statement to include the Instance file, as well as the
 		};
 		```
 
-3. Configure `debug` and `verbose` variables:
+3. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging what part of the Vulkan instance creation process it is currently at. The `verbose` variable can be used to help check if VKDT has setup the Vulkan instance properly. These variables **do not** affect the error handling that VKDT will do.
 
 4. Call the Instance Creation Function:
@@ -94,12 +94,12 @@ Use the following include statement to include the Instance file, as well as the
 	) noexcept;
 	```
 
-	- The VKDT Instance will receive the application information, parse it and debug some information based on what you give in the `applicationInfo` struct.
+	- The VKDT Instance will receive the application information, parse it & debug some information based on what you give in the `applicationInfo` struct.
 
 	- There are 3 parameters:
 		1. `applicationInfo` A const reference to your application data, defined in step 3.
 		2. `debug` A const boolean to allow debugging.
-		3. `verbose` A const boolean to allow information on what is happening in the VKDT Instance. Note that this option will also add debugging to the Vulkan instance creation and destruction functions.
+		3. `verbose` A const boolean to allow information on what is happening in the VKDT Instance. Note that this option will also add debugging to the Vulkan instance creation & destruction functions.
 
 5. Get a vector of your requested Vulkan Extensions & Layers:
 	- The vector must be type `std::vector<const char*>`.
@@ -123,7 +123,7 @@ Use the following include statement to include the Instance file, as well as the
 	);
 	```
 
-	- The VKDT Instance will start setting itself and fill out the important vector.
+	- The VKDT Instance will start setting itself & fill out the important vector.
 
 	- There are 2 parameters:
 		1. `vkdtRequestedExtensions` A Reference to a `std::vector<const char*>` of requested Vulkan Extensions.
@@ -134,7 +134,7 @@ Use the following include statement to include the Instance file, as well as the
 	void createVKDTInstance(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 	```
 
-	- The VKDT Instance will be created, and all extensions & layers will be checked.
+	- The VKDT Instance will be created, & all extensions & layers will be checked.
 
 	- There is 1 parameter:
 		1. `allocator` A Vulkan memory allocator.
@@ -143,7 +143,7 @@ Use the following include statement to include the Instance file, as well as the
 
 ### Deletion Function
 
-Call the following function for deleting the VKDT Instance and destroying all resources.
+Call the following function for deleting the VKDT Instance & destroying all resources.
 
 ```cpp
 ~instance();

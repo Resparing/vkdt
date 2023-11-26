@@ -6,8 +6,8 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Surface is a abstraction over the SurfaceKHR, it is found in the `vkdt/surface.h` header file.
-All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught and debugged with a try-catch and `const std::exception&`.
+The VKDT Surface is a abstraction over the Vulkan Surface KHR, it is found in the `vkdt/surface.h` header file.
+All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
 
@@ -21,7 +21,7 @@ Almost all functions of the VKDT Surface require a valid VKDT Window & VKDT Inst
 
 Use the following include statement to include the Surface file:
 ```cpp
-#include <vkdt/debug.h>
+#include <vkdt/surface.h>
 ```
 
 <br>
@@ -33,8 +33,8 @@ Use the following include statement to include the Surface file:
 	vkdt::surface::surface* pVKDTSurface;
 	```
 
-2. Configure `debug` and `verbose` variables:
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT Surface creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at and also debug allocation and de-allocation methods.
+2. Configure `debug` & `verbose` variables:
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT Surface creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at & also debug allocation & de-allocation methods.
 
 3. Initialize VKDT Surface
 	```cpp
@@ -42,15 +42,15 @@ Use the following include statement to include the Surface file:
 	```
 
 	- There are 2 parameters required:
-		2. `debug` Whether to Allow Debugging in Messages.
-		3. `verbose` Allow General & Verbose Debugging Methods in Messages.
+		2. `debug` Whether to allow debugging in messages.
+		3. `verbose` Allow general & verbose debugging methods in messages.
 
 4. Create VKDT Surface:
 	```cpp
 	void createVKDTSurface(VkAllocationCallbacks* allocator = nullptr);
 	```
 
-	- The VKDT Surface will be created, and all extensions & layers will be checked.
+	- The VKDT Surface will be created, & all extensions & layers will be checked.
 
 	- There is 1 parameter:
 		1. `allocator` A Vulkan memory allocator.
@@ -59,7 +59,7 @@ Use the following include statement to include the Surface file:
 
 ### Deletion Function
 
-Call the following function for deleting the VKDT Surface and destroying all resources.
+Call the following function for deleting the VKDT Surface & destroying all resources.
 
 ```cpp
 ~surface();
