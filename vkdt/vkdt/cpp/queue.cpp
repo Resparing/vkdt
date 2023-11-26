@@ -4,7 +4,7 @@
 //Include Headers
 #include <_vkdt/pObjects.h>
 
-vkdt::queue::queue::queue(const bool debug, const bool verbose) : debug(debug), verbose(verbose)
+vkdt::queue::queue::queue(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Graphics & Present Queue Pointers
 	_vkdt::pObjects::pVKGraphicsQueue = &this -> vkdtVKGraphicsQueue;

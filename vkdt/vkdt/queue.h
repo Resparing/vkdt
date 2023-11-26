@@ -16,7 +16,7 @@ namespace vkdt::queue
 		 * @param debug Whether to Allow Debugging in Messages
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
-		queue(const bool debug, const bool verbose);
+		queue(const bool debug = false, const bool verbose = false) noexcept;
 
 		~queue();
 
