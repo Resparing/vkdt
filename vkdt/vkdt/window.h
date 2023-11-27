@@ -14,6 +14,7 @@ namespace vkdt::window
 	class window
 	{
 	public:
+
 		/**
 		 * @brief Setup VKDT Window With Specified Arguments
 		 *
