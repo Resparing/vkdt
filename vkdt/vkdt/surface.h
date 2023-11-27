@@ -26,7 +26,7 @@ namespace vkdt::surface
 		 *
 		 * @param allocator Vulkan Memory Allocator
 		 */
-		void createVKDTSurface(VkAllocationCallbacks* allocator = nullptr);
+		void createVKDTSurface(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
 
