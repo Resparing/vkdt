@@ -39,7 +39,5 @@ There will be a Vulkan Object to edit in the class as well. If needed, you can a
 
 ### TODO
 
-- Documentation for Existing Files
 - Debug function can lead to crashes when trying to debug `vkdt::debug::messageData.objectName`
-- Trying to get MacOS Specific Environment Variables to cooperate with Vulkan
 - VKDT Swapchain
