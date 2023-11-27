@@ -6,7 +6,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Window is a abstraction over the GLFW Window Pointer, it is found in the `vkdt/window.h` header file.
+The VKDT Window is an abstraction over the GLFW Window Pointer, it is found in the `vkdt/window.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
@@ -152,7 +152,7 @@ bool isPressed(const vkdt::window::key key) const;
 
 - Check if a certain key is pressed.
 - There is 1 parameter:
-	1. `key` A enumeration of the VKDT key options. You can select it with the following code:
+	1. `key` An enumeration of the VKDT key options. You can select it with the following code:
 	```cpp
 	if(pVKDTWindow -> isPressed(vkdt::window::key::ZERO))
 	{

@@ -6,7 +6,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Queue is a abstraction over the Vulkan Queue, it is found in the `vkdt/queue.h` header file.
+The VKDT Queue is an abstraction over the Vulkan Queue, it is found in the `vkdt/queue.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>

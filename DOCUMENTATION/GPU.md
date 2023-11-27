@@ -6,7 +6,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT GPU is a abstraction over the Vulkan Physical Device, it is found in the `vkdt/GPU.h` header file.
+The VKDT GPU is an abstraction over the Vulkan Physical Device, it is found in the `vkdt/GPU.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
@@ -34,7 +34,7 @@ Use the following include statement to include the GPU file:
 	```
 
 2. Configure `debug` & `verbose` variables:
-	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT GPU creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at and also debug important information about found GPU's.
+	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT GPU creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at & also debug important information about found GPU's.
 
 3. Initialize VKDT Surface
 	```cpp

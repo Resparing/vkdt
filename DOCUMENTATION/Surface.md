@@ -6,14 +6,14 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Surface is a abstraction over the Vulkan Surface KHR, it is found in the `vkdt/surface.h` header file.
+The VKDT Surface is an abstraction over the Vulkan Surface KHR, it is found in the `vkdt/surface.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
 
 ### Requirements
 
-Almost all functions of the VKDT Surface require a valid VKDT Window & VKDT Instance to be setup. Refer to the Window and Instance Documentation on how to set those up.
+Almost all functions of the VKDT Surface require a valid VKDT Window & VKDT Instance to be setup. Refer to the Window & Instance Documentation on how to set those up.
 
 <br>
 
@@ -47,7 +47,7 @@ Use the following include statement to include the Surface file:
 
 4. Create VKDT Surface:
 	```cpp
-	void createVKDTSurface(VkAllocationCallbacks* allocator = nullptr);
+	void createVKDTSurface(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 	```
 
 	- The VKDT Surface will be created, & all extensions & layers will be checked.
