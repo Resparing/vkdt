@@ -3,8 +3,6 @@
 
 //Include Headers
 #include <_vkdt/vkdtConfig.h>
-#include <vkdt/GPU.h>
-#include <vkdt/queue.h>
 
 namespace vkdt::device
 {
