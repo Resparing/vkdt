@@ -126,8 +126,8 @@ Use the following include statement to include the Instance file, as well as the
 	- The VKDT Instance will start setting itself & fill out the important vector.
 
 	- There are 2 parameters:
-		1. `vkdtRequestedExtensions` A Reference to a `std::vector<const char*>` of requested Vulkan Extensions.
-		2. `vkdtRequestedLayers` A Reference to a `std::vector<const char*>` of requested Vulkan Layers.
+		1. `vkdtRequestedExtensions` A Reference to a `std::vector<const char*>` of requested Vulkan Instance Extensions.
+		2. `vkdtRequestedLayers` A Reference to a `std::vector<const char*>` of requested Vulkan Instance Layers.
 
 6. Create VKDT Instance
 	```cpp
