@@ -42,8 +42,8 @@ Use the following include statement to include the Surface file:
 	```
 
 	- There are 2 parameters required:
-		2. `debug` Whether to allow debugging in messages.
-		3. `verbose` Allow general & verbose debugging methods in messages.
+		1. `debug` Whether to allow debugging in messages.
+		2. `verbose` Allow general & verbose debugging methods in messages.
 
 4. Create VKDT Surface:
 	```cpp
