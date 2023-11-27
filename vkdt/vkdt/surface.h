@@ -35,12 +35,12 @@ namespace vkdt::surface
 
 	protected:
 
+		//Vulkan Surface
+		VkSurfaceKHR vkdtVKSurface;
+
 		//Debugging Variables
 		bool debug{};
 		bool verbose{};
-
-		//Vulkan Surface
-		VkSurfaceKHR vkdtVKSurface;
 
 	};
 }

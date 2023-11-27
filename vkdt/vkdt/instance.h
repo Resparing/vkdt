@@ -77,11 +77,12 @@ namespace vkdt::instance
 
 	protected:
 
+		//Vulkan Instance
+		VkInstance vkdtVKInstance;
+
 		//Options for Debugging
 		bool debug{};
 		bool verbose{};
 
-		//Vulkan Instance
-		VkInstance vkdtVKInstance;  //Vulkan Instance
 	};
 }

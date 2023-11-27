@@ -51,12 +51,12 @@ namespace vkdt::debug
 
 	protected:
 
-		//Vulkan Debug Utils Messenger
-		VkDebugUtilsMessengerEXT vkdtVKDebugMessenger;
-
 		//Debugging Variables
 		bool debug{};
 		bool verbose{};
+
+		//Vulkan Debug Utils Messenger
+		VkDebugUtilsMessengerEXT vkdtVKDebugMessenger;
 
 	};
 }
