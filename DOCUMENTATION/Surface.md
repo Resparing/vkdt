@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Almost all functions of the VKDT Surface require a valid VKDT Window & VKDT Instance to be setup. Refer to their respective documentations for more information.
+Almost all functions of the VKDT Surface require a valid VKDT Window & VKDT Instance to be setup. Refer to the Window and Instance Documentation on how to set those up.
 
 <br>
 
