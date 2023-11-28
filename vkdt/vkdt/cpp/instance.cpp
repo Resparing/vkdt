@@ -392,7 +392,11 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 
 	std::vector<VkLayerProperties> vkdtVKAvailableLayers(vkdtVKAvailableLayerCount);
 
-	const VkResult vkdtVkInstanceLayersResult = vkEnumerateInstanceLayerProperties(&vkdtVKAvailableLayerCount, vkdtVKAvailableLayers.data());
+	const VkResult vkdtVkInstanceLayersResult = vkEnumerateInstanceLayerProperties
+	(
+		&vkdtVKAvailableLayerCount,
+		vkdtVKAvailableLayers.data()
+	);
 
 	if(vkdtVkInstanceLayersResult != VK_SUCCESS)
 	{

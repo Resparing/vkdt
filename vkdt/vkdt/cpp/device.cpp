@@ -90,7 +90,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 	_vkdt::queueFamily::Indices vkdtQueueFamilyIndexes = _vkdt::queueFamily::findQueueFamilyIndices(*_vkdt::pObjects::pVKPhysicalDevice);
 
 	//Vector of Vulkan Queue Creation Information Structs
-	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos = {};
 
 	//Set of Unique Queue Families to Create
 	std::set<uint32_t> vkdtVKUniqueQueueFamilyIndexes =
@@ -179,7 +179,21 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		throw std::runtime_error("Failed to Create VKDT Logical Device! Error: " + std::to_string(vkdtVKCreateDeviceResult) + "!\n");
 	}
 
-	//Get VKDT Queue's
-	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(), 0, _vkdt::pObjects::pVKGraphicsQueue);
-	vkGetDeviceQueue(this -> vkdtVKLogicalDevice, vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value(), 0, _vkdt::pObjects::pVKPresentQueue);
+	//Get VKDT Device Queue
+	vkGetDeviceQueue
+	(
+		this -> vkdtVKLogicalDevice,
+		vkdtQueueFamilyIndexes.vkdtVKGraphicsFamily.value(),
+		0,
+		_vkdt::pObjects::pVKGraphicsQueue
+	);
+
+	//Get VKDT Device Queue
+	vkGetDeviceQueue
+	(
+		this -> vkdtVKLogicalDevice,
+		vkdtQueueFamilyIndexes.vkdtVKPresentFamily.value(),
+		0,
+		_vkdt::pObjects::pVKPresentQueue
+	);
 }

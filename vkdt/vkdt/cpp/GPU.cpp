@@ -149,7 +149,7 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const noexcept
 {
 	//Get Index of Queue Family
-	struct _vkdt::queueFamily::Indices indexes = _vkdt::queueFamily::findQueueFamilyIndices
+	const struct _vkdt::queueFamily::Indices indexes = _vkdt::queueFamily::findQueueFamilyIndices
 	(
 		vkdtVKSelectedPhysicalDevice,
 		this -> debug,

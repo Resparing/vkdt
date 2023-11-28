@@ -52,8 +52,8 @@ namespace vkdt::instance
 		vkdt::instance::applicationData appData{};
 
 		//Vector of VKDT Layers & Extensions
-		std::vector<const char*> vkdtExtensions{};
-		std::vector<const char*> vkdtLayers{};
+		std::vector<const char*> vkdtExtensions = {};
+		std::vector<const char*> vkdtLayers = {};
 
 		//Vulkan Instance Creation Information Flags
 		std::uint32_t vkdtVKInstanceCreateInfoFlags{};
