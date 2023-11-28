@@ -64,7 +64,8 @@ struct _vkdt::queueFamily::Indices _vkdt::queueFamily::findQueueFamilyIndices
 			throw std::runtime_error
 			(
 				"Failed to Find Vulkan Queue Family Present Support! Error: " +
-				std::to_string(vkdtVKGetPhysicalDeviceSupportResult) + "!\n"
+				std::to_string(vkdtVKGetPhysicalDeviceSupportResult) +
+				"!\n"
 			);
 		}
 
