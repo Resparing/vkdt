@@ -59,9 +59,9 @@ namespace vkdt::debug
 		std::string messageIDName;
 
 		//Vector of Labels, Command Buffers & Objects
-		std::vector<vkdt::debug::label> queueLabels;
-		std::vector<vkdt::debug::label> commandBuffers;
-		std::vector<vkdt::debug::object> objects;
+		std::vector<const vkdt::debug::label> queueLabels;
+		std::vector<const vkdt::debug::label> commandBuffers;
+		std::vector<const vkdt::debug::object> objects;
 	};
 
 	/**
