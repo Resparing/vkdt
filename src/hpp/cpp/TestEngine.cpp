@@ -23,7 +23,7 @@ static void callback
 		//Debug Queue Labels
 		std::cerr << "Message Labels (" << messageData.queueLabels.size() << "):\n";
 
-		for(vkdt::debug::label queueLabel : messageData.queueLabels)
+		for(const vkdt::debug::label& queueLabel : messageData.queueLabels)
 		{
 			std::cerr << "\t[QUEUE LABEL] Name: \"" << queueLabel.labelName << "\"\n";
 		}
@@ -35,7 +35,7 @@ static void callback
 		//Debug Message Labels
 		std::cerr << "Objects (" << messageData.objects.size() << "):\n";
 
-		for(vkdt::debug::object object : messageData.objects)
+		for(const vkdt::debug::object& object : messageData.objects)
 		{
 			std::cerr
 			<< "\t[OBJECT] ID: " << object.objectType
@@ -50,7 +50,7 @@ static void callback
 		//Debug Command Buffer Labels
 		std::cerr << "Command Buffer Labels (" << messageData.commandBuffers.size() << "):\n";
 
-		for(vkdt::debug::label commandBuffer : messageData.commandBuffers)
+		for(const vkdt::debug::label& commandBuffer : messageData.commandBuffers)
 		{
 			std::cerr << "\t[COMMAND BUFFER] \"" << commandBuffer.labelName << "\"!\n";
 		}
