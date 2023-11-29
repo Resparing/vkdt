@@ -39,7 +39,12 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 
 	if(vkdtVKPhysicalDeviceNumberResult != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to Find Number of VKDT GPU's! Error: " + std::to_string(vkdtVKAvailablePhysicalDeviceCount) + "!\n");
+		throw std::runtime_error
+		(
+			"Failed to Find Number of VKDT GPU's! Error: " +
+			std::to_string(vkdtVKAvailablePhysicalDeviceCount) +
+			"!\n"
+		);
 	}
 
 	//Vector of Available Physical Devices
