@@ -20,7 +20,6 @@ namespace vkdt::queue
 
 		~queue();
 
-	private:
 	protected:
 
 		//Vulkan Queues
