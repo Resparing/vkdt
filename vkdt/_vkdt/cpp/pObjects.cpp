@@ -17,4 +17,6 @@ namespace _vkdt::pObjects
 	VkQueue* pVKPresentQueue{};
 	VkSurfaceKHR* pVKSurface{};
 	VkSwapchainKHR* pVKSwapchain{};
+
+	std::vector<VkImage>* pSwapImages{};
 }

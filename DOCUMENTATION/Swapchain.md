@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Almost all functions of the VKDT Surface require a valid VKDT Device, VKDT GPU, VKDT Surface & VKDT Window to be setup. Refer their respective documentation on how to set those up.
+Almost all functions of the VKDT Surface require a valid VKDT Device, VKDT GPU, VKDT Surface, VKDT Window & VKDT Image View to be setup. Refer their respective documentation on how to set those up.
 <br>
 
 ### Adding VKDT Swapchain Header
@@ -77,6 +77,7 @@ this -> createDevice();
 this -> createGPU();
 this -> createSurface();
 this -> createWindow();
+this -> initImageView();
 
 pVKDTSwapchain = new vkdt::swapchain::swapchain(true, true);
 pVKDTSwapchain -> createVKDTSwapchain(nullptr);

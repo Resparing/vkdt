@@ -20,4 +20,6 @@ namespace _vkdt::pObjects
 	extern VkQueue* pVKPresentQueue;  //Pointer to Vulkan Present Queue
 	extern VkSurfaceKHR* pVKSurface;  //Pointer to Vulkan Surface
 	extern VkSwapchainKHR* pVKSwapchain;  //Pointer to Vulkan Swapchain
+
+	extern std::vector<VkImage>* pSwapImages;  //Pointer to Vector of Vulkan Swapchain Images
 }

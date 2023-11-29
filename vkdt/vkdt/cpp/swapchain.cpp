@@ -150,6 +150,43 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 	//Set pObject Vulkan Surface Format & Extent
 	_vkdt::pObjects::pVKSurfaceFormat = &vkdtVKSwapSurfaceFormat.format;
 	_vkdt::pObjects::pVKSurfaceExtent = &vkdtVKSwapSurfaceExtent;
+
+	//Set Vulkan Swapchain Images Vector
+	uint32_t vkdtVKSwapImageCount{};
+
+	const VkResult swapchainImagesCountResult = vkGetSwapchainImagesKHR
+	(
+		*_vkdt::pObjects::pVKLogicalDevice,
+		this -> vkdtVKSwapchain,
+		&vkdtVKSwapImageCount,
+		nullptr
+	);
+
+	if(swapchainImagesCountResult != VK_SUCCESS)
+	{
+		throw std::runtime_error
+		(
+			"Failed to Find Number of Vulkan Swapchain Images! Error: " +
+			std::to_string(swapchainImagesCountResult)
+			+ "!\n"
+		);
+	}
+
+	//Resize Vulkan Swapchain Images Vector
+	_vkdt::pObjects::pSwapImages -> resize(vkdtVKSwapImageCount);
+
+	const VkResult swapchainImagesResult = vkGetSwapchainImagesKHR
+	(
+		*_vkdt::pObjects::pVKLogicalDevice,
+		this -> vkdtVKSwapchain,
+		&vkdtVKSwapImageCount,
+		_vkdt::pObjects::pSwapImages -> data()
+	);
+
+	if(swapchainImagesResult != VK_SUCCESS)
+	{
+		throw std::runtime_error("Failed to Find Vulkan Swapchain Images! Error: " + std::to_string(swapchainImagesResult) + "!\n");
+	}
 }
 
 VkSurfaceFormatKHR vkdt::swapchain::swapchain::chooseVKSwapSurfaceFormat

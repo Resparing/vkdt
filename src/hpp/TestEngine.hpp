@@ -5,6 +5,7 @@
 #include <vkdt/debug.h>
 #include <vkdt/device.h>
 #include <vkdt/GPU.h>
+#include <vkdt/imageView.h>
 #include <vkdt/instance.h>
 #include <vkdt/queue.h>
 #include <vkdt/surface.h>
@@ -27,6 +28,7 @@ namespace TestEngine
 		vkdt::debug::messenger* vkdtDebugMessenger;
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
+		vkdt::imageView::imageView* vkdtImageView;
 		vkdt::queue::queue* vkdtQueue;
 		vkdt::surface::surface* vkdtSurface;
 		vkdt::swapchain::swapchain* vkdtSwapchain;

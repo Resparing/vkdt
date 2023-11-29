@@ -46,12 +46,12 @@ namespace vkdt::device
 
 	protected:
 
+		//Vulkan Logical Device
+		VkDevice vkdtVKLogicalDevice;
+
 		//Debugging Variables
 		bool debug{};
 		bool verbose{};
-
-		//Vulkan Logical Device
-		VkDevice vkdtVKLogicalDevice;
 
 	};
 }
