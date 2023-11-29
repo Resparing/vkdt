@@ -40,6 +40,11 @@ void vkdt::imageView::imageView::createImageView(VkAllocationCallbacks* allocato
 	//Resize Swapchain Image Views Vector to Swapchain Images Vector
 	this -> vkdtVKSwapchainImageViews.resize(this -> vkdtVKSwapchainImages.size());
 
+	//Debug Number of Vulkan Swapchain Image View
+	if(this -> debug || this -> verbose)
+	{
+		std::cout << "Creating: " << vkdtVKSwapchainImageViews.size() << "...\n";
+	}
 
 	//Iterate Over Vulkan Swapchain Images
 	for(size_t i{}; i < this -> vkdtVKSwapchainImages.size(); ++i)
@@ -92,7 +97,7 @@ void vkdt::imageView::imageView::createImageView(VkAllocationCallbacks* allocato
 		{
 			if(this -> verbose)
 			{
-				std::cout << "Successfully Created VKDT Image View No: " << i << "!\n";
+				std::cout << "\tSuccessfully Created VKDT Image View No: " << i << "!\n";
 			}
 		}
 		else
