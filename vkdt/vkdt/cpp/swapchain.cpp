@@ -148,8 +148,8 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 	this -> vkdtVKSurfaceExtent = vkdtVKSwapSurfaceExtent;
 
 	//Set pObject Vulkan Surface Format & Extent
-	_vkdt::pObjects::pVKSurfaceFormat = &vkdtVKSwapSurfaceFormat.format;
-	_vkdt::pObjects::pVKSurfaceExtent = &vkdtVKSwapSurfaceExtent;
+	_vkdt::pObjects::pVKSurfaceFormat = &this -> vkdtVKSurfaceFormat;
+	_vkdt::pObjects::pVKSurfaceExtent = &this -> vkdtVKSurfaceExtent;
 
 	//Set Vulkan Swapchain Images Vector
 	uint32_t vkdtVKSwapImageCount{};

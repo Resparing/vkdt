@@ -48,6 +48,9 @@ namespace vkdt::instance
 
 	private:
 
+		//Vulkan Allocator
+		VkAllocationCallbacks* pAllocator;
+
 		//Application Data
 		vkdt::instance::applicationData appData{};
 
@@ -57,9 +60,6 @@ namespace vkdt::instance
 
 		//Vulkan Instance Creation Information Flags
 		std::uint32_t vkdtVKInstanceCreateInfoFlags{};
-
-		//Vulkan Allocator
-		VkAllocationCallbacks* pAllocator;
 
 		/**
 		 * @brief Check if Vulkan Extensions are Supported

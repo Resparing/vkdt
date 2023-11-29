@@ -46,7 +46,7 @@ Use the following include statement to include the Swapchain file:
 
 3. Create VKDT Swapchain
 	```cpp
-	void createVKDTSwapchain(VkAllocationCallbacks* allocator);
+	void createVKDTSwapchain(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 	```
 
 	- The VKDT Swapchain will be created, as well as all objects

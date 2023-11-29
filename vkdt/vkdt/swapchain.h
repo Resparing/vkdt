@@ -25,16 +25,16 @@ namespace vkdt::swapchain
 		 *
 		 * @param allocator Vulkan Memory Allocator
 		 */
-		void createVKDTSwapchain(VkAllocationCallbacks* allocator);
+		void createVKDTSwapchain(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
+
+		//Vulkan Memory Allocator
+		VkAllocationCallbacks* pAllocator;
 
 		//Vulkan Surface Format & Extent
 		VkFormat vkdtVKSurfaceFormat{};
 		VkExtent2D vkdtVKSurfaceExtent{};
-
-		//Vulkan Memory Allocator
-		VkAllocationCallbacks* pAllocator;
 
 		/**
 		 * @brief Choose Vulkan Swapchain Surface Format

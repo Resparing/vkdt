@@ -18,5 +18,6 @@ namespace _vkdt::pObjects
 	VkSurfaceKHR* pVKSurface{};
 	VkSwapchainKHR* pVKSwapchain{};
 
+	std::vector<VkImageView>* pSwapImageViews{};
 	std::vector<VkImage>* pSwapImages{};
 }

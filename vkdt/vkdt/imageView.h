@@ -20,8 +20,19 @@ namespace vkdt::imageView
 
 		~imageView();
 
+		/**
+		 * @brief Create VKDT Image Views
+		 *
+		 * @param allocator Vulkan Memory Allocator
+		 */
+		void createImageView(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
+
 	private:
 
+		//Vulkan Memory Allocator
+		VkAllocationCallbacks* pAllocator;
+
+		//Vector of Vulkan Swapchain Images
 		std::vector<VkImage> vkdtVKSwapchainImages = {};
 
 	protected:

@@ -121,6 +121,8 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtSwapchain = new vkdt::swapchain::swapchain(isDebug, isVerbose);
 	this -> vkdtSwapchain -> createVKDTSwapchain(nullptr);
+
+	this -> vkdtImageView -> createImageView(nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)

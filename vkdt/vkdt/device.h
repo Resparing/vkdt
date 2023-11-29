@@ -37,12 +37,12 @@ namespace vkdt::device
 
 	private:
 
+		//Vulkan Allocator
+		VkAllocationCallbacks* pAllocator;
+
 		//Vulkan Layers & Extensions
 		std::vector<const char*> vkdtVKLayers;
 		std::vector<const char*> vkdtVKExtensions;
-
-		//Vulkan Allocator
-		VkAllocationCallbacks* pAllocator;
 
 	protected:
 

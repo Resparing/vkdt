@@ -21,5 +21,6 @@ namespace _vkdt::pObjects
 	extern VkSurfaceKHR* pVKSurface;  //Pointer to Vulkan Surface
 	extern VkSwapchainKHR* pVKSwapchain;  //Pointer to Vulkan Swapchain
 
+	extern std::vector<VkImageView>* pSwapImageViews;  //Pointer to Vector of Vulkan Swapchain Image Views
 	extern std::vector<VkImage>* pSwapImages;  //Pointer to Vector of Vulkan Swapchain Images
 }
