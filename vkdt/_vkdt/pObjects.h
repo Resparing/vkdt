@@ -12,6 +12,8 @@ namespace _vkdt::pObjects
 	//Pointers to Vulkan Objects
 	extern VkDebugUtilsMessengerEXT* pVKDebugMessenger;  //Pointer to Vulkan Debug Messenger
 	extern VkDevice* pVKLogicalDevice;  //Pointer to Vulkan Logical Device
+	extern VkExtent2D* pVKSurfaceExtent;  //Pointer to Vulkan Surface Extent
+	extern VkFormat* pVKSurfaceFormat;  //Pointer to Vulkan Surface Format
 	extern VkInstance* pVKInstance;  //Pointer to Vulkan Instance
 	extern VkPhysicalDevice* pVKPhysicalDevice;  //Pointer to Vulkan Physical Device
 	extern VkQueue* pVKGraphicsQueue;  //Pointer to Vulkan Graphics Queue

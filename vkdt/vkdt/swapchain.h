@@ -29,6 +29,10 @@ namespace vkdt::swapchain
 
 	private:
 
+		//Vulkan Surface Format & Extent
+		VkFormat vkdtVKSurfaceFormat{};
+		VkExtent2D vkdtVKSurfaceExtent{};
+
 		//Vulkan Memory Allocator
 		VkAllocationCallbacks* pAllocator;
 

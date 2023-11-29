@@ -39,10 +39,10 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 	const struct _vkdt::swapSupportDetails::swapchainSupportDetails swapSupportDetails =							\
 	_vkdt::swapSupportDetails::queueSwapChainSupport(*_vkdt::pObjects::pVKPhysicalDevice);
 
-	//Get Vulkan Surface Format, Present Mode & Extent
-	const VkSurfaceFormatKHR vkdtVKSwapSurfaceFormat = this -> chooseVKSwapSurfaceFormat(swapSupportDetails.vkdtVKSurfaceFormats);
+	//Get Vulkan Present Mode, Surface Format & Extent
 	const VkPresentModeKHR vkdtVKSwapSurfacePresentMode = this -> chooseVKSwapPresentMode(swapSupportDetails.vkdtVKPresentModes);
-	const VkExtent2D vkdtVKSwapSurfaceExtent = this -> chooseVKSwapExtent(swapSupportDetails.vkdtVKSurfaceDetails);
+	VkSurfaceFormatKHR vkdtVKSwapSurfaceFormat = this -> chooseVKSwapSurfaceFormat(swapSupportDetails.vkdtVKSurfaceFormats);
+	VkExtent2D vkdtVKSwapSurfaceExtent = this -> chooseVKSwapExtent(swapSupportDetails.vkdtVKSurfaceDetails);
 
 	//Find Number of Images to Have in Vulkan Swapchain
 	uint32_t vkdtVKSwapImageBufferNum = swapSupportDetails.vkdtVKSurfaceDetails.minImageCount + 1;
@@ -142,6 +142,14 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 	{
 		throw std::runtime_error("Failed to Create VKDT Swapchain! Error: " + std::to_string(createVKSwapchainResult) + "!\n");
 	}
+
+	//Set Class Vulkan Surface Format & Extent
+	this -> vkdtVKSurfaceFormat = vkdtVKSwapSurfaceFormat.format;
+	this -> vkdtVKSurfaceExtent = vkdtVKSwapSurfaceExtent;
+
+	//Set pObject Vulkan Surface Format & Extent
+	_vkdt::pObjects::pVKSurfaceFormat = &vkdtVKSwapSurfaceFormat.format;
+	_vkdt::pObjects::pVKSurfaceExtent = &vkdtVKSwapSurfaceExtent;
 }
 
 VkSurfaceFormatKHR vkdt::swapchain::swapchain::chooseVKSwapSurfaceFormat
@@ -215,7 +223,7 @@ VkExtent2D vkdt::swapchain::swapchain::chooseVKSwapExtent(const VkSurfaceCapabil
 		if(this -> debug || this -> verbose)
 		{
 			std::cout
-			<< "Selected Vulkan Swapchain Extent with Width:" << vkdtVKSurfaceCapabilities.currentExtent.width		\
+			<< "Selected Vulkan Swapchain Extent with Width: " << vkdtVKSurfaceCapabilities.currentExtent.width		\
 			<< " Height: " << vkdtVKSurfaceCapabilities.currentExtent.width << "!\n";
 		}
 
@@ -256,7 +264,7 @@ VkExtent2D vkdt::swapchain::swapchain::chooseVKSwapExtent(const VkSurfaceCapabil
 	if(this -> debug || this -> verbose)
 	{
 		std::cout
-		<< "Selected Vulkan Swapchain Extent with Width:" << vkdtVKNewExtent.width		\
+		<< "Selected Vulkan Swapchain Extent with Width: " << vkdtVKNewExtent.width		\
 		<< " Height: " << vkdtVKNewExtent.width << "!\n";
 	}
 

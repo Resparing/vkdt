@@ -9,6 +9,8 @@ namespace _vkdt::pObjects
 	//Pointers to Vulkan Objects
 	VkDebugUtilsMessengerEXT* pVKDebugMessenger{};
 	VkDevice* pVKLogicalDevice{};
+	VkExtent2D* pVKSurfaceExtent{};
+	VkFormat* pVKSurfaceFormat{};
 	VkInstance* pVKInstance{};
 	VkPhysicalDevice* pVKPhysicalDevice = VK_NULL_HANDLE;
 	VkQueue* pVKGraphicsQueue{};

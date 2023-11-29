@@ -191,7 +191,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		throw std::runtime_error("Failed to Create VKDT Logical Device! Error: " + std::to_string(vkdtVKCreateDeviceResult) + "!\n");
 	}
 
-	//Get VKDT Device Queue
+	//Get VKDT Graphics Queue
 	vkGetDeviceQueue
 	(
 		this -> vkdtVKLogicalDevice,
@@ -200,7 +200,7 @@ void vkdt::device::device::createVKDTDevice(VkAllocationCallbacks* allocator)
 		_vkdt::pObjects::pVKGraphicsQueue
 	);
 
-	//Get VKDT Device Queue
+	//Get VKDT Present Queue
 	vkGetDeviceQueue
 	(
 		this -> vkdtVKLogicalDevice,
