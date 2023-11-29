@@ -9,7 +9,7 @@ APP_PATH := $(APP_DIR)$(APP_NAME)
 CPP_FILES := $(wildcard src/cpp/*.cpp) $(wildcard src/hpp/cpp/*.cpp) $(wildcard vkdt/vkdt/cpp/*.cpp) $(wildcard vkdt/_vkdt/cpp/*.cpp)
 
 #C++ Information
-CPP_INFO := -std=c++20 -O0
+CPP_INFO := -std=c++20 -stdlib=libc++ -O0
 
 #C++ Compiler
 CPP_COMPILER := clang++
