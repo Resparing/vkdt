@@ -10,7 +10,7 @@ namespace _vkdt::pObjects
 	VkDebugUtilsMessengerEXT* pVKDebugMessenger{};
 	VkDevice* pVKLogicalDevice{};
 	VkInstance* pVKInstance{};
-	VkPhysicalDevice* pVKPhysicalDevice{};
+	VkPhysicalDevice* pVKPhysicalDevice = VK_NULL_HANDLE;
 	VkQueue* pVKGraphicsQueue{};
 	VkQueue* pVKPresentQueue{};
 	VkSurfaceKHR* pVKSurface{};
