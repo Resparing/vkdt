@@ -363,7 +363,7 @@ bool vkdt::instance::instance::requestedExtensionsSupported(void) const
 		{
 			if(this -> debug || this -> verbose)
 			{
-				std::cerr << "Unsuccessfully Tried to Find VKDT Vulkan Extension: \"" << vkdtExtension << "\"!\n";
+				std::cerr << "Couldn't Find VKDT Vulkan Extension: \"" << vkdtExtension << "\"!\n";
 			}
 
 			return false;
@@ -450,7 +450,7 @@ bool vkdt::instance::instance::requestedLayersSupported(void) const
 		{
 			if(this -> debug || this -> verbose)
 			{
-				std::cerr << "Unsuccessfully Tried to Find VKDT Vulkan Layer: \"" << vkdtLayer << "\"!\n";
+				std::cerr << "Couldn't Find VKDT Vulkan Layer: \"" << vkdtLayer << "\"!\n";
 			}
 
 			return false;
