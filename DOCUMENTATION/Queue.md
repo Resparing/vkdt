@@ -38,7 +38,7 @@ Use the following include statement to include the Queue file:
 
 3. Initialize VKDT Queue
 	```cpp
-	queue(const bool debug, const bool verbose);
+	queue(const bool debug = false, const bool verbose = false);
 	```
 
 	- There are 2 parameters required:
@@ -49,7 +49,7 @@ Use the following include statement to include the Queue file:
 
 ### Deletion Function
 
-Call the following function for deleting the VKDT Surface & destroying all resources.
+Call the following function for deleting the VKDT Queue & destroying all resources.
 
 ```cpp
 ~queue();
@@ -57,10 +57,10 @@ Call the following function for deleting the VKDT Surface & destroying all resou
 
 <br>
 
-### Finished VKDT Surface Code
+### Finished VKDT Queue Code
 
 ```cpp
-#include <vkdt/surface.h>
+#include <vkdt/queue.h>
 
 vkdt::queue::queue* pVKDTQueue;
 
