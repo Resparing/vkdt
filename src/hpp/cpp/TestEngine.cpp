@@ -116,6 +116,9 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtDevice = new vkdt::device::device({}, {}, isDebug, isVerbose);
 	this -> vkdtDevice -> createVKDTDevice(nullptr);
+
+	this -> vkdtSwapchain = new vkdt::swapchain::swapchain(isDebug, isVerbose);
+	this -> vkdtSwapchain -> createVKDTSwapchain(nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -128,6 +131,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtSwapchain;  //Delete VKDT Swapchain
 	delete this -> vkdtDevice;  //Delete VKDT Device
 	delete this -> vkdtDebugMessenger;  //Delete VKDT Debug Messenger
 	delete this -> vkdtSurface;  //Delete VKDT Surface

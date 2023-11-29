@@ -23,6 +23,18 @@ vkdt::device::device::device
 		this -> vkdtVKLayers.push_back("VK_LAYER_KHRONOS_validation");
 	}
 
+	//Add Vulkan Swapchain Extension if Needed
+	if(_vkdt::pObjects::pVKSurface)
+	{
+		this -> vkdtVKExtensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+
+		//Debug Addition Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Added Required Swapchain Extension: \"" << VK_KHR_SWAPCHAIN_EXTENSION_NAME << "\"!\n";
+		}
+	}
+
 #ifdef __APPLE__
 
 	//Add Required MacOS Vulkan Portability Subset & Flags

@@ -14,4 +14,5 @@ namespace _vkdt::pObjects
 	VkQueue* pVKGraphicsQueue{};
 	VkQueue* pVKPresentQueue{};
 	VkSurfaceKHR* pVKSurface{};
+	VkSwapchainKHR* pVKSwapchain{};
 }

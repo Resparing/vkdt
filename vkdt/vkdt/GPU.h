@@ -30,6 +30,13 @@ namespace vkdt::GPU
 	private:
 
 		/**
+		 * @brief Check if Selected Vulkan Physical Device Extensions & Layers are Supported
+		 *
+		 * @param vkdtVKSelectedPhysicalDevice Vulkan Physical Device to Check Extension Support
+		 */
+		bool checkPhysicalDeviceExtensionSupport(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const;
+
+		/**
 		 * @brief Check if Vulkan Device is Suitable for VKDT
 		 *
 		 * @param vkdtVKSelectedPhysicalDevice Vulkan Physical Device to Check

@@ -4,6 +4,7 @@
 //Include Headers
 #include <_vkdt/pObjects.h>
 #include <_vkdt/queueFamily.h>
+#include <_vkdt/swapSupportDetail.h>
 
 vkdt::GPU::GPU::GPU(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
@@ -151,6 +152,74 @@ void vkdt::GPU::GPU::findVKDTGPU(const char* vkdtGPUName)
 	}
 }
 
+bool vkdt::GPU::GPU::checkPhysicalDeviceExtensionSupport(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const
+{
+	//Get Vulkan Physical Device Extensions
+	uint32_t vkdtVKDeviceExtensionCount{};
+
+	//Get Number of Vulkan Physical Device Extensions
+	const VkResult vkdtVKPhysicalDeviceExtensionsCountResult = vkEnumerateDeviceExtensionProperties
+	(
+		vkdtVKSelectedPhysicalDevice,
+		nullptr,
+		&vkdtVKDeviceExtensionCount,
+		nullptr
+	);
+
+	if(vkdtVKPhysicalDeviceExtensionsCountResult != VK_SUCCESS)
+	{
+		throw std::runtime_error
+		(
+			"Failed to Find Number of VKDT Vulkan Device Extensions! Error: " +
+			std::to_string(vkdtVKPhysicalDeviceExtensionsCountResult) +
+			"!\n"
+		);
+	}
+
+	std::vector<VkExtensionProperties> vkdtVKAvailableDeviceExtensions(vkdtVKDeviceExtensionCount);
+
+	const VkResult vkdtVKPhysicalDeviceCountResult = vkEnumerateDeviceExtensionProperties
+	(
+		vkdtVKSelectedPhysicalDevice,
+		nullptr,
+		&vkdtVKDeviceExtensionCount,
+		vkdtVKAvailableDeviceExtensions.data()
+	);
+
+	if(vkdtVKPhysicalDeviceCountResult != VK_SUCCESS)
+	{
+		throw std::runtime_error
+		(
+			"Failed to Find VKDT Vulkan Device Extensions! Error: " +
+			std::to_string(vkdtVKPhysicalDeviceCountResult) + "!\n"
+		);
+	}
+
+	//Check if Swapchain Extension in VKDT Available Device Extensions
+	for(const VkExtensionProperties& vkdtVKAvailableDeviceExtension : vkdtVKAvailableDeviceExtensions)
+	{
+		if(strcmp(vkdtVKAvailableDeviceExtension.extensionName, VK_KHR_SWAPCHAIN_EXTENSION_NAME) == 0)
+		{
+			//Debug Finding Success
+			if(this -> verbose)
+			{
+				std::cout << "Successfully Found VKDT Vulkan Swapchain Extension!\n";
+			}
+
+			//All Tests Have Passed
+			return true;
+		}
+	}
+
+	//Requested Extension was not Found
+	if(this -> debug || this -> verbose)
+	{
+		std::cerr << "Couldn't Find VKDT Vulkan Swapchain Extension!\n";
+	}
+
+	return false;
+}
+
 bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhysicalDevice) const noexcept
 {
 	//Get Index of Queue Family
@@ -161,6 +230,21 @@ bool vkdt::GPU::GPU::isVKDTGPUSuitable(const VkPhysicalDevice& vkdtVKSelectedPhy
 		this -> verbose
 	);
 
+	const bool vkdtVKExtensionsSupported = this -> checkPhysicalDeviceExtensionSupport(vkdtVKSelectedPhysicalDevice);
+
+	//Figure out if Vulkan Swapchain is Supported
+	bool vkdtVKSwapchainSupported{};
+
+	if(vkdtVKExtensionsSupported)
+	{
+		//Get Struct of VKDT Vulkan Swapchain Support Details
+		const struct _vkdt::swapSupportDetails::swapchainSupportDetails vkdtVKSwapchainSupport =		\
+		_vkdt::swapSupportDetails::queueSwapChainSupport(vkdtVKSelectedPhysicalDevice);
+
+		//Check if Vulkan Swapchain is Supported
+		vkdtVKSwapchainSupported = !vkdtVKSwapchainSupport.vkdtVKPresentModes.empty() && !vkdtVKSwapchainSupport.vkdtVKSurfaceFormats.empty();
+	}
+
 	//Return if Vulkan has Value
-	return indexes.isComplete();
+	return indexes.isComplete() && vkdtVKExtensionsSupported && vkdtVKSwapchainSupported;
 }

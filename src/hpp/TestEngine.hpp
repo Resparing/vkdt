@@ -8,6 +8,7 @@
 #include <vkdt/instance.h>
 #include <vkdt/queue.h>
 #include <vkdt/surface.h>
+#include <vkdt/swapchain.h>
 #include <vkdt/window.h>
 
 namespace TestEngine
@@ -28,6 +29,7 @@ namespace TestEngine
 		vkdt::instance::instance* vkdtInstance;
 		vkdt::queue::queue* vkdtQueue;
 		vkdt::surface::surface* vkdtSurface;
+		vkdt::swapchain::swapchain* vkdtSwapchain;
 		vkdt::window::window* vkdtWindow;
 
 		//Debugging Variables

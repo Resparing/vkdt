@@ -2,6 +2,7 @@
 #pragma once
 
 /* Headers */
+#include <algorithm>  //Clamp Functions
 #include <array>  //C++ Standard Arrays
 #include <cstddef>  //C Standard Definitions
 #include <cstdlib>  //C Standard Libary
@@ -9,6 +10,7 @@
 #include <cstring>  //C String Functions
 #include <fstream>  //File Support
 #include <iostream>  //Input / Output
+#include <limits>  //Get Maximum Value Number can Store
 #include <optional>  //Optional Values
 #include <set>  //Arrays with Unique Values
 #include <stdexcept>  //Create Exceptions
