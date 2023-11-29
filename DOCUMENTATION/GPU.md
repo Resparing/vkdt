@@ -65,7 +65,7 @@ Call the following function for deleting the VKDT Surface & destroying all resou
 ~GPU();
 ```
 
-Note that this function does not do anything at all, but is required to de-allocate the pointer created with the `new` keyword or `malloc()` function
+Note that this function does not do anything at all, but is required to destroy the pointer created with the `new` keyword or `malloc()` function
 
 <br>
 

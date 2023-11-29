@@ -74,7 +74,7 @@ vkdt::device::device::~device()
 	//Destroy Vulkan Logical Device
 	vkDestroyDevice(this -> vkdtVKLogicalDevice, this -> pAllocator);
 
-	//Debug Destruction Success
+	//Debug Deletion Success
 	if(this -> verbose)
 	{
 		std::cout << "Successfully Destroyed VKDT Device!\n";

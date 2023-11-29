@@ -19,7 +19,7 @@ vkdt::queue::queue::queue(const bool debug, const bool verbose) noexcept : debug
 
 vkdt::queue::queue::~queue()
 {
-	//Debug Destruction Success
+	//Debug Deletion Success
 	if(this -> verbose)
 	{
 		std::cerr << "Deletion Function not Required VKDT Queue!\n";

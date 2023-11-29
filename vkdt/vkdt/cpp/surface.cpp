@@ -21,7 +21,7 @@ vkdt::surface::surface::~surface()
 	//Destroy Vulkan Surface
 	vkDestroySurfaceKHR(*_vkdt::pObjects::pVKInstance, this -> vkdtVKSurface, this -> pAllocator);
 
-	//Debug Destruction Success
+	//Debug Deletion Success
 	if(this -> verbose)
 	{
 		std::cout << "Successfully Destroyed VKDT Surface!\n";

@@ -99,7 +99,7 @@ Use the following include statement to include the Instance file, as well as the
 	- There are 3 parameters:
 		1. `applicationInfo` A const reference to your application data, defined in step 3.
 		2. `debug` A const boolean to allow debugging.
-		3. `verbose` A const boolean to allow information on what is happening in the VKDT Instance. Note that this option will also add debugging to the Vulkan instance creation & destruction functions.
+		3. `verbose` A const boolean to allow information on what is happening in the VKDT Instance. Note that this option will also add debugging to the Vulkan instance creation & deletion functions.
 
 5. Get a vector of your requested Vulkan Extensions & Layers:
 	- The vector must be type `std::vector<const char*>`.
