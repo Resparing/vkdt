@@ -123,6 +123,9 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtSwapchain -> createVKDTSwapchain(nullptr);
 
 	this -> vkdtImageView -> createImageView(nullptr);
+
+	this -> vkdtPipeline = new vkdt::pipeline::pipeline(isDebug, isVerbose);
+	this -> vkdtPipeline -> createVKDTPipeline("bin/vert.spv", "bin/frag.spv", nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -135,6 +138,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtPipeline;  //Delete VKDT Pipeline
 	delete this -> vkdtImageView;  //Delete VKDT Image View
 	delete this -> vkdtSwapchain;  //Delete VKDT Swapchain
 	delete this -> vkdtDevice;  //Delete VKDT Device

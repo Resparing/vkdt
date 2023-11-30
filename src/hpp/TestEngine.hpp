@@ -7,6 +7,7 @@
 #include <vkdt/GPU.h>
 #include <vkdt/imageView.h>
 #include <vkdt/instance.h>
+#include <vkdt/pipeline.h>
 #include <vkdt/queue.h>
 #include <vkdt/surface.h>
 #include <vkdt/swapchain.h>
@@ -29,6 +30,7 @@ namespace TestEngine
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
 		vkdt::imageView::imageView* vkdtImageView;
+		vkdt::pipeline::pipeline* vkdtPipeline;
 		vkdt::queue::queue* vkdtQueue;
 		vkdt::surface::surface* vkdtSurface;
 		vkdt::swapchain::swapchain* vkdtSwapchain;

@@ -31,7 +31,7 @@ vkdt::surface::surface::~surface()
 void vkdt::surface::surface::createVKDTSurface(VkAllocationCallbacks* allocator)
 {
 	//Create Vulkan Window Surface
-	const VkResult createVulkanWindowSurfaceResult = glfwCreateWindowSurface
+	const VkResult createVKWindowSurfaceResult = glfwCreateWindowSurface
 	(
 		*_vkdt::pObjects::pVKInstance,
 		*_vkdt::pObjects::pGLFWWindow,
@@ -39,7 +39,7 @@ void vkdt::surface::surface::createVKDTSurface(VkAllocationCallbacks* allocator)
 		&this -> vkdtVKSurface
 	);
 
-	if(createVulkanWindowSurfaceResult == VK_SUCCESS)
+	if(createVKWindowSurfaceResult == VK_SUCCESS)
 	{
 		//Debug Creation Success
 		if(this -> debug || this -> verbose)
@@ -49,6 +49,6 @@ void vkdt::surface::surface::createVKDTSurface(VkAllocationCallbacks* allocator)
 	}
 	else
 	{
-		throw std::runtime_error("Failed to Create VKDT Surface Error: " + std::to_string(createVulkanWindowSurfaceResult) + "!\n");
+		throw std::runtime_error("Failed to Create VKDT Surface Error: " + std::to_string(createVKWindowSurfaceResult) + "!\n");
 	}
 }

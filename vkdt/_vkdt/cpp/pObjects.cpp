@@ -13,8 +13,11 @@ namespace _vkdt::pObjects
 	VkFormat* pVKSurfaceFormat{};
 	VkInstance* pVKInstance{};
 	VkPhysicalDevice* pVKPhysicalDevice = VK_NULL_HANDLE;
+	VkPipeline* pVKPipeline{};
+	VkPipelineLayout* pVKPipelineLayout{};
 	VkQueue* pVKGraphicsQueue{};
 	VkQueue* pVKPresentQueue{};
+	VkRenderPass* pVKRenderPass{};
 	VkSurfaceKHR* pVKSurface{};
 	VkSwapchainKHR* pVKSwapchain{};
 

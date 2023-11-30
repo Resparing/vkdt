@@ -16,8 +16,11 @@ namespace _vkdt::pObjects
 	extern VkFormat* pVKSurfaceFormat;  //Pointer to Vulkan Surface Format
 	extern VkInstance* pVKInstance;  //Pointer to Vulkan Instance
 	extern VkPhysicalDevice* pVKPhysicalDevice;  //Pointer to Vulkan Physical Device
+	extern VkPipeline* pVKPipeline;  //Pointer to Vulkan Pipeline
+	extern VkPipelineLayout* pVKPipelineLayout;  //Pointer to Vulkan Pipeline Layout
 	extern VkQueue* pVKGraphicsQueue;  //Pointer to Vulkan Graphics Queue
 	extern VkQueue* pVKPresentQueue;  //Pointer to Vulkan Present Queue
+	extern VkRenderPass* pVKRenderPass;  //Pointer to Vulkan Render Pass
 	extern VkSurfaceKHR* pVKSurface;  //Pointer to Vulkan Surface
 	extern VkSwapchainKHR* pVKSwapchain;  //Pointer to Vulkan Swapchain
 
