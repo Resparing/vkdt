@@ -16,11 +16,7 @@ namespace vkdt::pipeline
 		 * @param debug Whether to Allow Debugging in Messages
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
-		pipeline
-		(
-			const bool debug = false,
-			const bool verbose = false
-		) noexcept;
+		pipeline(const bool debug = false,const bool verbose = false) noexcept;
 
 		~pipeline();
 
