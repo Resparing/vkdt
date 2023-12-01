@@ -87,8 +87,8 @@ pVKDTSwapchain -> createVKDTSwapchain(nullptr);
 
 delete pVKDTSwapchain;
 
-this -> DestroyDevice();
-this -> DestroyGPU();
-this -> DestroySurface();
-this -> DestroyWindow();
+this -> destroyDevice();
+this -> destroyGPU();
+this -> destroySurface();
+this -> destroyWindow();
 ```
