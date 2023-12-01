@@ -126,6 +126,9 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtPipeline = new vkdt::pipeline::pipeline(isDebug, isVerbose);
 	this -> vkdtPipeline -> createVKDTPipeline("bin/vert.spv", "bin/frag.spv", nullptr);
+
+	this -> vkdtFrameBuffer = new vkdt::framebuffer::framebuffer(isDebug, isVerbose);
+	this -> vkdtFrameBuffer -> createVKDTFramebuffer(nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -138,6 +141,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtFrameBuffer;  //Delete VKDT Frame Buffer
 	delete this -> vkdtPipeline;  //Delete VKDT Pipeline
 	delete this -> vkdtImageView;  //Delete VKDT Image View
 	delete this -> vkdtSwapchain;  //Delete VKDT Swapchain

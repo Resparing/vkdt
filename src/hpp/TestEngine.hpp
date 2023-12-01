@@ -4,6 +4,7 @@
 //Include Headers
 #include <vkdt/debug.h>
 #include <vkdt/device.h>
+#include <vkdt/framebuffer.h>
 #include <vkdt/GPU.h>
 #include <vkdt/imageView.h>
 #include <vkdt/instance.h>
@@ -27,6 +28,7 @@ namespace TestEngine
 		/* VKDT Parameters */
 		vkdt::device::device* vkdtDevice;
 		vkdt::debug::messenger* vkdtDebugMessenger;
+		vkdt::framebuffer::framebuffer* vkdtFrameBuffer;
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
 		vkdt::imageView::imageView* vkdtImageView;

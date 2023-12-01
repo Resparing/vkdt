@@ -167,8 +167,8 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 		throw std::runtime_error
 		(
 			"Failed to Find Number of Vulkan Swapchain Images! Error: " +
-			std::to_string(swapchainImagesCountResult)
-			+ "!\n"
+			std::to_string(swapchainImagesCountResult) +
+			"!\n"
 		);
 	}
 
