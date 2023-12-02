@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Most functions of the VKDT Debug Messenger require a valid VKDT Instance to be setup, refer to the Instance Documentation for how to setup the VKDT Instance.
+Most functions of the VKDT Debug Messenger require a valid VKDT Instance to be setup, refer to the Instance documentation for how to setup the VKDT Instance.
 
 <br>
 

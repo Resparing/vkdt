@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Almost all functions of the VKDT Device require a valid VKDT GPU & VKDT Queue to be setup. Refer to the GPU & Queue Documentation on how to set those up.
+Almost all functions of the VKDT Device require a valid VKDT GPU & VKDT Queue to be setup. Refer to the GPU & Queue documentation on how to set those up.
 
 <br>
 

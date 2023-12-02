@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Almost all functions of the VKDT Image View require a valid VKDT Logical Device & VKDT Swapchain to be setup. Refer to the Logical Device & Swapchain Documentation on how to set those up.
+Almost all functions of the VKDT Image View require a valid VKDT Logical Device & VKDT Swapchain to be setup. Refer to the Logical Device & Swapchain documentation on how to set those up.
 
 <br>
 
