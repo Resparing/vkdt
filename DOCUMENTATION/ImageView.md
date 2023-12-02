@@ -45,6 +45,8 @@ Use the following include statement to include the Image View file:
 		1. `debug` Whether to allow debugging in messages.
 		2. `verbose` Allow general & verbose debugging methods in messages.
 
+	- The `imageView()` function must be called **before** the VKDT Swapchain is created.
+
 4. Create VKDT Image View:
 	```cpp
 	void createVKDTImageView(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
@@ -54,6 +56,8 @@ Use the following include statement to include the Image View file:
 
 	- There is 1 parameter:
 		1. `allocator` A Vulkan memory allocator.
+
+	- The `createVKDTImageView()` function must be called **after** the VKDT Swapchain is created
 
 <br>
 
