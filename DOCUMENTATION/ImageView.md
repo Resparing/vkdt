@@ -84,7 +84,7 @@ pVKDTImageView = new vkdt::imageView::imageView(true, true);
 
 this -> createSwapchain();
 
-pVKDTImageView -> createVKDTSurface(nullptr);
+pVKDTImageView -> createVKDTImageView(nullptr);
 
 ...
 
