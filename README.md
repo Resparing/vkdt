@@ -13,13 +13,13 @@ VKDT is a small & extensible C++ library to help speed up the development proces
 
 1. Download the entire project.
 2. Setup Makefile
-    1. Configure the `INC_DIR`, `INC_LIB`, `INC_DYLIB`, and `INC_FLAGS`
-    2. If needed, change the compiler from `clang++` to one of your choice
+	1. Configure the `INC_DIR`, `INC_LIB`, `INC_DYLIB`, and `INC_FLAGS`
+	2. If needed, change the compiler from `clang++` to one of your choice
 3. Setup Environment Variables **FOR MACOS ONLY**
-    1. Add a `.zshrc` with `VK_ICD_FILENAMES` & `VK_LAYER_PATH` set to the lib folder
+	1. Add a `.zshrc` with `VK_ICD_FILENAMES` & `VK_LAYER_PATH` set to the lib folder
 4. Run Makefile
-    - Type `make` into the terminal to build the sample project
-    - Type `make debug` into the terminal to build the sample project with debugging
+	- Type `make` into the terminal to build the sample project
+	- Type `make debug` into the terminal to build the sample project with debugging
 
 <br>
 

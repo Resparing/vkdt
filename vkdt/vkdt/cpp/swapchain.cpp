@@ -6,7 +6,7 @@
 #include <_vkdt/queueFamily.h>
 #include <_vkdt/swapSupportDetail.h>
 
-vkdt::swapchain::swapchain::swapchain(const bool debug, const bool verbose) noexcept :  debug(debug), verbose(verbose)
+vkdt::swapchain::swapchain::swapchain(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Swapchain Pointer
 	_vkdt::pObjects::pVKSwapchain = &this -> vkdtVKSwapchain;

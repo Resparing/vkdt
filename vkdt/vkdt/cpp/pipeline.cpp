@@ -187,8 +187,8 @@ void vkdt::pipeline::pipeline::createVKDTPipeline
 	//Allow Dynamic States
 	std::vector<VkDynamicState> vkdtVKDynamicStates =
 	{
-    	VK_DYNAMIC_STATE_VIEWPORT,
-    	VK_DYNAMIC_STATE_SCISSOR
+		VK_DYNAMIC_STATE_VIEWPORT,
+		VK_DYNAMIC_STATE_SCISSOR
 	};
 
 	//Vulkan Pipeline Dynamic State Creation Information Struct
@@ -435,7 +435,7 @@ void vkdt::pipeline::pipeline::createVKDTPipeline
 
 	//Destroy Vulkan Vertex & Fragment Shader Modules
 	vkDestroyShaderModule(*_vkdt::pObjects::pVKLogicalDevice, fragShaderModule, this -> pAllocator);
-    vkDestroyShaderModule(*_vkdt::pObjects::pVKLogicalDevice, vertShaderModule, this -> pAllocator);
+	vkDestroyShaderModule(*_vkdt::pObjects::pVKLogicalDevice, vertShaderModule, this -> pAllocator);
 }
 
 std::vector<char> vkdt::pipeline::pipeline::readFile(const std::string& path) const
@@ -459,8 +459,8 @@ std::vector<char> vkdt::pipeline::pipeline::readFile(const std::string& path) co
 
 	//Get Length of File
 	file.seekg(0, std::ios::end);
-    std::streamsize fileSize = file.tellg();
-    file.seekg(0, std::ios::beg);
+	std::streamsize fileSize = file.tellg();
+	file.seekg(0, std::ios::beg);
 
 	//Vector of File Information
 	std::vector<char> contents(static_cast<size_t>(fileSize));
