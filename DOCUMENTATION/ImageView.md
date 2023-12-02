@@ -47,7 +47,7 @@ Use the following include statement to include the Image View file:
 
 4. Create VKDT Image View:
 	```cpp
-	void createVKDTSurface(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
+	void createVKDTImageView(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 	```
 
 	- All VKDT Image View will be created and get added to a vector.

@@ -32,7 +32,7 @@ vkdt::imageView::imageView::~imageView()
 	}
 }
 
-void vkdt::imageView::imageView::createImageView(VkAllocationCallbacks* allocator)
+void vkdt::imageView::imageView::createVKDTImageView(VkAllocationCallbacks* allocator)
 {
 	//Set Vulkan Allocator
 	this -> pAllocator = allocator;

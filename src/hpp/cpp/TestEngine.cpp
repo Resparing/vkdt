@@ -122,7 +122,7 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtSwapchain = new vkdt::swapchain::swapchain(isDebug, isVerbose);
 	this -> vkdtSwapchain -> createVKDTSwapchain(nullptr);
 
-	this -> vkdtImageView -> createImageView(nullptr);
+	this -> vkdtImageView -> createVKDTImageView(nullptr);
 
 	this -> vkdtPipeline = new vkdt::pipeline::pipeline(isDebug, isVerbose);
 	this -> vkdtPipeline -> createVKDTPipeline("bin/vert.spv", "bin/frag.spv", nullptr);

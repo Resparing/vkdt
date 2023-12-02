@@ -25,7 +25,7 @@ namespace vkdt::imageView
 		 *
 		 * @param allocator Vulkan Memory Allocator
 		 */
-		void createImageView(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
+		void createVKDTImageView(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);
 
 	private:
 
