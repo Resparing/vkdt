@@ -36,7 +36,7 @@ Use the following include statement to include the GPU file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT GPU creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at & also debug important information about found GPU's.
 
-3. Initialize VKDT Surface
+3. Initialize VKDT Surface:
 	```cpp
 	GPU(const bool debug = false, const bool verbose = false) noexcept;
 	```

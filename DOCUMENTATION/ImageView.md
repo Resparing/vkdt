@@ -1,5 +1,3 @@
-Call init before swapchain things
-
 # DOCUMENTATION
 
 VKDT - A Vulkan Abstraction to Help Developers
@@ -38,7 +36,7 @@ Use the following include statement to include the Image View file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT Image View creation status. The `verbose` variable is used for debugging initialization, deletion & stage of Image View creation process.
 
-3. Initialize VKDT Image View
+3. Initialize VKDT Image View:
 	```cpp
 	imageView(const bool debug = false, const bool verbose = false) noexcept;
 	```
@@ -77,9 +75,11 @@ Call the following function for deleting the VKDT Image View & destroying all re
 vkdt::imageView::imageView* pVKDTImageView;
 
 this -> createDevice();
-this -> createSwapchain();
 
 pVKDTImageView = new vkdt::imageView::imageView(true, true);
+
+this -> createSwapchain();
+
 pVKDTImageView -> createVKDTSurface(nullptr);
 
 ...

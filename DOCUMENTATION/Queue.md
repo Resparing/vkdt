@@ -36,7 +36,7 @@ Use the following include statement to include the Queue file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable currently does not do anything. The verbose variable can be used to see if the Queue was initialized properly
 
-3. Initialize VKDT Queue
+3. Initialize VKDT Queue:
 	```cpp
 	queue(const bool debug = false, const bool verbose = false);
 	```

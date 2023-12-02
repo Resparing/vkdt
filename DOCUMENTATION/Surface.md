@@ -36,7 +36,7 @@ Use the following include statement to include the Surface file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging the VKDT Surface creation status. The `verbose` variable can be used to check what stage the VKDT Surface is at & also debug allocation & deletion methods.
 
-3. Initialize VKDT Surface
+3. Initialize VKDT Surface:
 	```cpp
 	surface(const bool debug = false, const bool verbose = false) noexcept;
 	```

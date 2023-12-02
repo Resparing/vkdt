@@ -36,7 +36,7 @@ Use the following include statement to include the Swapchain file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable debugs creation success & when the VKDT Swapchain successfully selects the correct object. The verbose variable can be used to see initialization, deletion, & when the Swapchain couldn't find an optimal object.
 
-3. Initialize VKDT Swapchain
+3. Initialize VKDT Swapchain:
 	```cpp
 	swapchain(const bool debug = false, const bool verbose = false) noexcept;
 	```

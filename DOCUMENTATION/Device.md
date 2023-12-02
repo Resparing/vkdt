@@ -36,7 +36,7 @@ Use the following include statement to include the Device file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable is used for debugging information on the creation status of the VKDT GPU. The `verbose` variable can be used to check requested VKDT Extensions & Layers & information on parameters supplied.
 
-3. Initialize VKDT Device
+3. Initialize VKDT Device:
 	```cpp
 	device
 	(

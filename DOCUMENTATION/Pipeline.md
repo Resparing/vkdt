@@ -47,7 +47,7 @@ Use the following include statement to include the Pipeline file:
 2. Configure `debug` & `verbose` variables:
 	- These variables are for printing information to the stdout. The `debug` variable debugs creation success & when the VKDT Swapchain successfully selects the correct object. The verbose variable can be used to see initialization, deletion, struct initialization, & file information.
 
-3. Initialize VKDT Pipeline
+3. Initialize VKDT Pipeline:
 	```cpp
 	pipeline(const bool debug = false,const bool verbose = false) noexcept;
 	```
@@ -56,7 +56,7 @@ Use the following include statement to include the Pipeline file:
 		1. `debug` Whether to allow debugging in messages.
 		2. `verbose` Allow general & verbose debugging methods in messages.
 
-3. Create VKDT Pipeline
+3. Create VKDT Pipeline:
 	```cpp
 	void createVKDTPipeline
 	(
