@@ -2,6 +2,7 @@
 #pragma once
 
 //Include Headers
+#include <vkdt/commandbuffer.h>
 #include <vkdt/debug.h>
 #include <vkdt/device.h>
 #include <vkdt/framebuffer.h>
@@ -26,6 +27,7 @@ namespace TestEngine
 	private:
 
 		/* VKDT Parameters */
+		vkdt::commandbuffer::commandbuffer* vkdtCommandBuffer;
 		vkdt::device::device* vkdtDevice;
 		vkdt::debug::messenger* vkdtDebugMessenger;
 		vkdt::framebuffer::framebuffer* vkdtFrameBuffer;

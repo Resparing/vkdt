@@ -129,6 +129,9 @@ void TestEngine::TestEngine::vkdtInit(void)
 
 	this -> vkdtFrameBuffer = new vkdt::framebuffer::framebuffer(isDebug, isVerbose);
 	this -> vkdtFrameBuffer -> createVKDTFramebuffer(nullptr);
+
+	this -> vkdtCommandBuffer = new vkdt::commandbuffer::commandbuffer(isDebug, isVerbose);
+	this -> vkdtCommandBuffer -> createVKDTCommandbuffer(nullptr);
 }
 
 void TestEngine::TestEngine::mainLoop(void)
@@ -141,6 +144,7 @@ void TestEngine::TestEngine::mainLoop(void)
 
 TestEngine::TestEngine::~TestEngine()
 {
+	delete this -> vkdtCommandBuffer;  //Delete Vulkan Command Buffer
 	delete this -> vkdtFrameBuffer;  //Delete VKDT Frame Buffer
 	delete this -> vkdtPipeline;  //Delete VKDT Pipeline
 	delete this -> vkdtImageView;  //Delete VKDT Image View

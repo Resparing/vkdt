@@ -10,6 +10,8 @@ namespace _vkdt::pObjects
 	extern GLFWwindow** pGLFWWindow;  //Pointer to GLFW Window
 
 	//Pointers to Vulkan Objects
+	extern VkCommandBuffer* pVKCommandBuffer;  //Pointer to Vulkan Command Buffer
+	extern VkCommandPool* pVKCommandPool;  //Pointer to Vulkan Command Pool
 	extern VkDebugUtilsMessengerEXT* pVKDebugMessenger;  //Pointer to Vulkan Debug Messenger
 	extern VkDevice* pVKLogicalDevice;  //Pointer to Vulkan Logical Device
 	extern VkExtent2D* pVKSurfaceExtent;  //Pointer to Vulkan Surface Extent
@@ -24,6 +26,7 @@ namespace _vkdt::pObjects
 	extern VkSurfaceKHR* pVKSurface;  //Pointer to Vulkan Surface
 	extern VkSwapchainKHR* pVKSwapchain;  //Pointer to Vulkan Swapchain
 
+	//Pointers to Vectors of Vulkan Objects
 	extern std::vector<VkFramebuffer>* pFrameBuffers;  //Pointer to Vector of Vulkan Framebuffers
 	extern std::vector<VkImageView>* pSwapImageViews;  //Pointer to Vector of Vulkan Swapchain Image Views
 	extern std::vector<VkImage>* pSwapImages;  //Pointer to Vector of Vulkan Swapchain Images
