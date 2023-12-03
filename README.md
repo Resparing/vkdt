@@ -23,7 +23,6 @@ VKDT is a small & extensible C++ library to help speed up the development proces
 
 <br>
 
-
 ### Documentation
 
 Documentation can be found in the DOCUMENTATION folder

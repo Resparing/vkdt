@@ -93,6 +93,22 @@ void vkdt::pipeline::pipeline::createVKDTPipeline
 		.pColorAttachments = &colorAttachmentReference,
 	};
 
+	//Vulkan Subpass Dependency Struct
+	VkSubpassDependency subpassDependency =
+	{
+		//Indexes of Vulkan Dependency & Dependent Subpass
+		.srcSubpass = VK_SUBPASS_EXTERNAL,
+		.dstSubpass = 0,
+
+		//Wait for Vulkan Swap Chain to Finish Reading Image Before Accessing
+		.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
+		.srcAccessMask = 0,
+
+		//Prevent Transition from Color Attachment to Writing Color Attachment Until Needed
+		.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
+		.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
+	};
+
 	//Vulkan Pipeline Renderpass Creation Information Struct
 	VkRenderPassCreateInfo renderPassCreateInfo =
 	{
@@ -106,6 +122,10 @@ void vkdt::pipeline::pipeline::createVKDTPipeline
 		//Pipeline Subpass Information
 		.subpassCount = 1,
 		.pSubpasses = &subpass,
+
+		//Dependencies
+		.dependencyCount = 1,
+		.pDependencies = &subpassDependency,
 	};
 
 	//Create Vulkan Renderpass

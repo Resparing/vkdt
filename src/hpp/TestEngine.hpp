@@ -5,6 +5,7 @@
 #include <vkdt/commandbuffer.h>
 #include <vkdt/debug.h>
 #include <vkdt/device.h>
+#include <vkdt/frame.h>
 #include <vkdt/framebuffer.h>
 #include <vkdt/GPU.h>
 #include <vkdt/imageView.h>
@@ -30,6 +31,7 @@ namespace TestEngine
 		vkdt::commandbuffer::commandbuffer* vkdtCommandBuffer;
 		vkdt::device::device* vkdtDevice;
 		vkdt::debug::messenger* vkdtDebugMessenger;
+		vkdt::frame::frame* vkdtFrame;
 		vkdt::framebuffer::framebuffer* vkdtFrameBuffer;
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;

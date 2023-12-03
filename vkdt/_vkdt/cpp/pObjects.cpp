@@ -13,6 +13,7 @@ namespace _vkdt::pObjects
 	VkDevice* pVKLogicalDevice{};
 	VkExtent2D* pVKSurfaceExtent{};
 	VkFormat* pVKSurfaceFormat{};
+	VkFence* pVKInFlightFence{};
 	VkInstance* pVKInstance{};
 	VkPhysicalDevice* pVKPhysicalDevice = VK_NULL_HANDLE;
 	VkPipeline* pVKPipeline{};
@@ -20,6 +21,8 @@ namespace _vkdt::pObjects
 	VkQueue* pVKGraphicsQueue{};
 	VkQueue* pVKPresentQueue{};
 	VkRenderPass* pVKRenderPass{};
+	VkSemaphore* pVKImageAvailableSemaphore{};
+	VkSemaphore* pVKRenderFinishedSemaphore{};
 	VkSurfaceKHR* pVKSurface{};
 	VkSwapchainKHR* pVKSwapchain{};
 

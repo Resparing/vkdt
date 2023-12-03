@@ -16,6 +16,7 @@ namespace _vkdt::pObjects
 	extern VkDevice* pVKLogicalDevice;  //Pointer to Vulkan Logical Device
 	extern VkExtent2D* pVKSurfaceExtent;  //Pointer to Vulkan Surface Extent
 	extern VkFormat* pVKSurfaceFormat;  //Pointer to Vulkan Surface Format
+	extern VkFence* pVKInFlightFence;  //Pointer to Vulkan Vulkan In Flight Fence
 	extern VkInstance* pVKInstance;  //Pointer to Vulkan Instance
 	extern VkPhysicalDevice* pVKPhysicalDevice;  //Pointer to Vulkan Physical Device
 	extern VkPipeline* pVKPipeline;  //Pointer to Vulkan Pipeline
@@ -23,6 +24,8 @@ namespace _vkdt::pObjects
 	extern VkQueue* pVKGraphicsQueue;  //Pointer to Vulkan Graphics Queue
 	extern VkQueue* pVKPresentQueue;  //Pointer to Vulkan Present Queue
 	extern VkRenderPass* pVKRenderPass;  //Pointer to Vulkan Render Pass
+	extern VkSemaphore* pVKImageAvailableSemaphore;  //Pointer to Vulkan Image Available Semaphore
+	extern VkSemaphore* pVKRenderFinishedSemaphore;  //Pointer to Vulkan Render Finished Semaphore
 	extern VkSurfaceKHR* pVKSurface;  //Pointer to Vulkan Surface
 	extern VkSwapchainKHR* pVKSwapchain;  //Pointer to Vulkan Swapchain
 

@@ -9,6 +9,7 @@ vkdt::commandbuffer::commandbuffer::commandbuffer(const bool debug, const bool v
 {
 	//Set Vulkan Command Pool Pointer
 	_vkdt::pObjects::pVKCommandPool = &this -> vkdtVKCommandPool;
+	_vkdt::pObjects::pVKCommandBuffer = &this -> vkdtVKCommandBuffer;
 
 	//Debug Initialization Success
 	if(this -> verbose)

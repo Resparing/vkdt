@@ -112,7 +112,7 @@ void vkdt::swapchain::swapchain::createVKDTSwapchain(VkAllocationCallbacks* allo
 	const std::array<const uint32_t, 2> vkdtVKQueueFamilyIndexes = {indexes.vkdtVKGraphicsFamily.value(),indexes.vkdtVKPresentFamily.value()};
 
 	//Change Vulkan Swapchain Mode to Concurrent if the Queue Family Indexes are Different
-	if(indexes.vkdtVKGraphicsFamily.value() != indexes.vkdtVKPresentFamily.value())
+	if(indexes.vkdtVKGraphicsFamily != indexes.vkdtVKPresentFamily)
 	{
 		//Change Image Sharing Mode
 		createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
