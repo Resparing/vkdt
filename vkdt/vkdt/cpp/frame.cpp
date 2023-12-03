@@ -267,11 +267,18 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 void vkdt::frame::frame::stopVKDTFrame(void)
 {
 	//Wait for Vulkan Logical Device to Finish Executing
-	vkDeviceWaitIdle(*_vkdt::pObjects::pVKLogicalDevice);
+	const VkResult waitForVKLogicalDeviceResult = vkDeviceWaitIdle(*_vkdt::pObjects::pVKLogicalDevice);
 
-	//Debug Idling Success
-	if(this -> verbose)
+	if(waitForVKLogicalDeviceResult == VK_SUCCESS)
 	{
-		std::cout << "Successfully Stopped VKDT Frame!\n";
+		//Debug Idling Success
+		if(this -> verbose)
+		{
+			std::cout << "Successfully Stopped VKDT Frame!\n";
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Failed to Wait for VKDT Device to Stop! Error: " + std::to_string(waitForVKLogicalDeviceResult) + "!\n");
 	}
 }
