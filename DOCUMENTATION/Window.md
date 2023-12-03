@@ -19,7 +19,7 @@ The VKDT Window does not need any Objects to be setup.
 
 ### Adding VKDT Window Header
 
-Use the following include statement to include the window file, as well as the necessary `vkdt/_windowEnum.h` header file.
+Use the following include statement to include the window file, as well as the necessary `vkdt/_windowEnum.h` header file:
 ```cpp
 #include <vkdt/window.h>
 ```
@@ -71,7 +71,7 @@ Use the following include statement to include the window file, as well as the n
 
 ### Deletion Function
 
-Call the following function for deleting the VKDT Window & destroying all resources.
+Call the following function for deleting the VKDT Window & destroying all resources:
 
 ```cpp
 ~window();

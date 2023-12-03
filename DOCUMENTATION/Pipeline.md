@@ -13,7 +13,7 @@ All debugging methods are printed with `std::cout`, all runtime errors are throw
 
 ### Requirements
 
-Almost all functions of the VKDT Pipeline require a valid VKDT Device, VKDT Swapchain. Refer their respective documentation on how to set those up.
+Almost all functions of the VKDT Pipeline require a valid VKDT Device & VKDT Swapchain. Refer their respective documentation on how to set those up.
 
 <br>
 
