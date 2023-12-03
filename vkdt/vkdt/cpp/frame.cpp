@@ -255,7 +255,13 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 		.pImageIndices = &vkdtVKSwapImageIndex
 	};
 
-	vkQueuePresentKHR(*_vkdt::pObjects::pVKPresentQueue, &vkdtVKPresentInfo);
+	//Show Frame to Screen
+	const VkResult presentVKQueueResult = vkQueuePresentKHR(*_vkdt::pObjects::pVKPresentQueue, &vkdtVKPresentInfo);
+
+	if(presentVKQueueResult != VK_SUCCESS)
+	{
+		throw std::runtime_error("Failed to Draw VKDT Frame! Error:" + std::to_string(presentVKQueueResult) + "!\n");
+	}
 }
 
 void vkdt::frame::frame::stopFrame(void)
