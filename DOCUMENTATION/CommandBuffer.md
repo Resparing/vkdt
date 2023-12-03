@@ -6,7 +6,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Command Buffer is an abstraction over Vulkan Command Buffer & Vulkan Command Pool, it is found in the `vkdt/commandbuffer.h` header file.
+The VKDT Command Buffer is an abstraction over Vulkan Command Buffer & vectors of Vulkan Command Pools, it is found in the `vkdt/commandbuffer.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>

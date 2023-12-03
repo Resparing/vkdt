@@ -6,7 +6,7 @@ VKDT - A Vulkan Abstraction to Help Developers
 
 ### Introduction
 
-The VKDT Frame is an abstraction over the Vulkan Semaphore (Image Available & Render Finished) & Vulkan Fence, it is found in the `vkdt/frame.h` header file.
+The VKDT Frame is an abstraction over vectors of Vulkan Semaphores (Image Available & Render Finished) & vectors of Vulkan Fences, it is found in the `vkdt/frame.h` header file.
 All debugging methods are printed with `std::cout`, all runtime errors are thrown with `throw std::runtime_error()`. These errors can be caught & debugged with a try-catch & `const std::exception&`.
 
 <br>
