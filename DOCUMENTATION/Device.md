@@ -47,7 +47,7 @@ Use the following include statement to include the Device file:
 	) noexcept;
 	```
 
-	- There are 2 parameters required:
+	- There are 4 parameters required:
 		1. `vkdtRequestedExtensions` A Reference to a `std::vector<const char*>` of requested Vulkan Device Extensions.
 		2. `vkdtRequestedLayers` A Reference to a `std::vector<const char*>` of requested Vulkan Device Layers.
 		3. `debug` Whether to allow debugging in messages.
