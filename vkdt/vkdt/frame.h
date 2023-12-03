@@ -35,7 +35,7 @@ namespace vkdt::frame
 		/**
 		 * @brief Stop Frame Execution
 		 */
-		void stopFrame(void);
+		void stopVKDTFrame(void);
 
 	private:
 

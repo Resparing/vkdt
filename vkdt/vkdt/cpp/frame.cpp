@@ -264,7 +264,7 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	}
 }
 
-void vkdt::frame::frame::stopFrame(void)
+void vkdt::frame::frame::stopVKDTFrame(void)
 {
 	//Wait for Vulkan Logical Device to Finish Executing
 	vkDeviceWaitIdle(*_vkdt::pObjects::pVKLogicalDevice);

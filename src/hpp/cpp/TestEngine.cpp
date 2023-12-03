@@ -146,7 +146,7 @@ void TestEngine::TestEngine::mainLoop(void)
 		this -> vkdtFrame -> drawVKDTFrame();
 	}
 
-	this -> vkdtFrame -> stopFrame();
+	this -> vkdtFrame -> stopVKDTFrame();
 }
 
 TestEngine::TestEngine::~TestEngine()
