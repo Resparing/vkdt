@@ -8,9 +8,9 @@
 vkdt::frame::frame::frame(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Semaphores & Fences Pointer
-	_vkdt::pObjects::pVKImageAvailableSemaphore = &this -> vkdtVKImageAvailableSemaphore;
-	_vkdt::pObjects::pVKRenderFinishedSemaphore = &this -> vkdtVKRenderFinishedSemaphore;
-	_vkdt::pObjects::pVKInFlightFence = &this -> vkdtVKInFlightFence;
+	_vkdt::pObjects::pImageAvailableSemaphores = &this -> vkdtVKImageAvailableSemaphores;
+	_vkdt::pObjects::pRenderFinishedSemaphores = &this -> vkdtVKRenderFinishedSemaphores;
+	_vkdt::pObjects::pInFlightFences = &this -> vkdtVKInFlightFences;
 
 	//Debug Initialization Success
 	if(this -> verbose)
@@ -21,10 +21,14 @@ vkdt::frame::frame::frame(const bool debug, const bool verbose) noexcept : debug
 
 vkdt::frame::frame::~frame()
 {
-	//Destroy Vulkan Semaphores & In-Flight Fence
-	vkDestroySemaphore(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKImageAvailableSemaphore, this -> pAllocator);
-	vkDestroySemaphore(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKRenderFinishedSemaphore, this -> pAllocator);
-	vkDestroyFence(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKInFlightFence, this -> pAllocator);
+	//Repeat for Max Frames in Flight
+	for(size_t i{}; i < _vkdt::pObjects::pCommandBuffers -> size(); ++i)
+	{
+		//Destroy Vulkan Semaphores & In-Flight Fence
+		vkDestroySemaphore(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKImageAvailableSemaphores[i], this -> pAllocator);
+		vkDestroySemaphore(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKRenderFinishedSemaphores[i], this -> pAllocator);
+		vkDestroyFence(*_vkdt::pObjects::pVKLogicalDevice, this -> vkdtVKInFlightFences[i], this -> pAllocator);
+	}
 
 	//Debug Destruction Success
 	if(this -> verbose)
@@ -37,6 +41,11 @@ void vkdt::frame::frame::setupVKDTFrame(VkAllocationCallbacks* allocator)
 {
 	//Set Vulkan Memory Allocator
 	this -> pAllocator = allocator;
+
+	//Resize Semaphore & Fences Vectors to Command Buffer Size
+	this -> vkdtVKImageAvailableSemaphores.resize(_vkdt::pObjects::pCommandBuffers -> size());
+	this -> vkdtVKRenderFinishedSemaphores.resize(_vkdt::pObjects::pCommandBuffers -> size());
+	this -> vkdtVKInFlightFences.resize(_vkdt::pObjects::pCommandBuffers -> size());
 
 	//Vulkan Semaphore Creation Information Struct
 	VkSemaphoreCreateInfo semaphoreCreateInfo =
@@ -55,85 +64,89 @@ void vkdt::frame::frame::setupVKDTFrame(VkAllocationCallbacks* allocator)
 		.flags = VK_FENCE_CREATE_SIGNALED_BIT,
 	};
 
-	//Create Vulkan Image Available Semaphore
-	const VkResult createVKImageAvailableSemaphoreResult = vkCreateSemaphore
-	(
-		*_vkdt::pObjects::pVKLogicalDevice,
-		&semaphoreCreateInfo,
-		this -> pAllocator,
-		&this -> vkdtVKImageAvailableSemaphore
-	);
-
-	if(createVKImageAvailableSemaphoreResult == VK_SUCCESS)
+	//Repeat for Max Frames in Flight
+	for(size_t i{}; i < _vkdt::pObjects::pCommandBuffers -> size(); ++i)
 	{
-		//Debug Creation Success
-		if(this -> verbose)
-		{
-			std::cout << "Successfully Created Vulkan Image Available Semaphore!\n";
-		}
-	}
-	else
-	{
-		throw std::runtime_error
+		//Create Vulkan Image Available Semaphore
+		const VkResult createVKImageAvailableSemaphoreResult = vkCreateSemaphore
 		(
-			"Failed to Create Vulkan Image Available Semaphore! Error: " +
-			std::to_string(createVKImageAvailableSemaphoreResult) +
-			"!\n"
+			*_vkdt::pObjects::pVKLogicalDevice,
+			&semaphoreCreateInfo,
+			this -> pAllocator,
+			&this -> vkdtVKImageAvailableSemaphores[i]
 		);
-	}
 
-	//Create Vulkan Render Finished Semaphore
-	const VkResult createVKRenderFinishedSemaphoreResult = vkCreateSemaphore
-	(
-		*_vkdt::pObjects::pVKLogicalDevice,
-		&semaphoreCreateInfo,
-		this -> pAllocator,
-		&this -> vkdtVKRenderFinishedSemaphore
-	);
-
-	if(createVKRenderFinishedSemaphoreResult == VK_SUCCESS)
-	{
-		//Debug Creation Success
-		if(this -> verbose)
+		if(createVKImageAvailableSemaphoreResult == VK_SUCCESS)
 		{
-			std::cout << "Successfully Created Vulkan Render Finished Semaphore!\n";
+			//Debug Creation Success
+			if(this -> verbose)
+			{
+				std::cout << "Successfully Created Vulkan Image Available Semaphore!\n";
+			}
 		}
-	}
-	else
-	{
-		throw std::runtime_error
-		(
-			"Failed to Create Vulkan Render Finished Semaphore! Error: " +
-			std::to_string(createVKRenderFinishedSemaphoreResult) +
-			"!\n"
-		);
-	}
-
-	//Create Vulkan In-Flight Fence
-	const VkResult createVKInFlightFenceResult = vkCreateFence
-	(
-		*_vkdt::pObjects::pVKLogicalDevice,
-		&fenceCreateInfo,
-		this -> pAllocator,
-		&this -> vkdtVKInFlightFence
-	);
-
-	if(createVKInFlightFenceResult == VK_SUCCESS)
-	{
-		//Debug Creation Success
-		if(this -> verbose)
+		else
 		{
-			std::cout << "Successfully Created Vulkan In Flight Fence!\n";
+			throw std::runtime_error
+			(
+				"Failed to Create Vulkan Image Available Semaphore! Error: " +
+				std::to_string(createVKImageAvailableSemaphoreResult) +
+				"!\n"
+			);
 		}
-	}
-	else
-	{
-		throw std::runtime_error
+
+		//Create Vulkan Render Finished Semaphore
+		const VkResult createVKRenderFinishedSemaphoreResult = vkCreateSemaphore
 		(
-			"Failed to Create Vulkan In-Flight Fence! Error: " +
-			std::to_string(createVKInFlightFenceResult) +
-			"!\n"
+			*_vkdt::pObjects::pVKLogicalDevice,
+			&semaphoreCreateInfo,
+			this -> pAllocator,
+			&this -> vkdtVKRenderFinishedSemaphores[i]
 		);
+
+		if(createVKRenderFinishedSemaphoreResult == VK_SUCCESS)
+		{
+			//Debug Creation Success
+			if(this -> verbose)
+			{
+				std::cout << "Successfully Created Vulkan Render Finished Semaphore!\n";
+			}
+		}
+		else
+		{
+			throw std::runtime_error
+			(
+				"Failed to Create Vulkan Render Finished Semaphore! Error: " +
+				std::to_string(createVKRenderFinishedSemaphoreResult) +
+				"!\n"
+			);
+		}
+
+		//Create Vulkan In-Flight Fence
+		const VkResult createVKInFlightFenceResult = vkCreateFence
+		(
+			*_vkdt::pObjects::pVKLogicalDevice,
+			&fenceCreateInfo,
+			this -> pAllocator,
+			&this -> vkdtVKInFlightFences[i]
+		);
+
+		if(createVKInFlightFenceResult == VK_SUCCESS)
+		{
+			//Debug Creation Success
+			if(this -> verbose)
+			{
+				std::cout << "Successfully Created Vulkan In Flight Fence!\n";
+			}
+		}
+		else
+		{
+			throw std::runtime_error
+			(
+				"Failed to Create Vulkan In-Flight Fence! Error: " +
+				std::to_string(createVKInFlightFenceResult) +
+				"!\n"
+			);
+		}
 	}
 
 	//Debug Frame Initialization Success
@@ -145,12 +158,15 @@ void vkdt::frame::frame::setupVKDTFrame(VkAllocationCallbacks* allocator)
 
 void vkdt::frame::frame::drawVKDTFrame(void)
 {
+	//Index of Current Frame
+	uint32_t vkdtCurrentFrame{};
+
 	//Wait for Last Frame to Finish Rendering
 	const VkResult waitForVKFencesResult = vkWaitForFences
 	(
 		*_vkdt::pObjects::pVKLogicalDevice,
 		1,
-		&this -> vkdtVKInFlightFence,
+		&this -> vkdtVKInFlightFences[vkdtCurrentFrame],
 		VK_TRUE,
 		UINT64_MAX
 	);
@@ -161,7 +177,7 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	}
 
 	//Reset Vulkan Command Buffer
-	const VkResult resetVKFencesResult = vkResetFences(*_vkdt::pObjects::pVKLogicalDevice, 1, &this -> vkdtVKInFlightFence);
+	const VkResult resetVKFencesResult = vkResetFences(*_vkdt::pObjects::pVKLogicalDevice, 1, &this -> vkdtVKInFlightFences[vkdtCurrentFrame]);
 
 	if(resetVKFencesResult != VK_SUCCESS)
 	{
@@ -177,7 +193,7 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 		*_vkdt::pObjects::pVKLogicalDevice,
 		*_vkdt::pObjects::pVKSwapchain,
 		UINT64_MAX,
-		this -> vkdtVKImageAvailableSemaphore,
+		this -> vkdtVKImageAvailableSemaphores[vkdtCurrentFrame],
 		VK_NULL_HANDLE,
 		&vkdtVKSwapImageIndex
 	);
@@ -188,7 +204,7 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	}
 
 	//Reset Vulkan Command Buffer
-	const VkResult resetVkCommandBufferResult = vkResetCommandBuffer(*_vkdt::pObjects::pVKCommandBuffer, 0);
+	const VkResult resetVkCommandBufferResult = vkResetCommandBuffer((*_vkdt::pObjects::pCommandBuffers)[vkdtCurrentFrame], 0);
 
 	if(resetVkCommandBufferResult != VK_SUCCESS)
 	{
@@ -196,11 +212,11 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	}
 
 	//Record Vulkan Command Buffer
-	vkdt::commandbuffer::commandbuffer::recordVKCommandBuffer(*_vkdt::pObjects::pVKCommandBuffer, vkdtVKSwapImageIndex);
+	vkdt::commandbuffer::commandbuffer::recordVKCommandBuffer((*_vkdt::pObjects::pCommandBuffers)[vkdtCurrentFrame], vkdtVKSwapImageIndex);
 
 	//Vulkan Wait & Signal Semaphores
-	VkSemaphore vkdtVKWaitSemaphores[] = {this -> vkdtVKImageAvailableSemaphore};
-	VkSemaphore vkdtVKSignalSemaphores[] = {this -> vkdtVKRenderFinishedSemaphore};
+	VkSemaphore vkdtVKWaitSemaphores[] = {this -> vkdtVKImageAvailableSemaphores[vkdtCurrentFrame]};
+	VkSemaphore vkdtVKSignalSemaphores[] = {this -> vkdtVKRenderFinishedSemaphores[vkdtCurrentFrame]};
 
 	//Vulkan Pipeline Stages
 	VkPipelineStageFlags vkdtVkWaitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
@@ -224,11 +240,16 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 
 		//Vulkan Command Buffer Information
 		.commandBufferCount = 1,
-		.pCommandBuffers = _vkdt::pObjects::pVKCommandBuffer,
+		.pCommandBuffers = &(*_vkdt::pObjects::pCommandBuffers)[vkdtCurrentFrame],
 	};
 
 	//Submit VKDT Queue
-	const VkResult submitVkQueueResult = vkQueueSubmit(*_vkdt::pObjects::pVKGraphicsQueue, 1, &submitInfo, this -> vkdtVKInFlightFence);
+	const VkResult submitVkQueueResult = vkQueueSubmit
+	(
+		*_vkdt::pObjects::pVKGraphicsQueue,
+		1, &submitInfo,
+		this -> vkdtVKInFlightFences[vkdtCurrentFrame]
+	);
 
 	if(submitVkQueueResult != VK_SUCCESS)
 	{
@@ -262,6 +283,9 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	{
 		throw std::runtime_error("Failed to Draw VKDT Frame! Error:" + std::to_string(presentVKQueueResult) + "!\n");
 	}
+
+	//Advance Current Frame
+	vkdtCurrentFrame = (vkdtCurrentFrame + 1) % _vkdt::pObjects::pCommandBuffers -> size();
 }
 
 void vkdt::frame::frame::stopVKDTFrame(void)

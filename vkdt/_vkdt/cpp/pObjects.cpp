@@ -7,13 +7,11 @@ namespace _vkdt::pObjects
 	GLFWwindow** pGLFWWindow{};
 
 	//Pointers to Vulkan Objects
-	VkCommandBuffer* pVKCommandBuffer{};
 	VkCommandPool* pVKCommandPool{};
 	VkDebugUtilsMessengerEXT* pVKDebugMessenger{};
 	VkDevice* pVKLogicalDevice{};
 	VkExtent2D* pVKSurfaceExtent{};
 	VkFormat* pVKSurfaceFormat{};
-	VkFence* pVKInFlightFence{};
 	VkInstance* pVKInstance{};
 	VkPhysicalDevice* pVKPhysicalDevice = VK_NULL_HANDLE;
 	VkPipeline* pVKPipeline{};
@@ -21,13 +19,15 @@ namespace _vkdt::pObjects
 	VkQueue* pVKGraphicsQueue{};
 	VkQueue* pVKPresentQueue{};
 	VkRenderPass* pVKRenderPass{};
-	VkSemaphore* pVKImageAvailableSemaphore{};
-	VkSemaphore* pVKRenderFinishedSemaphore{};
 	VkSurfaceKHR* pVKSurface{};
 	VkSwapchainKHR* pVKSwapchain{};
 
 	//Pointers to Vectors of Vulkan Objects
+	std::vector<VkCommandBuffer>* pCommandBuffers{};
+	std::vector<VkFence>* pInFlightFences{};
 	std::vector<VkFramebuffer>* pFrameBuffers{};
 	std::vector<VkImageView>* pSwapImageViews{};
 	std::vector<VkImage>* pSwapImages{};
+	std::vector<VkSemaphore>* pImageAvailableSemaphores{};
+	std::vector<VkSemaphore>* pRenderFinishedSemaphores{};
 }

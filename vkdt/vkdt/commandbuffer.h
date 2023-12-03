@@ -45,10 +45,13 @@ namespace vkdt::commandbuffer
 		//Vulkan Command Pool
 		VkCommandPool vkdtVKCommandPool;
 
+		//Maximum Number of Vulkan Frames in Flight
+		const int32_t MAX_FRAMES = 2;
+
 	protected:
 
-		//Vulkan Command Buffer
-		VkCommandBuffer vkdtVKCommandBuffer;
+		//Vector of Vulkan Command Buffers
+		std::vector<VkCommandBuffer> vkdtVKCommandBuffers;
 
 		//Debugging Variables
 		bool debug{};

@@ -9,7 +9,7 @@ vkdt::commandbuffer::commandbuffer::commandbuffer(const bool debug, const bool v
 {
 	//Set Vulkan Command Pool Pointer
 	_vkdt::pObjects::pVKCommandPool = &this -> vkdtVKCommandPool;
-	_vkdt::pObjects::pVKCommandBuffer = &this -> vkdtVKCommandBuffer;
+	_vkdt::pObjects::pCommandBuffers = &this -> vkdtVKCommandBuffers;
 
 	//Debug Initialization Success
 	if(this -> verbose)
@@ -73,6 +73,9 @@ void vkdt::commandbuffer::commandbuffer::createVKDTCommandbuffer(VkAllocationCal
 		throw std::runtime_error("Failed to Create VKDT Command Buffer! Error: " + std::to_string(createVKCommandPoolResult) + "!\n");
 	}
 
+	//Resize Vector of Vulkan Command Buffers
+	this -> vkdtVKCommandBuffers.resize(this -> MAX_FRAMES);
+
 	//Vulkan Command Buffer Allocation Information Struct
 	VkCommandBufferAllocateInfo allocInfo =
 	{
@@ -85,8 +88,8 @@ void vkdt::commandbuffer::commandbuffer::createVKDTCommandbuffer(VkAllocationCal
 		//Command Buffer Level
 		.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
 
-		//Allocate Single Command Buffer
-		.commandBufferCount = 1,
+		//Allocate Two Command Buffers
+		.commandBufferCount = static_cast<uint32_t>(this -> vkdtVKCommandBuffers.size()),
 	};
 
 	//Allocate Vulkan Command Buffer
@@ -94,7 +97,7 @@ void vkdt::commandbuffer::commandbuffer::createVKDTCommandbuffer(VkAllocationCal
 	(
 		*_vkdt::pObjects::pVKLogicalDevice,
 		&allocInfo,
-		&this -> vkdtVKCommandBuffer
+		this -> vkdtVKCommandBuffers.data()
 	);
 
 	if(allocVKCommandBufferResult == VK_SUCCESS)

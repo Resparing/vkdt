@@ -42,12 +42,15 @@ namespace vkdt::frame
 		//Vulkan Memory Allocator
 		VkAllocationCallbacks* pAllocator;
 
-		//Vulkan Semaphores
-		VkSemaphore vkdtVKImageAvailableSemaphore;
-		VkSemaphore vkdtVKRenderFinishedSemaphore;
+		//Vector of Vulkan Semaphores
+		std::vector<VkSemaphore> vkdtVKImageAvailableSemaphores;
+		std::vector<VkSemaphore> vkdtVKRenderFinishedSemaphores;
 
-		//Vulkan Fence
-		VkFence vkdtVKInFlightFence;
+		//Vector of Vulkan Fences
+		std::vector<VkFence> vkdtVKInFlightFences;
+
+		//Maximum Number of Vulkan Frames in Flight
+		const int32_t MAX_FRAMES = 2;
 
 	protected:
 
