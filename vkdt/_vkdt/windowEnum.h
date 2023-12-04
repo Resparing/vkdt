@@ -38,7 +38,7 @@ namespace vkdt::window
 	};
 
 	//VKDT Key Options
-	enum class key : int32_t
+	enum class key : int
 	{
 		SPACE							= GLFW_KEY_SPACE,
 		APOSTROPHE						= GLFW_KEY_APOSTROPHE,

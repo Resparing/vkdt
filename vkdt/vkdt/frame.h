@@ -49,6 +49,14 @@ namespace vkdt::frame
 		//Vector of Vulkan Fences
 		std::vector<VkFence> vkdtVKInFlightFences;
 
+		//Boolean for Checking if Frame Buffer Resized
+		bool frameBufferResized{};
+
+		/**
+		 * @brief Recreate VKDT Swapchain
+		 */
+		void recreateVKDTSwapchain(void);
+
 	protected:
 
 		//Debugging Variables

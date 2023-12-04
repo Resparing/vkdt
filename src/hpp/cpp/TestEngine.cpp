@@ -74,11 +74,8 @@ TestEngine::TestEngine::TestEngine(const bool debug, const bool verbose) : isDeb
 
 void TestEngine::TestEngine::createWindow(void)
 {
-	//Set Arguments for Vulkan Window
-	const vkdt::window::windowArguments windowArgs = {{vkdt::window::argument::RESIZABLE, vkdt::window::result::FALSE}};
-
 	//Initialize VKDT Window
-	this -> vkdtWindow = new vkdt::window::window(windowArgs, isDebug, isVerbose);
+	this -> vkdtWindow = new vkdt::window::window({}, isDebug, isVerbose);
 
 	//Create VKDT Window
 	this -> vkdtWindow -> createWindow({1280, 720}, "Test Engine");

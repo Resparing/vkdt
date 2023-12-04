@@ -5,6 +5,22 @@
 #include <_vkdt/pObjects.h>
 #include <vkdt/commandbuffer.h>
 
+/**
+ * @brief VKDT Implementation of GLFW Frame Buffer Resize Callback Function
+ *
+ * @param window GLFW Window
+ * @param width Width of new GLfW Frame Buffer
+ * @param height Height of new GLFW Frame Buffer
+ */
+static void vkdtGLFWFrameBufferResizeCallback(GLFWwindow* window, int width, int height)
+{
+	//Get Boolean from GLFW User Pointer
+	bool* frameBufferResized = reinterpret_cast<bool*>(glfwGetWindowUserPointer(window));
+
+	//Set Boolean
+	*frameBufferResized = true;
+}
+
 vkdt::frame::frame::frame(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vulkan Semaphores Fences, & Class Pointers
@@ -12,6 +28,10 @@ vkdt::frame::frame::frame(const bool debug, const bool verbose) noexcept : debug
 	_vkdt::pObjects::pRenderFinishedSemaphores = &this -> vkdtVKRenderFinishedSemaphores;
 	_vkdt::pObjects::pInFlightFences = &this -> vkdtVKInFlightFences;
 	_vkdt::pObjects::pVKDTFrame = this;
+
+	//Set Boolean Pointer & Window Callback Function
+	glfwSetWindowUserPointer(*_vkdt::pObjects::pGLFWWindow, &this -> frameBufferResized);
+	glfwSetFramebufferSizeCallback(*_vkdt::pObjects::pGLFWWindow, vkdtGLFWFrameBufferResizeCallback);
 
 	//Debug Initialization Success
 	if(this -> verbose)
@@ -177,14 +197,6 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 		throw std::runtime_error("Failed to Wait for Previous Frame! Error: " + std::to_string(waitForVKFencesResult) + "!\n");
 	}
 
-	//Reset Vulkan Command Buffer
-	const VkResult resetVKFencesResult = vkResetFences(*_vkdt::pObjects::pVKLogicalDevice, 1, &this -> vkdtVKInFlightFences[vkdtCurrentFrame]);
-
-	if(resetVKFencesResult != VK_SUCCESS)
-	{
-		throw std::runtime_error("Failed to Reset VKDT Command Buffer! Error: " + std::to_string(resetVKFencesResult) + "!\n");
-	}
-
 	//Vulkan Swapchain Image Index
 	uint32_t vkdtVKSwapImageIndex{};
 
@@ -199,17 +211,32 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 		&vkdtVKSwapImageIndex
 	);
 
-	if(getVKSwapImageIndexResult != VK_SUCCESS)
+	if(getVKSwapImageIndexResult == VK_ERROR_OUT_OF_DATE_KHR)
 	{
-		throw std::runtime_error("Failed to Find VKDT Swapchain Index! Error:" + std::to_string(getVKSwapImageIndexResult) + "!\n");
+		//Recreate VKDT Swapchain
+		this -> recreateVKDTSwapchain();
+
+		return;
+	}
+	else if(getVKSwapImageIndexResult != VK_SUCCESS && getVKSwapImageIndexResult != VK_SUBOPTIMAL_KHR)
+	{
+		throw std::runtime_error("Failed to Find VKDT Swapchain Index! Error: " + std::to_string(getVKSwapImageIndexResult) + "!\n");
+	}
+
+	//Reset Vulkan Fences
+	const VkResult resetVKFencesResult = vkResetFences(*_vkdt::pObjects::pVKLogicalDevice, 1, &this -> vkdtVKInFlightFences[vkdtCurrentFrame]);
+
+	if(resetVKFencesResult != VK_SUCCESS)
+	{
+		throw std::runtime_error("Failed to Reset VKDT Command Buffer! Error: " + std::to_string(resetVKFencesResult) + "!\n");
 	}
 
 	//Reset Vulkan Command Buffer
-	const VkResult resetVkCommandBufferResult = vkResetCommandBuffer((*_vkdt::pObjects::pCommandBuffers)[vkdtCurrentFrame], 0);
+	const VkResult resetVKCommandBufferResult = vkResetCommandBuffer((*_vkdt::pObjects::pCommandBuffers)[vkdtCurrentFrame], 0);
 
-	if(resetVkCommandBufferResult != VK_SUCCESS)
+	if(resetVKCommandBufferResult != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to Reset Vulkan Command Buffer! Error: " + std::to_string(resetVkCommandBufferResult) + "!\n");
+		throw std::runtime_error("Failed to Reset Vulkan Command Buffer! Error: " + std::to_string(resetVKCommandBufferResult) + "!\n");
 	}
 
 	//Record Vulkan Command Buffer
@@ -280,7 +307,15 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	//Show Frame to Screen
 	const VkResult presentVKQueueResult = vkQueuePresentKHR(*_vkdt::pObjects::pVKPresentQueue, &vkdtVKPresentInfo);
 
-	if(presentVKQueueResult != VK_SUCCESS)
+	if(presentVKQueueResult == VK_ERROR_OUT_OF_DATE_KHR || presentVKQueueResult == VK_SUBOPTIMAL_KHR || this -> frameBufferResized)
+	{
+		//Reset Frame Buffer Resize Boolean
+		this -> frameBufferResized = false;
+
+		//Recreate VKDT Swapchain
+		this -> recreateVKDTSwapchain();
+	}
+	else if(presentVKQueueResult != VK_SUCCESS)
 	{
 		throw std::runtime_error("Failed to Draw VKDT Frame! Error:" + std::to_string(presentVKQueueResult) + "!\n");
 	}
@@ -306,4 +341,49 @@ void vkdt::frame::frame::stopVKDTFrame(void)
 	{
 		throw std::runtime_error("Failed to Wait for VKDT Device to Stop! Error: " + std::to_string(waitForVKLogicalDeviceResult) + "!\n");
 	}
+}
+
+void vkdt::frame::frame::recreateVKDTSwapchain(void)
+{
+	//Pause Execution While Minimized
+
+	//Size of GLFW Window
+	int vkdtGLFWWindowWidth{};
+	int vkdtGLFWWindowHeight{};
+
+	//Wait Until Window Size Not 0
+	do
+	{
+		//Get Frame Buffer Size
+		glfwGetFramebufferSize(*_vkdt::pObjects::pGLFWWindow, &vkdtGLFWWindowWidth, &vkdtGLFWWindowHeight);
+
+		//Make GLFW Wait until Events Queued
+		glfwWaitEvents();
+
+	} while(vkdtGLFWWindowWidth == 0 || vkdtGLFWWindowHeight == 0);
+
+
+
+	//Stop VKDT Device
+	this -> stopVKDTFrame();
+
+	//Destroy Vulkan Frame Buffers
+	for(size_t i{}; i < _vkdt::pObjects::pFrameBuffers -> size(); ++i)
+	{
+		vkDestroyFramebuffer(*_vkdt::pObjects::pVKLogicalDevice, (*_vkdt::pObjects::pFrameBuffers)[i], this -> pAllocator);
+	}
+
+	//Destroy Vulkan Image Views
+	for(size_t i{}; i < _vkdt::pObjects::pSwapImageViews -> size(); ++i)
+	{
+		vkDestroyImageView(*_vkdt::pObjects::pVKLogicalDevice, (*_vkdt::pObjects::pSwapImageViews)[i], this -> pAllocator);
+	}
+
+	//Destroy Vulkan Swapchain
+	vkDestroySwapchainKHR(*_vkdt::pObjects::pVKLogicalDevice, *_vkdt::pObjects::pVKSwapchain, this -> pAllocator);
+
+	//Create VKDT Swapchain, Image View, & Frame Buffer
+	_vkdt::pObjects::pVKDTSwapchain -> createVKDTSwapchain(this -> pAllocator);
+	_vkdt::pObjects::pVKDTImageView -> createVKDTImageView(this -> pAllocator);
+	_vkdt::pObjects::pVKDTFrameBuffer -> createVKDTFramebuffer(this -> pAllocator);
 }
