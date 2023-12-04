@@ -49,9 +49,6 @@ namespace vkdt::frame
 		//Vector of Vulkan Fences
 		std::vector<VkFence> vkdtVKInFlightFences;
 
-		//Maximum Number of Vulkan Frames in Flight
-		const int32_t MAX_FRAMES = 2;
-
 	protected:
 
 		//Debugging Variables
