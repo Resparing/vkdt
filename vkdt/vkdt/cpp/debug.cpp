@@ -138,8 +138,9 @@ vkdt::debug::messenger::messenger
 		return;
 	}
 
-	//Set Vulkan Debug Messenger Pointer
+	//Set Vulkan Debug Messenger & Class Pointers
 	_vkdt::pObjects::pVKDebugMessenger = &this -> vkdtVKDebugMessenger;
+	_vkdt::pObjects::pVKDTDebugMessenger = this;
 
 	//Set Callback Function
 	vkdt::debug::vkdtCallbackFunc = callbackFunction;

@@ -7,9 +7,10 @@
 
 vkdt::commandbuffer::commandbuffer::commandbuffer(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Command Pool Pointer
+	//Set Vulkan Command Pool, Command Buffer, & Class Pointers
 	_vkdt::pObjects::pVKCommandPool = &this -> vkdtVKCommandPool;
 	_vkdt::pObjects::pCommandBuffers = &this -> vkdtVKCommandBuffers;
+	_vkdt::pObjects::pVKDTCommandBuffer = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

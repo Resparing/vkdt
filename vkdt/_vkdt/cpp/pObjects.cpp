@@ -30,4 +30,19 @@ namespace _vkdt::pObjects
 	std::vector<VkImage>* pSwapImages{};
 	std::vector<VkSemaphore>* pImageAvailableSemaphores{};
 	std::vector<VkSemaphore>* pRenderFinishedSemaphores{};
+
+	//Pointers to VKDT Objects
+	vkdt::commandbuffer::commandbuffer* pVKDTCommandBuffer{};
+	vkdt::debug::messenger* pVKDTDebugMessenger{};
+	vkdt::device::device* pVKDTDevice{};
+	vkdt::frame::frame* pVKDTFrame{};
+	vkdt::framebuffer::framebuffer* pVKDTFrameBuffer{};
+	vkdt::GPU::GPU* pVKDTGPU{};
+	vkdt::imageView::imageView* pVKDTImageView{};
+	vkdt::instance::instance* pVKDTInstance{};
+	vkdt::pipeline::pipeline* pVKDTPipeline{};
+	vkdt::queue::queue* pVKDTQueue{};
+	vkdt::surface::surface* pVKDTSurface{};
+	vkdt::swapchain::swapchain* pVKDTSwapchain{};
+	vkdt::window::window* pVKDTWindow{};
 }

@@ -6,10 +6,11 @@
 
 vkdt::pipeline::pipeline::pipeline(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Pointer to Vulkan Pipeline, Renderpass & Pipeline Layout
+	//Set Vulkan Pipeline, Renderpass, Pipeline Layout & Class Pointers
 	_vkdt::pObjects::pVKPipeline = &this -> vkdtVKPipeline;
 	_vkdt::pObjects::pVKRenderPass = &this -> vkdtVKRenderpass;
 	_vkdt::pObjects::pVKPipelineLayout = &this -> vkdtVKPipelineLayout;
+	_vkdt::pObjects::pVKDTPipeline = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

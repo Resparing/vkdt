@@ -6,9 +6,10 @@
 
 vkdt::queue::queue::queue(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Graphics & Present Queue Pointers
+	//Set Vulkan Graphics, Present Queue & Class Pointers
 	_vkdt::pObjects::pVKGraphicsQueue = &this -> vkdtVKGraphicsQueue;
 	_vkdt::pObjects::pVKPresentQueue = &this -> vkdtVKPresentQueue;
+	_vkdt::pObjects::pVKDTQueue = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

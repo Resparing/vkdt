@@ -8,8 +8,9 @@
 
 vkdt::GPU::GPU::GPU(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Physical Device Pointer
+	//Set Vulkan Physical Device & Class Pointers
 	_vkdt::pObjects::pVKPhysicalDevice = &this -> vkdtVKPhysicalDevice;
+	_vkdt::pObjects::pVKDTGPU = this;
 
 	//Debug GPU Creation Success
 	if(this -> verbose)

@@ -8,8 +8,9 @@
 
 vkdt::swapchain::swapchain::swapchain(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Swapchain Pointer
+	//Set Vulkan Swapchain & Class Pointers
 	_vkdt::pObjects::pVKSwapchain = &this -> vkdtVKSwapchain;
+	_vkdt::pObjects::pVKDTSwapchain = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

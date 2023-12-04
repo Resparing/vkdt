@@ -13,8 +13,9 @@ vkdt::device::device::device
 	const bool verbose
 ) noexcept : vkdtVKLayers(vkdtVKRequestedLayers), vkdtVKExtensions(vkdtVKRequestedExtensions), debug(debug), verbose(verbose)
 {
-	//Set Vulkan Logical Device Pointer
+	//Set Vulkan Logical Device & Class Pointers
 	_vkdt::pObjects::pVKLogicalDevice = &this -> vkdtVKLogicalDevice;
+	_vkdt::pObjects::pVKDTDevice = this;
 
 	//Set Vulkan Extensions & Vulkan Layers
 	if(this -> debug || this -> verbose)

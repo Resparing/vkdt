@@ -6,8 +6,9 @@
 
 vkdt::surface::surface::surface(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Surface Pointer
+	//Set Vulkan Surface & Class Pointers
 	_vkdt::pObjects::pVKSurface = &this -> vkdtVKSurface;
+	_vkdt::pObjects::pVKDTSurface = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

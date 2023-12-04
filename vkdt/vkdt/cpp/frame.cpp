@@ -7,10 +7,11 @@
 
 vkdt::frame::frame::frame(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vulkan Semaphores & Fences Pointer
+	//Set Vulkan Semaphores Fences, & Class Pointers
 	_vkdt::pObjects::pImageAvailableSemaphores = &this -> vkdtVKImageAvailableSemaphores;
 	_vkdt::pObjects::pRenderFinishedSemaphores = &this -> vkdtVKRenderFinishedSemaphores;
 	_vkdt::pObjects::pInFlightFences = &this -> vkdtVKInFlightFences;
+	_vkdt::pObjects::pVKDTFrame = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)

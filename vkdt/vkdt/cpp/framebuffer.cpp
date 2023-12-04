@@ -6,8 +6,9 @@
 
 vkdt::framebuffer::framebuffer::framebuffer(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vector to Vulkan Frame Buffers Pointer
+	//Set Vector to Vulkan Frame Buffers & Class Pointers
 	_vkdt::pObjects::pFrameBuffers = &this -> vkdtVKFrameBuffers;
+	_vkdt::pObjects::pVKDTFrameBuffer = this;
 
 	//Set Frame Buffer Size to Swapchain Image Views Vector Size
 	this -> vkdtVKFrameBuffers.resize(_vkdt::pObjects::pSwapImageViews -> size());

@@ -6,9 +6,10 @@
 
 vkdt::imageView::imageView::imageView(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
-	//Set Vector of Vulkan Swapchain Images & Image Views Pointers
+	//Set Vector of Vulkan Swapchain Images, Image Views, & Class Pointers
 	_vkdt::pObjects::pSwapImages = &this -> vkdtVKSwapchainImages;
 	_vkdt::pObjects::pSwapImageViews = &this -> vkdtVKSwapchainImageViews;
+	_vkdt::pObjects::pVKDTImageView = this;
 
 	//Debug Initialization Success
 	if(this -> verbose)
