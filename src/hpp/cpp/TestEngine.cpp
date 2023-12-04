@@ -114,7 +114,7 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtDevice = new vkdt::device::device({}, {}, isDebug, isVerbose);
 	this -> vkdtDevice -> createVKDTDevice(nullptr);
 
-	this -> vkdtImageView = new vkdt::imageView::imageView(isDebug, isVerbose);
+	this -> vkdtImageView = new vkdt::imageview::imageview(isDebug, isVerbose);
 
 	this -> vkdtSwapchain = new vkdt::swapchain::swapchain(isDebug, isVerbose);
 	this -> vkdtSwapchain -> createVKDTSwapchain(nullptr);

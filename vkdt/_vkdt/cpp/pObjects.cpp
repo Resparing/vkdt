@@ -38,7 +38,7 @@ namespace _vkdt::pObjects
 	vkdt::frame::frame* pVKDTFrame{};
 	vkdt::framebuffer::framebuffer* pVKDTFrameBuffer{};
 	vkdt::GPU::GPU* pVKDTGPU{};
-	vkdt::imageView::imageView* pVKDTImageView{};
+	vkdt::imageview::imageview* pVKDTImageView{};
 	vkdt::instance::instance* pVKDTInstance{};
 	vkdt::pipeline::pipeline* pVKDTPipeline{};
 	vkdt::queue::queue* pVKDTQueue{};

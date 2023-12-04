@@ -1,10 +1,10 @@
 //Include Header File
-#include <vkdt/imageView.h>
+#include <vkdt/imageview.h>
 
 //Include Headers
 #include <_vkdt/pObjects.h>
 
-vkdt::imageView::imageView::imageView(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
+vkdt::imageview::imageview::imageview(const bool debug, const bool verbose) noexcept : debug(debug), verbose(verbose)
 {
 	//Set Vector of Vulkan Swapchain Images, Image Views, & Class Pointers
 	_vkdt::pObjects::pSwapImages = &this -> vkdtVKSwapchainImages;
@@ -18,7 +18,7 @@ vkdt::imageView::imageView::imageView(const bool debug, const bool verbose) noex
 	}
 }
 
-vkdt::imageView::imageView::~imageView()
+vkdt::imageview::imageview::~imageview()
 {
 	//Iterate over Swapchain Image Views
 	for(const VkImageView& vkdtVKSwapchainImageView : this -> vkdtVKSwapchainImageViews)
@@ -33,7 +33,7 @@ vkdt::imageView::imageView::~imageView()
 	}
 }
 
-void vkdt::imageView::imageView::createVKDTImageView(VkAllocationCallbacks* allocator)
+void vkdt::imageview::imageview::createVKDTImageView(VkAllocationCallbacks* allocator)
 {
 	//Set Vulkan Allocator
 	this -> pAllocator = allocator;

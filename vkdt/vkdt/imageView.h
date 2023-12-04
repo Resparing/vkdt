@@ -4,9 +4,9 @@
 //Include Headers
 #include <_vkdt/vkdtConfig.h>
 
-namespace vkdt::imageView
+namespace vkdt::imageview
 {
-	class imageView
+	class imageview
 	{
 	public:
 
@@ -16,9 +16,9 @@ namespace vkdt::imageView
 		 * @param debug Whether to Allow Debugging in Messages
 		 * @param verbose Allow General & Verbose Debugging Methods in Messages
 		 */
-		imageView(const bool debug = false, const bool verbose = false) noexcept;
+		imageview(const bool debug = false, const bool verbose = false) noexcept;
 
-		~imageView();
+		~imageview();
 
 		/**
 		 * @brief Create VKDT Image Views

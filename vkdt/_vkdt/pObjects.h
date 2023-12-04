@@ -9,7 +9,7 @@
 #include <vkdt/frame.h>
 #include <vkdt/framebuffer.h>
 #include <vkdt/GPU.h>
-#include <vkdt/imageView.h>
+#include <vkdt/imageview.h>
 #include <vkdt/instance.h>
 #include <vkdt/pipeline.h>
 #include <vkdt/queue.h>
@@ -54,7 +54,7 @@ namespace _vkdt::pObjects
 	extern vkdt::frame::frame* pVKDTFrame;  //Pointer to VKDT Frame
 	extern vkdt::framebuffer::framebuffer* pVKDTFrameBuffer;  //Pointer to VKDT Frame Buffer
 	extern vkdt::GPU::GPU* pVKDTGPU;  //Pointer to VKDT GPU
-	extern vkdt::imageView::imageView* pVKDTImageView;  //Pointer to VKDT Iamge View
+	extern vkdt::imageview::imageview* pVKDTImageView;  //Pointer to VKDT Iamge View
 	extern vkdt::instance::instance* pVKDTInstance;  //Pointer to VKDT Instance
 	extern vkdt::pipeline::pipeline* pVKDTPipeline;  //Pointer to VKDT Pipeline
 	extern vkdt::queue::queue* pVKDTQueue;  //Pointer to VKDT Queues

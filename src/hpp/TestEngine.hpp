@@ -8,7 +8,7 @@
 #include <vkdt/frame.h>
 #include <vkdt/framebuffer.h>
 #include <vkdt/GPU.h>
-#include <vkdt/imageView.h>
+#include <vkdt/imageview.h>
 #include <vkdt/instance.h>
 #include <vkdt/pipeline.h>
 #include <vkdt/queue.h>
@@ -35,7 +35,7 @@ namespace TestEngine
 		vkdt::framebuffer::framebuffer* vkdtFrameBuffer;
 		vkdt::GPU::GPU* vkdtGPU;
 		vkdt::instance::instance* vkdtInstance;
-		vkdt::imageView::imageView* vkdtImageView;
+		vkdt::imageview::imageview* vkdtImageView;
 		vkdt::pipeline::pipeline* vkdtPipeline;
 		vkdt::queue::queue* vkdtQueue;
 		vkdt::surface::surface* vkdtSurface;
