@@ -14,6 +14,10 @@
  */
 static void vkdtGLFWFrameBufferResizeCallback(GLFWwindow* window, int width, int height)
 {
+	//Cast Unused Parameters to void to Disable Warnings
+	static_cast<void>(width);
+	static_cast<void>(height);
+
 	//Get Boolean from GLFW User Pointer
 	bool* frameBufferResized = reinterpret_cast<bool*>(glfwGetWindowUserPointer(window));
 
