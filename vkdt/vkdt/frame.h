@@ -22,7 +22,7 @@ namespace vkdt::frame
 
 		/**
 		 * @brief Setup VKDT Frame
-		 * 
+		 *
 		 * @param allocator Vulkan Memory Allocator
 		 */
 		void setupVKDTFrame(VkAllocationCallbacks* allocator = VK_NULL_HANDLE);

@@ -74,7 +74,7 @@ void vkdt::commandbuffer::commandbuffer::createVKDTCommandbuffer(VkAllocationCal
 	}
 
 	//Resize Vector of Vulkan Command Buffers
-	this -> vkdtVKCommandBuffers.resize(this -> MAX_FRAMES);
+	this -> vkdtVKCommandBuffers.resize(static_cast<size_t>(this -> MAX_FRAMES));
 
 	//Vulkan Command Buffer Allocation Information Struct
 	VkCommandBufferAllocateInfo allocInfo =
@@ -128,7 +128,7 @@ void vkdt::commandbuffer::commandbuffer::recordVKCommandBuffer(const VkCommandBu
 
 	if(recordVKCommandBufferResult != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to Being Command Buffer! Error:" + std::to_string(recordVKCommandBufferResult) + "!\n");
+		throw std::runtime_error("Failed to Being Command Buffer! Error: " + std::to_string(recordVKCommandBufferResult) + "!\n");
 	}
 
 	//Background Color
