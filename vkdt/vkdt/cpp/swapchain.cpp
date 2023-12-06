@@ -262,7 +262,7 @@ VkExtent2D vkdt::swapchain::swapchain::chooseVKSwapExtent(const VkSurfaceCapabil
 		{
 			std::cout
 			<< "Selected Vulkan Swapchain Extent with Width: " << vkdtVKSurfaceCapabilities.currentExtent.width		\
-			<< " Height: " << vkdtVKSurfaceCapabilities.currentExtent.width << "!\n";
+			<< " Height: " << vkdtVKSurfaceCapabilities.currentExtent.height << "!\n";
 		}
 
 		return vkdtVKSurfaceCapabilities.currentExtent;
@@ -303,7 +303,7 @@ VkExtent2D vkdt::swapchain::swapchain::chooseVKSwapExtent(const VkSurfaceCapabil
 	{
 		std::cout
 		<< "Selected Vulkan Swapchain Extent with Width: " << vkdtVKNewExtent.width		\
-		<< " Height: " << vkdtVKNewExtent.width << "!\n";
+		<< " Height: " << vkdtVKNewExtent.height << "!\n";
 	}
 
 	return vkdtVKNewExtent;

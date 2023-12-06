@@ -44,7 +44,7 @@ void vkdt::imageview::imageview::createVKDTImageView(VkAllocationCallbacks* allo
 	//Debug Number of Vulkan Swapchain Image View
 	if(this -> debug || this -> verbose)
 	{
-		std::cout << "Creating: " << vkdtVKSwapchainImageViews.size() << "...\n";
+		std::cout << "Creating: " << vkdtVKSwapchainImageViews.size() << "VKDT Image Views...\n";
 	}
 
 	//Iterate Over Vulkan Swapchain Images

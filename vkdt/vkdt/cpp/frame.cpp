@@ -321,7 +321,7 @@ void vkdt::frame::frame::drawVKDTFrame(void)
 	}
 	else if(presentVKQueueResult != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to Draw VKDT Frame! Error:" + std::to_string(presentVKQueueResult) + "!\n");
+		throw std::runtime_error("Failed to Draw VKDT Frame! Error: " + std::to_string(presentVKQueueResult) + "!\n");
 	}
 
 	//Advance Current Frame
