@@ -1,5 +1,7 @@
 //Include Header File
 #include "../TestEngine.hpp"
+#include <sstream>
+#include <_vkdt/pObjects.h>
 
 //Callback Function
 static void callback
@@ -134,11 +136,63 @@ void TestEngine::TestEngine::vkdtInit(void)
 	this -> vkdtFrame -> setupVKDTFrame(nullptr);
 }
 
+std::string fmtNum(int no) noexcept
+{
+	std::string ans{};
+	std::string num = std::to_string(no); 
+
+	int count{};
+
+	for(int i = static_cast<int>(num.size()) - 1; i >=0; --i)
+	{
+		++count;
+		ans.push_back(num[static_cast<__SIZE_TYPE__>(i)]);
+
+		if(count == 3)
+		{
+			ans.push_back(',');
+			count = 0;
+		}
+	}
+
+	reverse(ans.begin(), ans.end());
+
+	if(ans.size() % 4 == 0)
+	{
+		ans.erase(ans.begin());
+	}
+
+	return ans;
+}
+
+double lastTime{}, currentTime{};
+int numFrames{};
+
+void dispFPS(GLFWwindow*& window) noexcept
+{
+	currentTime = glfwGetTime();
+	double delta = currentTime - lastTime;
+
+	if (delta >= 1)
+	{
+		int framerate = std::max(1, int(numFrames / delta));
+		std::stringstream title;
+		title << "Running at " << fmtNum(framerate) << " fps. ";
+		glfwSetWindowTitle(window, title.str().c_str());
+		lastTime = currentTime;
+		numFrames = -1;
+	}
+
+	++numFrames;
+}
+
 void TestEngine::TestEngine::mainLoop(void)
 {
 	while(this -> vkdtWindow -> isOpen())
 	{
 		this -> vkdtWindow -> update();
+
+		dispFPS(*_vkdt::pObjects::pGLFWWindow);
 
 		this -> vkdtFrame -> drawVKDTFrame();
 	}
